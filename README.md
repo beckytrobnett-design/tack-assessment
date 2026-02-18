@@ -45,6 +45,10 @@ npm run build
 
 Deploy to Vercel or Netlify. The `/api/send-report` endpoint is a serverless function (Vercel: `api/send-report.js`).
 
+### Custom domain (e.g. tack.tondreaupoint.com)
+
+See [CUSTOM_DOMAIN.md](./CUSTOM_DOMAIN.md) for step-by-step instructions.
+
 ## Routes
 
 - `/` - Welcome

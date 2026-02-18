@@ -3,111 +3,136 @@ import {
   Page,
   Text,
   View,
+  Image,
   StyleSheet,
 } from '@react-pdf/renderer';
 import { orientations } from '../../data/orientations';
 
 const styles = StyleSheet.create({
   page: {
-    padding: 40,
-    fontFamily: 'Helvetica',
+    padding: 48,
+    fontFamily: 'Times-Roman',
     fontSize: 11,
+  },
+  pageHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 24,
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#A88661',
+  },
+  pageHeaderLogo: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#1A2B44',
+  },
+  pageHeaderSub: {
+    fontSize: 9,
+    color: '#A88661',
+    fontStyle: 'italic',
   },
   coverPage: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 60,
+    backgroundColor: '#F9F4EF',
   },
   logo: {
-    fontSize: 32,
+    fontSize: 36,
     fontWeight: 'bold',
     color: '#1A2B44',
-    marginBottom: 4,
+    marginBottom: 6,
+    letterSpacing: 2,
   },
   logoDivider: {
-    width: 80,
-    height: 1,
+    width: 100,
+    height: 2,
     backgroundColor: '#A88661',
-    marginBottom: 8,
+    marginBottom: 10,
     alignSelf: 'center',
   },
   subtitle: {
-    fontSize: 12,
+    fontSize: 13,
     color: '#A88661',
     fontStyle: 'italic',
-    marginBottom: 40,
+    marginBottom: 48,
   },
   title: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
     color: '#1A2B44',
-    marginBottom: 12,
+    marginBottom: 24,
     textAlign: 'center',
+    lineHeight: 1.4,
   },
   preparedFor: {
-    fontSize: 12,
-    color: '#6B7280',
-    marginBottom: 8,
+    fontSize: 13,
+    color: '#1A2B44',
+    marginBottom: 6,
   },
   date: {
     fontSize: 11,
-    color: '#6B7280',
+    color: '#A88661',
     marginBottom: 24,
   },
   footer: {
     position: 'absolute',
     bottom: 30,
-    left: 40,
-    right: 40,
+    left: 48,
+    right: 48,
     textAlign: 'center',
     fontSize: 10,
     color: '#A88661',
   },
   sectionTitle: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: 'bold',
     color: '#1A2B44',
-    marginBottom: 12,
-    marginTop: 20,
+    marginBottom: 14,
+    marginTop: 24,
   },
   bodyText: {
     fontSize: 11,
     color: '#1A2B44',
-    lineHeight: 1.6,
-    marginBottom: 8,
+    lineHeight: 1.7,
+    marginBottom: 10,
   },
   listItem: {
     flexDirection: 'row',
-    marginBottom: 6,
+    marginBottom: 8,
+    alignItems: 'flex-start',
   },
   bullet: {
-    width: 16,
+    width: 20,
     fontSize: 11,
-    color: '#90B4A8',
+    color: '#A88661',
+    marginRight: 8,
   },
   listText: {
     flex: 1,
     fontSize: 11,
     color: '#1A2B44',
-    lineHeight: 1.5,
+    lineHeight: 1.6,
   },
   noteBox: {
     backgroundColor: '#F9F4EF',
-    padding: 16,
+    padding: 20,
     marginTop: 16,
     borderLeftWidth: 4,
-    borderLeftColor: '#1A2B44',
+    borderLeftColor: '#A88661',
   },
   orientationHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 16,
   },
   accentBar: {
     width: 4,
-    height: 24,
-    marginRight: 12,
+    height: 28,
+    marginRight: 14,
   },
 });
 
@@ -135,6 +160,10 @@ export function ReportDocument({ results, userName = 'You' }) {
 
       {/* Page 2: Your Orientation */}
       <Page size="A4" style={styles.page}>
+        <View style={styles.pageHeader}>
+          <Text style={styles.pageHeaderLogo}>TACK</Text>
+          <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
+        </View>
         <View style={styles.orientationHeader}>
           <View
             style={[styles.accentBar, { backgroundColor: primary.color }]}
@@ -154,19 +183,23 @@ export function ReportDocument({ results, userName = 'You' }) {
 
       {/* Page 3: Strengths and Growth */}
       <Page size="A4" style={styles.page}>
+        <View style={[styles.pageHeader, { marginBottom: 20 }]}>
+          <Text style={styles.pageHeaderLogo}>TACK</Text>
+          <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
+        </View>
         <Text style={[styles.sectionTitle, { marginTop: 0 }]}>
           Your Strengths
         </Text>
         {primary.strengths.map((s, i) => (
           <View key={i} style={styles.listItem}>
-            <Text style={styles.bullet}>•</Text>
+            <Text style={styles.bullet}>✓</Text>
             <Text style={styles.listText}>{s}</Text>
           </View>
         ))}
         <Text style={styles.sectionTitle}>Where You Can Grow</Text>
         {primary.growthAreas.map((g, i) => (
           <View key={i} style={styles.listItem}>
-            <Text style={styles.bullet}>•</Text>
+            <Text style={styles.bullet}>{i + 1}.</Text>
             <Text style={styles.listText}>{g}</Text>
           </View>
         ))}
@@ -175,6 +208,10 @@ export function ReportDocument({ results, userName = 'You' }) {
 
       {/* Page 4: A Note From Penny */}
       <Page size="A4" style={styles.page}>
+        <View style={[styles.pageHeader, { marginBottom: 20 }]}>
+          <Text style={styles.pageHeaderLogo}>TACK</Text>
+          <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
+        </View>
         <Text style={[styles.sectionTitle, { marginTop: 0 }]}>
           A Note From Penny
         </Text>
@@ -186,6 +223,10 @@ export function ReportDocument({ results, userName = 'You' }) {
 
       {/* Page 5: Your Next Steps */}
       <Page size="A4" style={styles.page}>
+        <View style={[styles.pageHeader, { marginBottom: 20 }]}>
+          <Text style={styles.pageHeaderLogo}>TACK</Text>
+          <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
+        </View>
         <Text style={[styles.sectionTitle, { marginTop: 0 }]}>
           Your Next Steps
         </Text>
@@ -211,6 +252,10 @@ export function ReportDocument({ results, userName = 'You' }) {
 
       {/* Page 6: About TACK */}
       <Page size="A4" style={styles.page}>
+        <View style={[styles.pageHeader, { marginBottom: 20 }]}>
+          <Text style={styles.pageHeaderLogo}>TACK</Text>
+          <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
+        </View>
         <Text style={[styles.sectionTitle, { marginTop: 0 }]}>
           About TACK
         </Text>

@@ -53,13 +53,29 @@ export default async function handler(req, res) {
     ? ORIENTATION_NAMES[results.secondary.orientation] || results.secondary.orientation
     : null;
 
+  const baseUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'https://tack.tondreaupoint.com';
+  const logoUrl = `${baseUrl}/logo-horizontal.png`;
+
   const userHtmlBody = `
-    <p>Hi there,</p>
-    <p>Thanks for taking the time to explore your relationship with money. That takes real courage.</p>
-    <p>Your orientation report is attached — it's got everything we just talked about, plus a few things to sit with.</p>
-    <p>No rush. Read it when you're ready. And know that wherever you are right now is exactly the right place to start.</p>
-    <p>— Penny</p>
-    <p style="margin-top: 24px; color: #6B7280; font-size: 12px;">TACK by Tondreau Point</p>
+    <div style="font-family: Georgia, 'Times New Roman', serif; max-width: 560px; margin: 0 auto; background-color: #F9F4EF; padding: 40px;">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <a href="${baseUrl}" style="display: inline-block;">
+          <img src="${logoUrl}" alt="TACK by Tondreau Point" width="280" style="max-width: 100%; height: auto; display: block;" />
+        </a>
+      </div>
+      <div style="background-color: #ffffff; padding: 32px; border-radius: 8px; box-shadow: 0 1px 3px rgba(26,43,68,0.08);">
+        <p style="font-size: 16px; color: #1A2B44; line-height: 1.7; margin: 0 0 16px;">Hi there,</p>
+        <p style="font-size: 16px; color: #1A2B44; line-height: 1.7; margin: 0 0 16px;">Thanks for taking the time to explore your relationship with money. That takes real courage.</p>
+        <p style="font-size: 16px; color: #1A2B44; line-height: 1.7; margin: 0 0 16px;">Your orientation report is attached — it's got everything we just talked about, plus a few things to sit with.</p>
+        <p style="font-size: 16px; color: #1A2B44; line-height: 1.7; margin: 0 0 24px;">No rush. Read it when you're ready. And know that wherever you are right now is exactly the right place to start.</p>
+        <p style="font-size: 16px; color: #1A2B44; line-height: 1.7; margin: 0; font-style: italic;">— Penny</p>
+      </div>
+      <p style="text-align: center; margin-top: 32px; font-size: 12px; color: #A88661;">
+        <a href="${baseUrl}" style="color: #A88661; text-decoration: none;">TACK by Tondreau Point</a>
+      </p>
+    </div>
   `;
 
   const attachments = pdfBase64
