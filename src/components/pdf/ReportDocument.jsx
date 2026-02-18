@@ -38,27 +38,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 60,
-    backgroundColor: '#F9F4EF',
+    backgroundColor: '#F5F3ED',
   },
-  logo: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: '#1A2B44',
-    marginBottom: 6,
-    letterSpacing: 2,
+  logoImage: {
+    width: 280,
+    height: 'auto',
+    marginBottom: 24,
   },
-  logoDivider: {
-    width: 100,
-    height: 2,
-    backgroundColor: '#A88661',
-    marginBottom: 10,
-    alignSelf: 'center',
-  },
-  subtitle: {
-    fontSize: 13,
-    color: '#A88661',
-    fontStyle: 'italic',
-    marginBottom: 48,
+  logoImageHeader: {
+    width: 120,
+    height: 'auto',
   },
   title: {
     fontSize: 22,
@@ -118,7 +107,7 @@ const styles = StyleSheet.create({
     lineHeight: 1.6,
   },
   noteBox: {
-    backgroundColor: '#F9F4EF',
+    backgroundColor: '#F5F3ED',
     padding: 20,
     marginTop: 16,
     borderLeftWidth: 4,
@@ -136,16 +125,21 @@ const styles = StyleSheet.create({
   },
 });
 
-export function ReportDocument({ results, userName = 'You' }) {
+export function ReportDocument({ results, userName = 'You', logoDataUri }) {
   const primary = orientations[results.primary.orientation];
 
   return (
     <Document>
       {/* Page 1: Cover */}
       <Page size="A4" style={[styles.page, styles.coverPage]}>
-        <Text style={styles.logo}>TACK</Text>
-        <View style={styles.logoDivider} />
-        <Text style={styles.subtitle}>by Tondreau Point</Text>
+        {logoDataUri ? (
+          <Image src={logoDataUri} style={styles.logoImage} />
+        ) : (
+          <>
+            <Text style={{ fontSize: 36, fontWeight: 'bold', color: '#1A2B44', marginBottom: 6, letterSpacing: 2 }}>TACK</Text>
+            <Text style={{ fontSize: 13, color: '#A88661', fontStyle: 'italic', marginBottom: 48 }}>by Tondreau Point</Text>
+          </>
+        )}
         <Text style={styles.title}>Your Financial Orientation Report</Text>
         <Text style={styles.preparedFor}>Prepared for {userName}</Text>
         <Text style={styles.date}>
@@ -161,8 +155,14 @@ export function ReportDocument({ results, userName = 'You' }) {
       {/* Page 2: Your Orientation */}
       <Page size="A4" style={styles.page}>
         <View style={styles.pageHeader}>
-          <Text style={styles.pageHeaderLogo}>TACK</Text>
-          <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
+          {logoDataUri ? (
+            <Image src={logoDataUri} style={styles.logoImageHeader} />
+          ) : (
+            <>
+              <Text style={styles.pageHeaderLogo}>TACK</Text>
+              <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
+            </>
+          )}
         </View>
         <View style={styles.orientationHeader}>
           <View
@@ -184,8 +184,14 @@ export function ReportDocument({ results, userName = 'You' }) {
       {/* Page 3: Strengths and Growth */}
       <Page size="A4" style={styles.page}>
         <View style={[styles.pageHeader, { marginBottom: 20 }]}>
-          <Text style={styles.pageHeaderLogo}>TACK</Text>
-          <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
+          {logoDataUri ? (
+            <Image src={logoDataUri} style={styles.logoImageHeader} />
+          ) : (
+            <>
+              <Text style={styles.pageHeaderLogo}>TACK</Text>
+              <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
+            </>
+          )}
         </View>
         <Text style={[styles.sectionTitle, { marginTop: 0 }]}>
           Your Strengths
@@ -209,8 +215,14 @@ export function ReportDocument({ results, userName = 'You' }) {
       {/* Page 4: A Note From Penny */}
       <Page size="A4" style={styles.page}>
         <View style={[styles.pageHeader, { marginBottom: 20 }]}>
-          <Text style={styles.pageHeaderLogo}>TACK</Text>
-          <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
+          {logoDataUri ? (
+            <Image src={logoDataUri} style={styles.logoImageHeader} />
+          ) : (
+            <>
+              <Text style={styles.pageHeaderLogo}>TACK</Text>
+              <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
+            </>
+          )}
         </View>
         <Text style={[styles.sectionTitle, { marginTop: 0 }]}>
           A Note From Penny
@@ -224,8 +236,14 @@ export function ReportDocument({ results, userName = 'You' }) {
       {/* Page 5: Your Next Steps */}
       <Page size="A4" style={styles.page}>
         <View style={[styles.pageHeader, { marginBottom: 20 }]}>
-          <Text style={styles.pageHeaderLogo}>TACK</Text>
-          <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
+          {logoDataUri ? (
+            <Image src={logoDataUri} style={styles.logoImageHeader} />
+          ) : (
+            <>
+              <Text style={styles.pageHeaderLogo}>TACK</Text>
+              <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
+            </>
+          )}
         </View>
         <Text style={[styles.sectionTitle, { marginTop: 0 }]}>
           Your Next Steps
@@ -253,8 +271,14 @@ export function ReportDocument({ results, userName = 'You' }) {
       {/* Page 6: About TACK */}
       <Page size="A4" style={styles.page}>
         <View style={[styles.pageHeader, { marginBottom: 20 }]}>
-          <Text style={styles.pageHeaderLogo}>TACK</Text>
-          <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
+          {logoDataUri ? (
+            <Image src={logoDataUri} style={styles.logoImageHeader} />
+          ) : (
+            <>
+              <Text style={styles.pageHeaderLogo}>TACK</Text>
+              <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
+            </>
+          )}
         </View>
         <Text style={[styles.sectionTitle, { marginTop: 0 }]}>
           About TACK

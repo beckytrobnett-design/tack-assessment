@@ -54,12 +54,14 @@ export default async function handler(req, res) {
     : null;
 
   const baseUrl = process.env.TACK_APP_URL || 'https://tack.tondreaupoint.com';
+  const logoUrl = `${baseUrl}/logo-horizontal.png`;
 
   const userHtmlBody = `
-    <div style="font-family: Georgia, 'Times New Roman', serif; max-width: 560px; margin: 0 auto; background-color: #F9F4EF; padding: 40px;">
+    <div style="font-family: Georgia, 'Times New Roman', serif; max-width: 560px; margin: 0 auto; background-color: #F5F3ED; padding: 40px;">
       <div style="text-align: center; margin-bottom: 32px;">
-        <a href="${baseUrl}" style="display: inline-block; text-decoration: none; color: #1A2B44; font-size: 24px; font-weight: bold; letter-spacing: 1px;">TACK</a>
-        <p style="margin: 4px 0 0 0; font-size: 14px; color: #A88661; font-style: italic;">by Tondreau Point</p>
+        <a href="${baseUrl}" style="display: inline-block;">
+          <img src="${logoUrl}" alt="TACK by Tondreau Point" width="280" style="max-width: 100%; height: auto; display: block;" />
+        </a>
       </div>
       <div style="background-color: #ffffff; padding: 32px; border-radius: 8px; box-shadow: 0 1px 3px rgba(26,43,68,0.08);">
         <p style="font-size: 16px; color: #1A2B44; line-height: 1.7; margin: 0 0 16px;">Hi there,</p>

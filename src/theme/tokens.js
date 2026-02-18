@@ -6,7 +6,7 @@ export const theme = {
   colors: {
     // Primary (from logo)
     deepNavy: '#1A2B44',
-    warmCream: '#F9F4EF',
+    warmCream: '#F5F3ED',
     bronze: '#A88661',
 
     // Secondary

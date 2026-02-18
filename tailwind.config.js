@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         deepNavy: '#1A2B44',
-        warmCream: '#F9F4EF',
+        warmCream: '#F5F3ED',
         bronze: '#A88661',
         terracotta: '#C75B39',
         slateGray: '#6B7280',
