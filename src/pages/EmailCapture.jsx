@@ -36,7 +36,8 @@ export default function EmailCapture() {
     setIsSubmitting(true);
     setEmail(inputValue.trim());
 
-    const scoringResult = results || completeAssessment();
+    // Always recalculate from current responses — never use cached results
+    const scoringResult = completeAssessment();
 
     let pdfBase64 = null;
     try {
@@ -66,7 +67,7 @@ export default function EmailCapture() {
       console.error('Email send error:', err);
     } finally {
       setIsSubmitting(false);
-      navigate('/results');
+      navigate('/results', { state: { scoringResult } });
     }
   };
 

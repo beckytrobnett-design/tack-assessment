@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAssessment } from '../context/AssessmentContext';
 import { calculateOrientation } from '../services/scoring';
 import { orientations } from '../data/orientations';
@@ -8,6 +8,7 @@ import { Button } from '../components/ui/Button';
 
 export function Results() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { results, responses, completeAssessment, recordRoute } = useAssessment();
 
   useEffect(() => {
@@ -20,8 +21,11 @@ export function Results() {
     }
   }, [results, responses.length, completeAssessment]);
 
+  // Prefer fresh results from navigation state (just submitted), then context, then recalculate
   const scoringResult =
-    results || (responses.length === 24 ? calculateOrientation(responses) : null);
+    location.state?.scoringResult ||
+    results ||
+    (responses.length === 24 ? calculateOrientation(responses) : null);
 
   useEffect(() => {
     if (!scoringResult && responses.length < 24) {
