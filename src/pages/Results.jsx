@@ -1,0 +1,234 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAssessment } from '../context/AssessmentContext';
+import { calculateOrientation } from '../services/scoring';
+import { orientations } from '../data/orientations';
+import { Card } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
+
+export function Results() {
+  const navigate = useNavigate();
+  const { results, responses, completeAssessment, recordRoute } = useAssessment();
+
+  useEffect(() => {
+    recordRoute('/results');
+  }, [recordRoute]);
+
+  useEffect(() => {
+    if (!results && responses.length === 24) {
+      completeAssessment();
+    }
+  }, [results, responses.length, completeAssessment]);
+
+  const scoringResult =
+    results || (responses.length === 24 ? calculateOrientation(responses) : null);
+
+  useEffect(() => {
+    if (!scoringResult && responses.length < 24) {
+      navigate('/');
+    }
+  }, [scoringResult, responses.length, navigate]);
+
+  if (!scoringResult) {
+    return null;
+  }
+
+  const primary = orientations[scoringResult.primary.orientation];
+  const secondary = scoringResult.secondary
+    ? orientations[scoringResult.secondary.orientation]
+    : null;
+
+  return (
+    <div className="min-h-screen bg-warmCream">
+      <div className="max-w-[680px] mx-auto px-4 py-5 md:py-8 space-y-8">
+        {/* Logo */}
+        <div className="flex justify-center mb-2">
+          <img
+            src="/logo-horizontal.png"
+            alt="TACK by Tondreau Point"
+            className="h-[140px] md:h-[180px] w-auto max-w-[520px] object-contain"
+          />
+        </div>
+        {/* Section 1: Your Orientation (hero) */}
+        <section>
+          <div
+            className="rounded-lg p-6 md:p-8 mb-6"
+            style={{
+              backgroundColor: `${primary.color}15`,
+              borderLeft: `4px solid ${primary.color}`,
+            }}
+          >
+            <h1
+              className="text-h1 font-bold mb-2"
+              style={{ color: primary.color }}
+            >
+              {primary.name}
+            </h1>
+            <p className="text-body text-deepNavy font-medium">
+              {primary.tagline}
+            </p>
+            {scoringResult.isBlend && secondary && (
+              <p className="text-body text-slateGray mt-4">
+                You're primarily {primary.name} with elements of {secondary.name}
+              </p>
+            )}
+          </div>
+        </section>
+
+        {/* Section 2: What This Means */}
+        <section>
+          <h2 className="text-h2 font-medium text-deepNavy mb-4">
+            What This Means
+          </h2>
+          <p className="text-body text-deepNavy leading-relaxed">
+            {primary.whatThisMeans}
+          </p>
+        </section>
+
+        {/* Section 3: Your Strengths */}
+        <section>
+          <h2 className="text-h2 font-medium text-deepNavy mb-4">
+            Your Strengths
+          </h2>
+          <ul className="space-y-3">
+            {primary.strengths.map((strength, i) => (
+              <li key={i} className="flex gap-3 items-start">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-bronze flex items-center justify-center mt-0.5">
+                  <svg
+                    className="w-4 h-4 text-warmCream"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+                <span className="text-body text-deepNavy">{strength}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Section 4: Where You Can Grow */}
+        <section>
+          <h2 className="text-h2 font-medium text-deepNavy mb-4">
+            Where You Can Grow
+          </h2>
+          <ul className="space-y-3">
+            {primary.growthAreas.map((area, i) => (
+              <li key={i} className="flex gap-3 items-start">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full border-2 border-bronze flex items-center justify-center mt-0.5 text-small font-medium text-deepNavy">
+                  {i + 1}
+                </span>
+                <span className="text-body text-deepNavy">{area}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Section 5: A Note From Penny */}
+        <section>
+          <Card
+            padding="lg"
+            className="border-l-4"
+            style={{ borderLeftColor: primary.color, backgroundColor: `${primary.color}08` }}
+          >
+            <h2 className="text-h3 font-medium text-deepNavy mb-4">
+              A Note From Penny
+            </h2>
+            <p className="text-body text-deepNavy leading-relaxed italic">
+              {primary.pennyMessage}
+            </p>
+          </Card>
+        </section>
+
+        {/* Section 6: Your Next Steps */}
+        <section>
+          <h2 className="text-h2 font-medium text-deepNavy mb-4">
+            Your Next Steps
+          </h2>
+          <div className="space-y-4">
+            {primary.nextSteps.map((step, i) => (
+              <Card key={i} padding="md" className="border-l-4 border-bronze">
+                <div className="flex gap-4">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-bronze text-warmCream font-bold flex items-center justify-center text-body">
+                    {i + 1}
+                  </span>
+                  <p className="text-body text-deepNavy pt-1">{step}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Section 7: Full Orientation Snapshot */}
+        <section>
+          <h2 className="text-h2 font-medium text-deepNavy mb-4">
+            Your Full Orientation Snapshot
+          </h2>
+          <Card padding="lg">
+            <div className="space-y-3">
+              {scoringResult.distribution.map(({ orientation, percentage }) => {
+                const orient = orientations[orientation];
+                return (
+                  <div key={orientation} className="space-y-1">
+                    <div className="flex justify-between text-small">
+                      <span className="text-deepNavy font-medium">
+                        {orient.name}
+                      </span>
+                      <span className="text-slateGray">{percentage}%</span>
+                    </div>
+                    <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-500"
+                        style={{
+                          width: `${percentage}%`,
+                          backgroundColor: orient.color,
+                        }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </Card>
+        </section>
+
+        {/* Section 8: What's Next with TACK */}
+        <section>
+          <Card padding="lg" className="text-center space-y-4">
+            <h2 className="text-h3 font-medium text-deepNavy">
+              What's Next with TACK
+            </h2>
+            <p className="text-body text-deepNavy leading-relaxed">
+              This is just the beginning. TACK is building something for people
+              like you — a community, a guide, and a path forward. Want to be
+              part of it?
+            </p>
+            <Button variant="primary" size="lg">
+              Join the waitlist
+            </Button>
+            <p className="text-small text-slateGray">
+              Your PDF report is on its way to your inbox.
+            </p>
+          </Card>
+        </section>
+
+        {/* Footer */}
+        <footer className="text-center pt-8 space-y-2">
+          <p className="text-body font-medium font-serif">
+            <span className="text-deepNavy">TACK</span>
+            <span className="text-bronze"> by Tondreau Point</span>
+          </p>
+          <p className="text-small text-slateGray">
+            Your results are private. Learn more about how we protect your
+            information.
+          </p>
+        </footer>
+      </div>
+    </div>
+  );
+}
