@@ -1,16 +1,10 @@
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAssessment } from '../context/AssessmentContext';
 import { Button } from '../components/ui/Button';
 
 export function Welcome() {
-  const { lastRoute, results, responses } = useAssessment();
-  const hasProgress = results || responses.length > 0;
-
-  // Restore user to their last position if they had progress (e.g. after phone sleep)
-  if (hasProgress) {
-    const restoreTo = results ? '/results' : lastRoute && lastRoute !== '/' ? lastRoute : '/assessment';
-    return <Navigate to={restoreTo} replace />;
-  }
+  const { results } = useAssessment();
+  const hasResults = !!results;
 
   return (
     <div className="min-h-screen bg-warmCream flex flex-col items-center justify-start px-6 pt-6 pb-8 md:pt-8 md:pb-12">
@@ -40,12 +34,20 @@ export function Welcome() {
         </div>
 
         {/* CTA */}
-        <div>
+        <div className="space-y-3">
           <Link to="/assessment">
             <Button fullWidth size="lg">
-              Let's get started
+              {hasResults ? 'Take the assessment again' : "Let's get started"}
             </Button>
           </Link>
+          {hasResults && (
+            <Link
+              to="/results"
+              className="block w-full px-8 py-4 text-body font-medium rounded-lg border-2 border-deepNavy text-deepNavy bg-transparent hover:bg-deepNavy hover:text-warmCream text-center min-h-[48px] flex items-center justify-center"
+            >
+              View my previous results
+            </Link>
+          )}
         </div>
 
         {/* Footer */}
