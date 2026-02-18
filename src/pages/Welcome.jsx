@@ -1,11 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useAssessment } from '../context/AssessmentContext';
 import { Button } from '../components/ui/Button';
 
 export function Welcome() {
-  const { results } = useAssessment();
-  const hasResults = !!results;
-
   return (
     <div className="min-h-screen bg-warmCream flex flex-col items-center justify-start px-6 pt-6 pb-8 md:pt-8 md:pb-12">
       <div className="max-w-[680px] w-full text-center space-y-8">
@@ -34,20 +30,12 @@ export function Welcome() {
         </div>
 
         {/* CTA */}
-        <div className="space-y-3">
+        <div>
           <Link to="/assessment">
             <Button fullWidth size="lg">
-              {hasResults ? 'Take the assessment again' : "Let's get started"}
+              Let's get started
             </Button>
           </Link>
-          {hasResults && (
-            <Link
-              to="/results"
-              className="block w-full px-8 py-4 text-body font-medium rounded-lg border-2 border-deepNavy text-deepNavy bg-transparent hover:bg-deepNavy hover:text-warmCream text-center min-h-[48px] flex items-center justify-center"
-            >
-              View my previous results
-            </Link>
-          )}
         </div>
 
         {/* Footer */}
