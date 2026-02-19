@@ -69,7 +69,7 @@ export function Results() {
               {primary.name}
             </h1>
             <p className="text-body text-deepNavy font-medium">
-              {primary.tagline}
+              {primary.narrativeSubtitle || primary.tagline}
             </p>
             {scoringResult.isBlend && secondary && (
               <p className="text-body text-slateGray mt-4">
@@ -82,12 +82,31 @@ export function Results() {
         {/* Section 2: What This Means */}
         <section>
           <h2 className="text-h2 font-medium text-deepNavy mb-4">
-            What This Means
+            Your Money Narrative (What This Means)
           </h2>
-          <p className="text-body text-deepNavy leading-relaxed">
-            {primary.whatThisMeans}
-          </p>
+          {(primary.whatThisMeans || '').split('\n\n').map((para, i) => (
+            <p key={i} className="text-body text-deepNavy leading-relaxed mb-4">
+              {para}
+            </p>
+          ))}
         </section>
+
+        {/* Section 2b: What This Looks Like in Real Life */}
+        {primary.realLifeScenarios && primary.realLifeScenarios.length > 0 && (
+          <section>
+            <h2 className="text-h2 font-medium text-deepNavy mb-4">
+              What This Looks Like in Real Life
+            </h2>
+            <ul className="space-y-3">
+              {primary.realLifeScenarios.map((scenario, i) => (
+                <li key={i} className="flex gap-3 items-start">
+                  <span className="text-bronze font-medium mt-1">→</span>
+                  <span className="text-body text-deepNavy">{scenario}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {/* Section 3: Your Strengths */}
         <section>
@@ -121,17 +140,40 @@ export function Results() {
           <h2 className="text-h2 font-medium text-deepNavy mb-4">
             Where You Can Grow
           </h2>
-          <ul className="space-y-3">
-            {primary.growthAreas.map((area, i) => (
-              <li key={i} className="flex gap-3 items-start">
-                <span className="flex-shrink-0 w-6 h-6 rounded-full border-2 border-bronze flex items-center justify-center mt-0.5 text-small font-medium text-deepNavy">
-                  {i + 1}
-                </span>
-                <span className="text-body text-deepNavy">{area}</span>
-              </li>
-            ))}
-          </ul>
+          {primary.growthProse ? (
+            <p className="text-body text-deepNavy leading-relaxed">
+              {primary.growthProse}
+            </p>
+          ) : (
+            <ul className="space-y-3">
+              {primary.growthAreas.map((area, i) => (
+                <li key={i} className="flex gap-3 items-start">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full border-2 border-bronze flex items-center justify-center mt-0.5 text-small font-medium text-deepNavy">
+                    {i + 1}
+                  </span>
+                  <span className="text-body text-deepNavy">{area}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </section>
+
+        {/* Section 4b: You Might Also See Yourself In */}
+        {primary.blendCallout && (
+          <section>
+            <Card padding="lg" className="bg-warmCream border-l-4 border-bronze">
+              <h2 className="text-h3 font-medium text-deepNavy mb-3">
+                You Might Also See Yourself In...
+              </h2>
+              <p className="text-body text-deepNavy leading-relaxed mb-2">
+                {primary.blendCallout.text}
+              </p>
+              <p className="text-small text-slateGray">
+                → Related orientations: {primary.blendCallout.orientations.join(' and ')}
+              </p>
+            </Card>
+          </section>
+        )}
 
         {/* Section 5: A Note From Penny */}
         <section>
@@ -155,13 +197,18 @@ export function Results() {
             Your Next Steps
           </h2>
           <div className="space-y-4">
-            {primary.nextSteps.map((step, i) => (
+            {(primary.nextStepsWithRationale || (primary.nextSteps || []).map(s => ({ step: s, rationale: null }))).map((item, i) => (
               <Card key={i} padding="md" className="border-l-4 border-bronze">
                 <div className="flex gap-4">
                   <span className="flex-shrink-0 w-8 h-8 rounded-full bg-bronze text-warmCream font-bold flex items-center justify-center text-body">
                     {i + 1}
                   </span>
-                  <p className="text-body text-deepNavy pt-1">{step}</p>
+                  <div>
+                    <p className="text-body text-deepNavy font-medium">{item.step}</p>
+                    {item.rationale && (
+                      <p className="text-small text-slateGray italic mt-2">{item.rationale}</p>
+                    )}
+                  </div>
                 </div>
               </Card>
             ))}

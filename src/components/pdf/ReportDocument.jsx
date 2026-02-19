@@ -123,6 +123,22 @@ const styles = StyleSheet.create({
     height: 28,
     marginRight: 14,
   },
+  blendCallout: {
+    backgroundColor: '#F5F3ED',
+    padding: 16,
+    marginTop: 16,
+    marginBottom: 20,
+    borderLeftWidth: 4,
+    borderLeftColor: '#A88661',
+  },
+  stepRationale: {
+    fontSize: 10,
+    color: '#6B7280',
+    fontStyle: 'italic',
+    marginTop: 4,
+    marginLeft: 24,
+    lineHeight: 1.5,
+  },
 });
 
 export function ReportDocument({ results, userName = 'You', logoDataUri }) {
@@ -172,12 +188,26 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
             <Text style={[styles.sectionTitle, { marginTop: 0 }]}>
               {primary.name}
             </Text>
-            <Text style={styles.bodyText}>{primary.tagline}</Text>
+            <Text style={styles.bodyText}>
+              {primary.narrativeSubtitle || primary.tagline}
+            </Text>
           </View>
         </View>
-        <Text style={styles.bodyText}>{primary.summary}</Text>
-        <Text style={styles.sectionTitle}>What This Means</Text>
-        <Text style={styles.bodyText}>{primary.whatThisMeans}</Text>
+        <Text style={styles.sectionTitle}>Your Money Narrative (What This Means)</Text>
+        {(primary.whatThisMeans || '').split('\n\n').map((para, i) => (
+          <Text key={i} style={styles.bodyText}>{para}</Text>
+        ))}
+        {primary.realLifeScenarios && primary.realLifeScenarios.length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>What This Looks Like in Real Life</Text>
+            {primary.realLifeScenarios.map((s, i) => (
+              <View key={i} style={styles.listItem}>
+                <Text style={styles.bullet}>→</Text>
+                <Text style={styles.listText}>{s}</Text>
+              </View>
+            ))}
+          </>
+        )}
         <Text style={styles.footer}>TACK by Tondreau Point</Text>
       </Page>
 
@@ -203,12 +233,9 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
           </View>
         ))}
         <Text style={styles.sectionTitle}>Where You Can Grow</Text>
-        {primary.growthAreas.map((g, i) => (
-          <View key={i} style={styles.listItem}>
-            <Text style={styles.bullet}>{i + 1}.</Text>
-            <Text style={styles.listText}>{g}</Text>
-          </View>
-        ))}
+        <Text style={styles.bodyText}>
+          {primary.growthProse || primary.growthAreas?.join(' ') || ''}
+        </Text>
         <Text style={styles.footer}>TACK by Tondreau Point</Text>
       </Page>
 
@@ -224,7 +251,20 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
             </>
           )}
         </View>
-        <Text style={[styles.sectionTitle, { marginTop: 0 }]}>
+        {primary.blendCallout && (
+          <>
+            <Text style={[styles.sectionTitle, { marginTop: 0 }]}>
+              You Might Also See Yourself In...
+            </Text>
+            <View style={[styles.blendCallout, { borderLeftColor: primary.color }]}>
+              <Text style={styles.bodyText}>{primary.blendCallout.text}</Text>
+              <Text style={[styles.bodyText, { marginTop: 8, fontSize: 10 }]}>
+                → Related orientations: {primary.blendCallout.orientations.join(' and ')}
+              </Text>
+            </View>
+          </>
+        )}
+        <Text style={styles.sectionTitle}>
           A Note From Penny
         </Text>
         <View style={[styles.noteBox, { borderLeftColor: primary.color }]}>
@@ -248,10 +288,15 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
         <Text style={[styles.sectionTitle, { marginTop: 0 }]}>
           Your Next Steps
         </Text>
-        {primary.nextSteps.map((step, i) => (
-          <View key={i} style={styles.listItem}>
-            <Text style={styles.bullet}>{i + 1}.</Text>
-            <Text style={styles.listText}>{step}</Text>
+        {(primary.nextStepsWithRationale || (primary.nextSteps || []).map(s => ({ step: s, rationale: null }))).map((item, i) => (
+          <View key={i} style={{ marginBottom: 12 }}>
+            <View style={styles.listItem}>
+              <Text style={styles.bullet}>{i + 1}.</Text>
+              <Text style={styles.listText}>{item.step}</Text>
+            </View>
+            {item.rationale && (
+              <Text style={styles.stepRationale}>{item.rationale}</Text>
+            )}
           </View>
         ))}
         <Text style={[styles.bodyText, { marginTop: 24 }]}>
