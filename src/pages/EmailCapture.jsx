@@ -8,12 +8,14 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function EmailCapture() {
   const navigate = useNavigate();
-  const { responses, results, email, setEmail, completeAssessment, recordRoute } =
+  const { responses, email, setEmail, completeAssessment, recordRoute } =
     useAssessment();
 
   useEffect(() => {
     recordRoute('/results/email');
   }, [recordRoute]);
+
+  const [nameValue, setNameValue] = useState('');
   const [inputValue, setInputValue] = useState(email);
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,23 +30,33 @@ export default function EmailCapture() {
     e.preventDefault();
     setError('');
 
-    if (!EMAIL_REGEX.test(inputValue.trim())) {
+    const trimmedName = nameValue.trim();
+    const trimmedEmail = inputValue.trim();
+
+    if (!trimmedName) {
+      setError("What should we call you?");
+      return;
+    }
+    if (!EMAIL_REGEX.test(trimmedEmail)) {
       setError("That doesn't look quite right — double-check your email?");
       return;
     }
 
     setIsSubmitting(true);
-    setEmail(inputValue.trim());
+    setEmail(trimmedEmail);
 
-    // Always recalculate from current responses — never use cached results
+    // Recalculate from current responses — never use cached results
     const scoringResult = completeAssessment();
 
     let pdfBase64 = null;
     try {
       const { generateOrientationReportBase64 } = await import('../services/pdfGenerator');
-      pdfBase64 = await generateOrientationReportBase64(scoringResult);
+      pdfBase64 = await generateOrientationReportBase64(scoringResult, trimmedName);
     } catch (err) {
       console.error('PDF generation error:', err);
+      setError("We couldn't generate your report. Please try again.");
+      setIsSubmitting(false);
+      return;
     }
 
     try {
@@ -52,22 +64,31 @@ export default function EmailCapture() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email: inputValue.trim(),
-          responses,
-          results: scoringResult,
+          name: trimmedName,
+          email: trimmedEmail,
+          primary_orientation: scoringResult.primary?.orientation,
+          orientation_scores: scoringResult,
+          score_details: { responses },
           pdfBase64,
+          results: scoringResult,
           timestamp: new Date().toISOString(),
         }),
       });
 
+      const data = await res.json().catch(() => ({}));
+
       if (!res.ok) {
-        console.error('Email send failed:', await res.text());
+        setError(data.error || 'Something went wrong. Please try again.');
+        setIsSubmitting(false);
+        return;
       }
-    } catch (err) {
-      console.error('Email send error:', err);
-    } finally {
-      setIsSubmitting(false);
+
+      // Only reveal results after successful API response
       navigate('/results', { state: { scoringResult } });
+    } catch (err) {
+      console.error('Send report error:', err);
+      setError('Something went wrong. Please try again.');
+      setIsSubmitting(false);
     }
   };
 
@@ -93,7 +114,25 @@ export default function EmailCapture() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="email" className="sr-only">
+              <label htmlFor="name" className="block text-body font-medium text-deepNavy mb-2">
+                Your name
+              </label>
+              <input
+                id="name"
+                type="text"
+                value={nameValue}
+                onChange={(e) => {
+                  setNameValue(e.target.value);
+                  setError('');
+                }}
+                placeholder="your name"
+                autoComplete="name"
+                className="w-full px-4 py-4 text-body rounded-lg border-2 border-gray-200 focus:border-bronze focus:ring-2 focus:ring-bronze focus:ring-offset-2 outline-none transition-colors min-h-tap"
+                aria-invalid={!!error}
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-body font-medium text-deepNavy mb-2">
                 Email address
               </label>
               <input
@@ -108,10 +147,10 @@ export default function EmailCapture() {
                 autoComplete="email"
                 className="w-full px-4 py-4 text-body rounded-lg border-2 border-gray-200 focus:border-bronze focus:ring-2 focus:ring-bronze focus:ring-offset-2 outline-none transition-colors min-h-tap"
                 aria-invalid={!!error}
-                aria-describedby={error ? 'email-error' : undefined}
+                aria-describedby={error ? 'form-error' : undefined}
               />
               {error && (
-                <p id="email-error" className="mt-2 text-small text-error">
+                <p id="form-error" className="mt-2 text-small text-error">
                   {error}
                 </p>
               )}

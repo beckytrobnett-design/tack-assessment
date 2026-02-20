@@ -17,7 +17,7 @@ export function ProgressBar({ current, total, partLabel, questionLabel }) {
         aria-valuenow={current}
         aria-valuemin={0}
         aria-valuemax={total}
-        aria-label={`${current} of ${total} questions completed`}
+        aria-label={`Question ${current} of ${total}`}
       >
         <div
           className="h-full rounded-full transition-all duration-300 ease-out"

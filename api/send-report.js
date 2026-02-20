@@ -1,13 +1,17 @@
 /**
  * Vercel serverless function: POST /api/send-report
- * Receives: email, responses, results, pdfBase64, timestamp
- * 1. Sends PDF orientation report to the user via Resend
- * 2. Sends admin record email (email, orientation results, timestamp) for your records
+ * Receives: name, email, primary_orientation, orientation_scores, score_details (optional), pdfBase64, responses, results
+ * 1. Validates name and email
+ * 2. Writes to Supabase assessment_responses (server-side only, never exposes keys)
+ * 3. Sends personalized PDF report via Resend
+ * 4. Optionally sends admin record email
  *
- * Env vars: RESEND_API_KEY, RESEND_FROM_EMAIL, RESEND_ADMIN_EMAIL, TACK_APP_URL (default: https://tack.tondreaupoint.com)
+ * Env vars: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, RESEND_API_KEY,
+ *           RESEND_FROM_EMAIL, RESEND_ADMIN_EMAIL, TACK_APP_URL
  */
 
 import { Resend } from 'resend';
+import { getSupabaseAdmin } from './lib/supabase-server';
 
 const ORIENTATION_NAMES = {
   survivor: 'The Survivor',
@@ -17,6 +21,30 @@ const ORIENTATION_NAMES = {
   avoider: 'The Avoider',
   builder: 'The Builder',
 };
+
+/** Short, warm intro line from Penny for each orientation — used in the email body */
+const PENNY_EMAIL_INTROS = {
+  survivor:
+    "You've carried more than most people will ever understand. Your results are ready — and they honor that.",
+  provider:
+    "Your generosity is a superpower — and it deserves protecting. Here's your report.",
+  striver:
+    "You work so hard — and it's time to see what that says about your relationship with money.",
+  vigilante:
+    "You're probably doing better than you think. Your report is here to help you feel that.",
+  avoider:
+    "You're here — and that takes real courage. Your results are ready.",
+  builder:
+    "You've done the work. Your report is here to help you refine it.",
+};
+
+function getFirstName(name) {
+  if (!name || typeof name !== 'string') return 'there';
+  const trimmed = name.trim();
+  if (!trimmed) return 'there';
+  const first = trimmed.split(/\s+/)[0];
+  return first || 'there';
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -31,10 +59,30 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  const { email, results, pdfBase64, timestamp } = req.body;
+  const {
+    name,
+    email,
+    primary_orientation,
+    orientation_scores,
+    score_details,
+    pdfBase64,
+    results,
+    timestamp,
+  } = req.body;
 
-  if (!email || !results) {
-    return res.status(400).json({ error: 'Missing email or results' });
+  // Validate required fields before any DB or email operations
+  const trimmedName = typeof name === 'string' ? name.trim() : '';
+  const trimmedEmail = typeof email === 'string' ? email.trim() : '';
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!trimmedName) {
+    return res.status(400).json({ error: 'Name is required' });
+  }
+  if (!trimmedEmail) {
+    return res.status(400).json({ error: 'Email is required' });
+  }
+  if (!emailRegex.test(trimmedEmail)) {
+    return res.status(400).json({ error: 'Please enter a valid email address' });
   }
 
   const resendApiKey = process.env.RESEND_API_KEY;
@@ -46,15 +94,41 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Email service not configured' });
   }
 
-  const resend = new Resend(resendApiKey);
+  const orientation = primary_orientation || results?.primary?.orientation || 'builder';
+  const orientationScores = orientation_scores ?? results ?? null;
   const recordTimestamp = timestamp || new Date().toISOString();
-  const primaryName = ORIENTATION_NAMES[results.primary?.orientation] || results.primary?.orientation;
-  const secondaryName = results.secondary
+  const primaryName = ORIENTATION_NAMES[orientation] || orientation;
+  const secondaryName = results?.secondary
     ? ORIENTATION_NAMES[results.secondary.orientation] || results.secondary.orientation
     : null;
+  const firstName = getFirstName(trimmedName);
 
+  // 1. Write to Supabase (server-side only — service role key never exposed to frontend)
+  try {
+    const supabase = getSupabaseAdmin();
+    const { error } = await supabase.from('assessment_responses').insert({
+      name: trimmedName,
+      email: trimmedEmail,
+      primary_orientation: primaryName,
+      orientation_scores: orientationScores,
+      score_details: score_details ?? null,
+    });
+
+    if (error) {
+      console.error('Supabase insert error:', error);
+      return res.status(500).json({ error: 'Could not save your response. Please try again.' });
+    }
+  } catch (err) {
+    console.error('Supabase error:', err);
+    return res.status(500).json({ error: 'Could not save your response. Please try again.' });
+  }
+
+  // 2. Send personalized email via Resend
   const baseUrl = process.env.TACK_APP_URL || 'https://tack.tondreaupoint.com';
   const logoUrl = `${baseUrl}/logo-horizontal.png`;
+  const pennyIntro =
+    PENNY_EMAIL_INTROS[orientation] ||
+    "Your orientation report is ready — it's got everything we talked about, plus a few things to sit with.";
 
   const userHtmlBody = `
     <div style="font-family: Georgia, 'Times New Roman', serif; max-width: 560px; margin: 0 auto; background-color: #F5F3ED; padding: 40px;">
@@ -64,8 +138,8 @@ export default async function handler(req, res) {
         </a>
       </div>
       <div style="background-color: #ffffff; padding: 32px; border-radius: 8px; box-shadow: 0 1px 3px rgba(26,43,68,0.08);">
-        <p style="font-size: 16px; color: #1A2B44; line-height: 1.7; margin: 0 0 16px;">Hi there,</p>
-        <p style="font-size: 16px; color: #1A2B44; line-height: 1.7; margin: 0 0 16px;">Thanks for taking the time to explore your relationship with money. That takes real courage.</p>
+        <p style="font-size: 16px; color: #1A2B44; line-height: 1.7; margin: 0 0 16px;">Hi ${firstName},</p>
+        <p style="font-size: 16px; color: #1A2B44; line-height: 1.7; margin: 0 0 16px;">${pennyIntro}</p>
         <p style="font-size: 16px; color: #1A2B44; line-height: 1.7; margin: 0 0 16px;">Your orientation report is attached — it's got everything we just talked about, plus a few things to sit with.</p>
         <p style="font-size: 16px; color: #1A2B44; line-height: 1.7; margin: 0 0 24px;">No rush. Read it when you're ready. And know that wherever you are right now is exactly the right place to start.</p>
         <p style="font-size: 16px; color: #1A2B44; line-height: 1.7; margin: 0; font-style: italic;">— Penny</p>
@@ -85,12 +159,13 @@ export default async function handler(req, res) {
       ]
     : [];
 
+  const resend = new Resend(resendApiKey);
+
   try {
-    // 1. Send PDF report to the user
     const { data, error } = await resend.emails.send({
       from: fromEmail,
-      to: email,
-      subject: 'Your TACK Orientation Report Is Here',
+      to: trimmedEmail,
+      subject: `Your TACK Results Are Here, ${firstName}`,
       html: userHtmlBody,
       attachments,
     });
@@ -100,12 +175,13 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: error.message });
     }
 
-    // 2. Send admin record email (if RESEND_ADMIN_EMAIL is set)
+    // 3. Send admin record email (if configured)
     if (adminEmail) {
       const adminHtmlBody = `
         <h2>New TACK Assessment Completed</h2>
         <table style="border-collapse: collapse; font-family: sans-serif; font-size: 14px;">
-          <tr><td style="padding: 8px; border: 1px solid #ddd;"><strong>Email</strong></td><td style="padding: 8px; border: 1px solid #ddd;">${email}</td></tr>
+          <tr><td style="padding: 8px; border: 1px solid #ddd;"><strong>Name</strong></td><td style="padding: 8px; border: 1px solid #ddd;">${trimmedName}</td></tr>
+          <tr><td style="padding: 8px; border: 1px solid #ddd;"><strong>Email</strong></td><td style="padding: 8px; border: 1px solid #ddd;">${trimmedEmail}</td></tr>
           <tr><td style="padding: 8px; border: 1px solid #ddd;"><strong>Primary Orientation</strong></td><td style="padding: 8px; border: 1px solid #ddd;">${primaryName}</td></tr>
           <tr><td style="padding: 8px; border: 1px solid #ddd;"><strong>Secondary Orientation</strong></td><td style="padding: 8px; border: 1px solid #ddd;">${secondaryName || '—'}</td></tr>
           <tr><td style="padding: 8px; border: 1px solid #ddd;"><strong>Completed At</strong></td><td style="padding: 8px; border: 1px solid #ddd;">${recordTimestamp}</td></tr>
@@ -116,7 +192,7 @@ export default async function handler(req, res) {
       await resend.emails.send({
         from: fromEmail,
         to: adminEmail,
-        subject: `TACK Assessment: ${email} — ${primaryName}`,
+        subject: `TACK Assessment: ${trimmedEmail} — ${primaryName}`,
         html: adminHtmlBody,
       });
     }

@@ -14,7 +14,6 @@ export function Assessment() {
   useEffect(() => {
     recordRoute('/assessment');
   }, [recordRoute]);
-  const completedCount = responses.filter(Boolean).length;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [pendingAdvance, setPendingAdvance] = useState(null);
 
@@ -65,9 +64,9 @@ export function Assessment() {
             className="h-[140px] md:h-[180px] w-auto max-w-[520px] object-contain"
           />
         </div>
-        {/* Progress bar */}
+        {/* Progress bar — shows which question we're on, not completed count (avoids full bar from cached responses) */}
         <ProgressBar
-          current={completedCount}
+          current={currentIndex + 1}
           total={24}
           partLabel={part?.label ?? ''}
           questionLabel={`Question ${currentIndex + 1} of 24`}
