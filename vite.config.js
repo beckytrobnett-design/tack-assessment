@@ -9,7 +9,7 @@ export default defineConfig({
       name: 'mock-api',
       configureServer(server) {
         server.middlewares.use(async (req, res, next) => {
-          if (req.url === '/api/send-report' && req.method === 'POST') {
+          if ((req.url === '/api/send-report' || req.url === '/api/join-waitlist') && req.method === 'POST') {
             let body = '';
             req.on('data', (chunk) => (body += chunk));
             req.on('end', () => {

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAssessment } from '../context/AssessmentContext';
 import { calculateOrientation } from '../services/scoring';
@@ -9,7 +9,8 @@ import { Button } from '../components/ui/Button';
 export function Results() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { results, responses, completeAssessment, recordRoute } = useAssessment();
+  const { results, responses, email, completeAssessment, recordRoute } = useAssessment();
+  const [waitlistStatus, setWaitlistStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
 
   useEffect(() => {
     recordRoute('/results');
@@ -259,9 +260,45 @@ export function Results() {
               like you — a community, a guide, and a path forward. Want to be
               part of it?
             </p>
-            <Button variant="primary" size="lg">
-              Join the waitlist
-            </Button>
+            {waitlistStatus === 'success' ? (
+              <p className="text-body text-deepNavy leading-relaxed italic py-2">
+                You're in! I'll be in touch when TACK launches. In the meantime,
+                sit with what you've discovered today — you've already taken the
+                most important step.
+              </p>
+            ) : (
+              <Button
+                variant="primary"
+                size="lg"
+                disabled={!email || waitlistStatus === 'loading'}
+                onClick={async () => {
+                  if (!email) return;
+                  setWaitlistStatus('loading');
+                  try {
+                    const res = await fetch('/api/join-waitlist', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ email }),
+                    });
+                    const data = await res.json().catch(() => ({}));
+                    if (res.ok) {
+                      setWaitlistStatus('success');
+                    } else {
+                      setWaitlistStatus('error');
+                    }
+                  } catch {
+                    setWaitlistStatus('error');
+                  }
+                }}
+              >
+                {waitlistStatus === 'loading' ? 'Joining...' : 'Join the waitlist'}
+              </Button>
+            )}
+            {waitlistStatus === 'error' && (
+              <p className="text-small text-error">
+                Something went wrong. Please try again later.
+              </p>
+            )}
             <p className="text-small text-slateGray">
               Your PDF report is on its way to your inbox.
             </p>

@@ -44,9 +44,9 @@ Create `.env.local` for local dev. For production (Vercel), set these in **Setti
 ## Supabase Setup
 
 1. Create a Supabase project at [supabase.com](https://supabase.com)
-2. Run the migration in **SQL Editor > New Query**:
-   - Copy contents of `supabase/migrations/001_create_assessment_responses.sql`
-   - Paste and run
+2. Run migrations in **SQL Editor > New Query** (in order):
+   - `supabase/migrations/001_create_assessment_responses.sql`
+   - `supabase/migrations/002_add_waitlist_column.sql`
 3. Add `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` to `.env.local` (and Vercel)
 
 ## Build & Deploy
