@@ -75,10 +75,12 @@ export default function EmailCapture() {
         }),
       });
 
-      const data = await res.json().catch(() => ({}));
+      const text = await res.text();
+      const data = text ? (() => { try { return JSON.parse(text); } catch { return {}; } })() : {};
 
       if (!res.ok) {
-        setError(data.error || 'Something went wrong. Please try again.');
+        const msg = data.error || (res.status >= 500 ? 'Server error. Check Vercel logs.' : 'Something went wrong. Please try again.');
+        setError(msg);
         setIsSubmitting(false);
         return;
       }
@@ -87,7 +89,7 @@ export default function EmailCapture() {
       navigate('/results', { state: { scoringResult } });
     } catch (err) {
       console.error('Send report error:', err);
-      setError('Something went wrong. Please try again.');
+      setError(err.message || 'Network error. Please check your connection and try again.');
       setIsSubmitting(false);
     }
   };

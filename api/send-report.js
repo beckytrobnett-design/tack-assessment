@@ -94,6 +94,16 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Email service not configured' });
   }
 
+  // Fail fast if Supabase is not configured (helps debug deployment)
+  try {
+    getSupabaseAdmin();
+  } catch (supabaseErr) {
+    console.error('Supabase config error:', supabaseErr.message);
+    return res.status(500).json({
+      error: 'Database not configured. Add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in Vercel.',
+    });
+  }
+
   const orientation = primary_orientation || results?.primary?.orientation || 'builder';
   const orientationScores = orientation_scores ?? results ?? null;
   const recordTimestamp = timestamp || new Date().toISOString();
