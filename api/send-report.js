@@ -11,7 +11,7 @@
  */
 
 import { Resend } from 'resend';
-import { getSupabaseAdmin } from './lib/supabase-server';
+import { getSupabaseAdmin } from './supabase-server.js';
 
 const ORIENTATION_NAMES = {
   survivor: 'The Survivor',
