@@ -340,7 +340,7 @@ export function Methodology() {
         <div className="flex items-center gap-2.5">
           <SailMark size={18} />
           <span className="font-display font-bold text-[0.85rem] text-sage-dark tracking-widest">
-            TACK <span className="font-light italic text-sage-accent tracking-normal">by Tondreau Point</span>
+            TACK <span className="tack-byline text-[0.85rem] tracking-[0.15em]">by Tondreau Point</span>
           </span>
         </div>
         <div className="flex items-center gap-6">

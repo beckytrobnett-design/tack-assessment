@@ -55,6 +55,15 @@ body::before {
   opacity: 0.6;
 }
 
+/* TACK byline — consistent "BY TONDREAU POINT" styling (light golden-brown, sans-serif, all-caps) */
+.tack-byline {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--sage-accent);
+}
+
 /* Focus visible for accessibility */
 :focus-visible {
   outline: 2px solid var(--sage-accent);

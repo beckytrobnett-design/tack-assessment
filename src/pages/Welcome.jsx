@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SailMark } from '../components/ui/SailMark';
 
 // Lock icon
@@ -41,6 +41,7 @@ function ArrowIcon() {
 }
 
 export function Welcome() {
+  const navigate = useNavigate();
   const [navScrolled, setNavScrolled] = useState(false);
 
   useEffect(() => {
@@ -104,7 +105,7 @@ export function Welcome() {
                 TACK
               </h1>
               <div className="w-24 h-px mx-auto my-4 bg-sage-accent" aria-hidden />
-              <p className="font-serif-sc font-normal text-sage-accent text-[clamp(0.65rem,1.5vw,0.8rem)] tracking-[0.22em]">
+              <p className="tack-byline text-[clamp(0.65rem,1.5vw,0.8rem)]">
                 by Tondreau Point
               </p>
             </div>
@@ -120,13 +121,14 @@ export function Welcome() {
             <span className="text-sage-accent font-medium">7 minutes.</span> No wrong answers — just honest ones.
           </p>
 
-          <Link
-            to="/assessment"
+          <button
+            type="button"
+            onClick={() => navigate('/assessment')}
             className="inline-flex items-center gap-2 font-medium bg-sage-cta text-sage-bg hover:bg-sage-cta-hover shadow-elevated rounded-full px-10 py-4 text-[0.92rem] tracking-[0.04em] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sage-accent focus:ring-offset-2 group"
           >
             Let's get started
             <ArrowIcon />
-          </Link>
+          </button>
         </div>
 
         {/* Scroll hint */}
@@ -279,7 +281,7 @@ export function Welcome() {
         <div className="flex items-center gap-2.5">
           <SailMark size={18} />
           <span className="font-display font-bold text-sage-dark text-[0.85rem] tracking-[0.15em]">
-            TACK <span className="font-light italic text-sage-accent tracking-normal">by Tondreau Point</span>
+            TACK <span className="tack-byline text-[0.85rem] tracking-[0.15em]">by Tondreau Point</span>
           </span>
         </div>
         <div className="flex items-center gap-6">

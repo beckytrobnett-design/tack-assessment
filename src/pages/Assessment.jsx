@@ -62,7 +62,7 @@ export function Assessment() {
           <Link to="/" className="flex items-center gap-2">
             <SailMark size={36} />
             <span className="font-display font-bold text-sage-dark text-lg tracking-wide">
-              TACK <span className="font-light italic text-sage-accent">by Tondreau Point</span>
+              TACK <span className="tack-byline">by Tondreau Point</span>
             </span>
           </Link>
         </div>
