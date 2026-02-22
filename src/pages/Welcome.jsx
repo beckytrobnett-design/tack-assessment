@@ -171,10 +171,10 @@ export function Welcome() {
             </p>
             <Link
               data-reveal
-              to="/privacy"
+              to="/methodology"
               className="inline-flex items-center gap-2 text-sage-cta text-[0.8rem] font-medium tracking-[0.04em] mt-3 py-2.5 px-5 border border-sage-cta/25 rounded-full hover:bg-sage-cta hover:text-sage-bg hover:border-sage-cta transition-all duration-300 group opacity-0 translate-y-7 transition-all duration-700"
             >
-              Learn more about our approach
+              Learn More
               <span className="transition-transform group-hover:translate-x-1">
                 <ArrowIcon />
               </span>
