@@ -39,10 +39,18 @@ export function Welcome() {
         </div>
 
         {/* Footer */}
-        <p className="text-body pt-4 font-serif tracking-wide">
-          <span className="font-semibold text-deepNavy">TACK</span>
-          <span className="text-bronze"> by Tondreau Point</span>
-        </p>
+        <div className="pt-4 space-y-2">
+          <p className="text-body font-serif tracking-wide">
+            <span className="font-semibold text-deepNavy">TACK</span>
+            <span className="text-bronze"> by Tondreau Point</span>
+          </p>
+          <Link
+            to="/privacy"
+            className="text-small text-slateGray hover:text-bronze transition-colors"
+          >
+            Your Privacy
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAssessment } from '../context/AssessmentContext';
 import { calculateOrientation } from '../services/scoring';
 import { orientations } from '../data/orientations';
@@ -312,8 +312,10 @@ export function Results() {
             <span className="text-bronze"> by Tondreau Point</span>
           </p>
           <p className="text-small text-slateGray">
-            Your results are private. Learn more about how we protect your
-            information.
+            Your results are private.{' '}
+            <Link to="/privacy" className="text-bronze hover:text-deepNavy transition-colors underline">
+              Learn more about how we protect your information.
+            </Link>
           </p>
         </footer>
       </div>
