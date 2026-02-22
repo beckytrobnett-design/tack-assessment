@@ -46,6 +46,15 @@ body::before {
   background-size: 256px;
 }
 
+/* Scroll reveal */
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-reveal][data-reveal-opacity="60"].revealed {
+  opacity: 0.6;
+}
+
 /* Focus visible for accessibility */
 :focus-visible {
   outline: 2px solid var(--sage-accent);
