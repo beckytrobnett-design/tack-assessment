@@ -8,11 +8,11 @@ export function Button({
   className = '',
   ...props
 }) {
-  const base = 'inline-flex items-center justify-center font-medium transition-all duration-300 min-h-tap focus:outline-none focus:ring-2 focus:ring-sage-accent focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed font-body';
+  const base = 'inline-flex items-center justify-center font-medium transition-all duration-300 min-h-tap focus:outline-none focus:ring-2 focus:ring-sage-cta focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed font-body';
   const variants = {
     primary: 'bg-sage-cta text-sage-bg hover:bg-sage-cta-hover shadow-elevated rounded-full px-10 py-4 text-[0.92rem] font-medium tracking-[0.04em]',
     secondary: 'bg-sage-accent text-sage-bg hover:bg-sage-accent-light shadow-elevated rounded-full',
-    outline: 'border border-sage-cta/25 text-sage-cta bg-transparent hover:bg-sage-cta hover:text-sage-bg rounded-full',
+    outline: 'border border-sage-cta/40 text-sage-cta bg-transparent hover:bg-sage-cta hover:text-sage-bg rounded-full',
   };
   const sizes = {
     sm: 'px-5 py-2.5 text-small',

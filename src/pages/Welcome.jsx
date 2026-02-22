@@ -88,7 +88,7 @@ export function Welcome() {
       <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-24 pb-16 md:pt-28 md:pb-20 relative overflow-hidden">
         <div
           className="absolute top-0 left-0 right-0 h-[380px] pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, rgba(107, 143, 110, 0.075) 0%, transparent 100%)' }}
+          style={{ background: 'linear-gradient(to bottom, rgba(43, 62, 46, 0.04) 0%, rgba(107, 143, 110, 0.06) 30%, transparent 100%)' }}
         />
         <div
           className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[500px] h-[500px] pointer-events-none"
@@ -104,7 +104,7 @@ export function Welcome() {
               <h1 className="font-display font-semibold text-sage-dark text-[clamp(3rem,8vw,5.5rem)] tracking-[0.08em] leading-tight">
                 TACK
               </h1>
-              <div className="w-24 h-px mx-auto my-4 bg-sage-accent" aria-hidden />
+              <div className="w-24 h-px mx-auto my-4 bg-gradient-to-r from-sage-dark via-sage-cta to-sage-accent" aria-hidden />
               <p className="tack-byline text-[clamp(0.65rem,1.5vw,0.8rem)]">
                 by Tondreau Point
               </p>
@@ -124,7 +124,7 @@ export function Welcome() {
           <button
             type="button"
             onClick={() => navigate('/assessment')}
-            className="inline-flex items-center gap-2 font-medium bg-sage-cta text-sage-bg hover:bg-sage-cta-hover shadow-elevated rounded-full px-10 py-4 text-[0.92rem] tracking-[0.04em] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sage-accent focus:ring-offset-2 group"
+            className="inline-flex items-center gap-2 font-medium bg-sage-cta text-sage-bg hover:bg-sage-cta-hover shadow-elevated rounded-full px-10 py-4 text-[0.92rem] tracking-[0.04em] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sage-cta focus:ring-offset-2 group"
           >
             Let's get started
             <ArrowIcon />
@@ -144,7 +144,7 @@ export function Welcome() {
       <section className="py-20 md:py-32 px-6 bg-sage-bg-card relative">
         <div
           className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: 'linear-gradient(to right, transparent, rgba(181,137,62,0.1), transparent)' }}
+          style={{ background: 'linear-gradient(to right, transparent, rgba(43,62,46,0.12), rgba(181,137,62,0.15), transparent)' }}
         />
         <div className="max-w-[860px] mx-auto grid md:grid-cols-[auto_1fr] gap-0 md:gap-16 items-start">
           <div data-reveal data-reveal-opacity="60" className="hidden md:block pt-2 opacity-0 translate-y-7 transition-all duration-700">
@@ -153,9 +153,9 @@ export function Welcome() {
           <div>
             <div
               data-reveal
-              className="flex items-center gap-3 mb-7 text-[0.65rem] font-medium tracking-[0.25em] uppercase text-sage-accent opacity-0 translate-y-7 transition-all duration-700"
+              className="flex items-center gap-3 mb-7 text-[0.65rem] font-medium tracking-[0.25em] uppercase text-sage-cta opacity-0 translate-y-7 transition-all duration-700"
             >
-              <div className="w-5 h-px bg-sage-accent" />
+              <div className="w-5 h-px bg-sage-cta" />
               What is TACK
             </div>
             <h3
@@ -173,7 +173,7 @@ export function Welcome() {
             <Link
               data-reveal
               to="/methodology"
-              className="inline-flex items-center gap-2 text-sage-cta text-[0.8rem] font-medium tracking-[0.04em] mt-3 py-2.5 px-5 border border-sage-cta/25 rounded-full hover:bg-sage-cta hover:text-sage-bg hover:border-sage-cta transition-all duration-300 group opacity-0 translate-y-7 transition-all duration-700"
+              className="inline-flex items-center gap-2 text-sage-cta text-[0.8rem] font-medium tracking-[0.04em] mt-3 py-2.5 px-5 border border-sage-cta/40 rounded-full hover:bg-sage-cta hover:text-sage-bg hover:border-sage-cta transition-all duration-300 group opacity-0 translate-y-7 transition-all duration-700"
             >
               Learn More
               <span className="transition-transform group-hover:translate-x-1">
@@ -190,9 +190,9 @@ export function Welcome() {
           <div className="text-center mb-16">
             <div
               data-reveal
-              className="flex items-center justify-center gap-3 mb-3 text-[0.65rem] font-medium tracking-[0.25em] uppercase text-sage-accent opacity-0 translate-y-7 transition-all duration-700"
+              className="flex items-center justify-center gap-3 mb-3 text-[0.65rem] font-medium tracking-[0.25em] uppercase text-sage-cta opacity-0 translate-y-7 transition-all duration-700"
             >
-              <div className="w-5 h-px bg-sage-accent" />
+              <div className="w-5 h-px bg-sage-cta" />
               What to expect
             </div>
             <h3
@@ -213,7 +213,7 @@ export function Welcome() {
                 data-reveal
                 className="p-8 md:p-10 rounded-xl bg-sage-bg-card border border-sage-accent-muted transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(43,62,46,0.06)] group opacity-0 translate-y-7 transition-all duration-700 relative"
               >
-                <div className="absolute top-0 left-8 right-8 h-0.5 bg-gradient-to-r from-sage-cta via-sage-accent to-transparent rounded opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute top-0 left-8 right-8 h-0.5 bg-gradient-to-r from-sage-dark via-sage-cta to-sage-accent rounded opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="font-display text-[2.2rem] font-light text-sage-accent leading-none mb-5">{card.num}</div>
                 <h4 className="font-display font-semibold text-sage-dark text-lg mb-2.5">{card.title}</h4>
                 <p className="text-sage-text-body text-[0.9rem] leading-relaxed">{card.text}</p>
@@ -254,7 +254,7 @@ export function Welcome() {
       <section id="start" className="py-24 md:py-32 px-6 bg-sage-bg-card text-center relative">
         <div
           className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: 'linear-gradient(to right, transparent, rgba(181,137,62,0.1), transparent)' }}
+          style={{ background: 'linear-gradient(to right, transparent, rgba(43,62,46,0.12), rgba(181,137,62,0.15), transparent)' }}
         />
         <div className="mb-8 opacity-50">
           <SailMark size={40} />
@@ -267,7 +267,7 @@ export function Welcome() {
         </p>
         <Link
           to="/assessment"
-          className="inline-flex items-center gap-2 font-medium bg-sage-cta text-sage-bg hover:bg-sage-cta-hover shadow-elevated rounded-full px-10 py-4 text-[0.92rem] tracking-[0.04em] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sage-accent focus:ring-offset-2 group"
+          className="inline-flex items-center gap-2 font-medium bg-sage-cta text-sage-bg hover:bg-sage-cta-hover shadow-elevated rounded-full px-10 py-4 text-[0.92rem] tracking-[0.04em] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sage-cta focus:ring-offset-2 group"
         >
           Begin the questionnaire
           <span className="transition-transform group-hover:translate-x-1">
@@ -277,7 +277,7 @@ export function Welcome() {
       </section>
 
       {/* Footer */}
-      <footer className="py-10 px-6 md:px-12 bg-sage-bg border-t border-sage-dark/6 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+      <footer className="py-10 px-6 md:px-12 bg-sage-bg border-t border-sage-dark/10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
         <div className="flex items-center gap-2.5">
           <SailMark size={18} />
           <span className="font-display font-bold text-sage-dark text-[0.85rem] tracking-[0.15em]">

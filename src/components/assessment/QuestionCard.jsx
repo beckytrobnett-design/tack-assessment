@@ -14,7 +14,7 @@ export function QuestionCard({ questionIndex, selectedAnswer, onSelect }) {
 
   return (
     <div className="space-y-2">
-      <p className="text-small text-sage-accent font-medium">{partLabel}</p>
+      <p className="text-small text-sage-cta font-medium">{partLabel}</p>
       <Card padding="md" className="transition-all duration-300">
         <h2
           className="text-sage-dark font-medium mb-3 text-[1.25rem] leading-relaxed"
@@ -30,10 +30,10 @@ export function QuestionCard({ questionIndex, selectedAnswer, onSelect }) {
                 key={opt.letter}
                 type="button"
                 onClick={() => handleSelect(opt.letter)}
-                className={`w-full flex items-center gap-4 p-4 rounded-lg border-2 text-left transition-all duration-200 min-h-tap focus:outline-none focus:ring-2 focus:ring-sage-accent focus:ring-offset-2 ${
+                className={`w-full flex items-center gap-4 p-4 rounded-lg border-2 text-left transition-all duration-200 min-h-tap focus:outline-none focus:ring-2 focus:ring-sage-cta focus:ring-offset-2 ${
                   isSelected
-                    ? 'border-sage-accent bg-sage-accent-muted'
-                    : 'border-sage-accent-muted bg-sage-bg-card hover:border-sage-accent/50 hover:shadow-elevated'
+                    ? 'border-sage-cta bg-sage-cta/10'
+                    : 'border-sage-dark/10 bg-sage-bg-card hover:border-sage-cta/50 hover:shadow-elevated'
                 }`}
                 aria-pressed={isSelected}
                 aria-label={`Option ${opt.letter}: ${opt.text}`}
@@ -41,8 +41,8 @@ export function QuestionCard({ questionIndex, selectedAnswer, onSelect }) {
                 <span
                   className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-small font-bold ${
                     isSelected
-                      ? 'bg-sage-accent text-sage-bg'
-                      : 'bg-sage-bg-deep text-sage-text-light'
+                      ? 'bg-sage-cta text-sage-bg'
+                      : 'bg-sage-dark/10 text-sage-text-light'
                   }`}
                 >
                   {opt.letter}

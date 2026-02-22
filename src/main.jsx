@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         {/* Top bar — Library Sage branding */}
         <div
           className="fixed top-0 left-0 right-0 h-1 z-[150] opacity-85"
-          style={{ background: 'linear-gradient(to right, #6B8F6E, #6B8F6E, #B5893E)' }}
+          style={{ background: 'linear-gradient(to right, #2B3E2E 0%, #6B8F6E 40%, #6B8F6E 60%, #B5893E 100%)' }}
           aria-hidden
         />
         <Routes>

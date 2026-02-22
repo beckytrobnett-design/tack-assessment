@@ -6,7 +6,7 @@ export function Card({ children, className = '', padding = 'lg', ...props }) {
   };
   return (
     <div
-      className={`bg-sage-bg-card rounded-xl shadow-card border border-sage-accent-muted ${paddingClasses[padding]} ${className}`}
+      className={`bg-sage-bg-card rounded-xl shadow-card border border-sage-dark/8 ${paddingClasses[padding]} ${className}`}
       {...props}
     >
       {children}

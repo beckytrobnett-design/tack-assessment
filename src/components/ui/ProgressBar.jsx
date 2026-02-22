@@ -4,15 +4,15 @@ export function ProgressBar({ current, total, partLabel, questionLabel }) {
   return (
     <div className="w-full mb-2">
       <div className="flex justify-between items-center mb-0.5">
-        <span className="text-small text-sage-accent font-medium">
+        <span className="text-small text-sage-cta font-medium">
           {partLabel}
         </span>
-        <span className="text-small text-sage-accent font-medium">
+        <span className="text-small text-sage-cta font-medium">
           {questionLabel}
         </span>
       </div>
       <div
-        className="h-2 w-full bg-gray-200 rounded-full overflow-hidden"
+        className="h-2 w-full bg-sage-dark/10 rounded-full overflow-hidden"
         role="progressbar"
         aria-valuenow={current}
         aria-valuemin={0}
@@ -23,7 +23,7 @@ export function ProgressBar({ current, total, partLabel, questionLabel }) {
           className="h-full rounded-full transition-all duration-300 ease-out"
           style={{
             width: `${percentage}%`,
-            backgroundColor: '#B5893E',
+            backgroundColor: '#6B8F6E',
             minWidth: percentage > 0 ? 4 : 0,
           }}
         />

@@ -40,7 +40,7 @@ export function Methodology() {
       <nav className="fixed top-1 left-0 right-0 z-[100] px-6 md:px-12 py-5 flex justify-between items-center bg-gradient-to-b from-sage-dark/7 to-transparent">
         <Link to="/" className="flex items-center gap-2.5 no-underline group">
           <SailMark size={24} className="transition-transform group-hover:-translate-y-0.5" />
-          <span className="hidden sm:inline w-px h-[18px] bg-sage-accent/30" />
+          <span className="hidden sm:inline w-px h-[18px] bg-sage-cta/40" />
           <span className="font-display italic font-normal text-[0.85rem] text-sage-dark tracking-wide whitespace-nowrap">
             Change your financial direction
           </span>
@@ -60,15 +60,15 @@ export function Methodology() {
       <section className="pt-[10rem] pb-20 px-6 text-center relative overflow-hidden">
         <div
           className="absolute top-0 left-0 right-0 h-[380px] pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, rgba(107,143,110,0.075) 0%, transparent 100%)' }}
+          style={{ background: 'linear-gradient(to bottom, rgba(43,62,46,0.04) 0%, rgba(107,143,110,0.06) 30%, transparent 100%)' }}
         />
         <div
           data-reveal
-          className="flex items-center justify-center gap-3 mb-7 text-[0.65rem] font-medium tracking-[0.25em] uppercase text-sage-accent opacity-0 translate-y-7 transition-all duration-700"
+          className="flex items-center justify-center gap-3 mb-7 text-[0.65rem] font-medium tracking-[0.25em] uppercase text-sage-cta opacity-0 translate-y-7 transition-all duration-700"
         >
-          <span className="w-5 h-px bg-sage-accent" />
+          <span className="w-5 h-px bg-sage-cta" />
           Our Approach
-          <span className="w-5 h-px bg-sage-accent" />
+          <span className="w-5 h-px bg-sage-cta" />
         </div>
         <h1
           data-reveal
@@ -88,7 +88,7 @@ export function Methodology() {
       <div className="max-w-[720px] mx-auto px-6 pb-24">
         {/* The premise */}
         <section data-reveal className="mb-16 opacity-0 translate-y-7 transition-all duration-700">
-          <div className="w-10 h-0.5 bg-gradient-to-r from-sage-cta to-sage-accent rounded-sm mb-8" />
+          <div className="w-10 h-0.5 bg-gradient-to-r from-sage-dark via-sage-cta to-sage-accent rounded-sm mb-8" />
           <h2 className="font-display font-semibold text-[clamp(1.3rem,2.5vw,1.65rem)] text-sage-dark leading-snug mb-5">
             Money is personal before it's financial
           </h2>
@@ -113,7 +113,7 @@ export function Methodology() {
 
         {/* Money scripts */}
         <section data-reveal className="mb-16 opacity-0 translate-y-7 transition-all duration-700">
-          <div className="w-10 h-0.5 bg-gradient-to-r from-sage-cta to-sage-accent rounded-sm mb-8" />
+          <div className="w-10 h-0.5 bg-gradient-to-r from-sage-dark via-sage-cta to-sage-accent rounded-sm mb-8" />
           <h2 className="font-display font-semibold text-[clamp(1.3rem,2.5vw,1.65rem)] text-sage-dark leading-snug mb-5">
             Money scripts: the beliefs running in the background
           </h2>
@@ -138,7 +138,7 @@ export function Methodology() {
 
         {/* Financial socialization */}
         <section data-reveal className="mb-16 opacity-0 translate-y-7 transition-all duration-700">
-          <div className="w-10 h-0.5 bg-gradient-to-r from-sage-cta to-sage-accent rounded-sm mb-8" />
+          <div className="w-10 h-0.5 bg-gradient-to-r from-sage-dark via-sage-cta to-sage-accent rounded-sm mb-8" />
           <h2 className="font-display font-semibold text-[clamp(1.3rem,2.5vw,1.65rem)] text-sage-dark leading-snug mb-5">
             Financial socialization: you learned money before you learned math
           </h2>
@@ -163,7 +163,7 @@ export function Methodology() {
 
         {/* Behavioral finance */}
         <section data-reveal className="mb-16 opacity-0 translate-y-7 transition-all duration-700">
-          <div className="w-10 h-0.5 bg-gradient-to-r from-sage-cta to-sage-accent rounded-sm mb-8" />
+          <div className="w-10 h-0.5 bg-gradient-to-r from-sage-dark via-sage-cta to-sage-accent rounded-sm mb-8" />
           <h2 className="font-display font-semibold text-[clamp(1.3rem,2.5vw,1.65rem)] text-sage-dark leading-snug mb-5">
             Behavioral finance: why knowing better doesn't mean doing better
           </h2>
@@ -188,7 +188,7 @@ export function Methodology() {
 
         {/* Financial therapy */}
         <section data-reveal className="mb-16 opacity-0 translate-y-7 transition-all duration-700">
-          <div className="w-10 h-0.5 bg-gradient-to-r from-sage-cta to-sage-accent rounded-sm mb-8" />
+          <div className="w-10 h-0.5 bg-gradient-to-r from-sage-dark via-sage-cta to-sage-accent rounded-sm mb-8" />
           <h2 className="font-display font-semibold text-[clamp(1.3rem,2.5vw,1.65rem)] text-sage-dark leading-snug mb-5">
             Financial therapy: where money meets meaning
           </h2>
@@ -202,7 +202,7 @@ export function Methodology() {
 
         {/* Three pillars */}
         <section data-reveal className="mb-16 opacity-0 translate-y-7 transition-all duration-700">
-          <div className="w-10 h-0.5 bg-gradient-to-r from-sage-cta to-sage-accent rounded-sm mb-8" />
+          <div className="w-10 h-0.5 bg-gradient-to-r from-sage-dark via-sage-cta to-sage-accent rounded-sm mb-8" />
           <h2 className="font-display font-semibold text-[clamp(1.3rem,2.5vw,1.65rem)] text-sage-dark leading-snug mb-5">
             The three parts of your orientation
           </h2>
@@ -211,7 +211,7 @@ export function Methodology() {
           </p>
           <div className="grid md:grid-cols-3 gap-6 my-8">
             <div className="bg-sage-bg-card border border-sage-accent/10 rounded-lg p-7 relative">
-              <div className="absolute top-0 left-6 right-6 h-0.5 bg-gradient-to-r from-sage-cta to-transparent rounded-sm" />
+              <div className="absolute top-0 left-6 right-6 h-0.5 bg-gradient-to-r from-sage-dark to-sage-cta rounded-sm" />
               <div className="font-display text-[1.8rem] font-light text-sage-accent leading-none mb-3">01</div>
               <div className="font-display font-semibold text-[1.05rem] text-sage-dark mb-2">Your Story</div>
               <p className="text-[0.82rem] leading-relaxed text-sage-text-body">
@@ -219,7 +219,7 @@ export function Methodology() {
               </p>
             </div>
             <div className="bg-sage-bg-card border border-sage-accent/10 rounded-lg p-7 relative">
-              <div className="absolute top-0 left-6 right-6 h-0.5 bg-gradient-to-r from-sage-cta to-transparent rounded-sm" />
+              <div className="absolute top-0 left-6 right-6 h-0.5 bg-gradient-to-r from-sage-dark to-sage-cta rounded-sm" />
               <div className="font-display text-[1.8rem] font-light text-sage-accent leading-none mb-3">02</div>
               <div className="font-display font-semibold text-[1.05rem] text-sage-dark mb-2">Your Present</div>
               <p className="text-[0.82rem] leading-relaxed text-sage-text-body">
@@ -227,7 +227,7 @@ export function Methodology() {
               </p>
             </div>
             <div className="bg-sage-bg-card border border-sage-accent/10 rounded-lg p-7 relative">
-              <div className="absolute top-0 left-6 right-6 h-0.5 bg-gradient-to-r from-sage-cta to-transparent rounded-sm" />
+              <div className="absolute top-0 left-6 right-6 h-0.5 bg-gradient-to-r from-sage-dark to-sage-cta rounded-sm" />
               <div className="font-display text-[1.8rem] font-light text-sage-accent leading-none mb-3">03</div>
               <div className="font-display font-semibold text-[1.05rem] text-sage-dark mb-2">Your Direction</div>
               <p className="text-[0.82rem] leading-relaxed text-sage-text-body">
@@ -253,7 +253,7 @@ export function Methodology() {
 
         {/* What we're not */}
         <section data-reveal className="mb-16 opacity-0 translate-y-7 transition-all duration-700">
-          <div className="w-10 h-0.5 bg-gradient-to-r from-sage-cta to-sage-accent rounded-sm mb-8" />
+          <div className="w-10 h-0.5 bg-gradient-to-r from-sage-dark via-sage-cta to-sage-accent rounded-sm mb-8" />
           <h2 className="font-display font-semibold text-[clamp(1.3rem,2.5vw,1.65rem)] text-sage-dark leading-snug mb-5">
             What TACK is not
           </h2>
@@ -270,7 +270,7 @@ export function Methodology() {
 
         {/* References */}
         <section data-reveal className="mt-16 pt-10 border-t border-sage-accent/10 opacity-0 translate-y-7 transition-all duration-700">
-          <div className="text-[0.65rem] font-medium tracking-[0.25em] uppercase text-sage-accent mb-6">
+          <div className="text-[0.65rem] font-medium tracking-[0.25em] uppercase text-sage-cta mb-6">
             Selected References
           </div>
           <ul className="space-y-3 text-[0.82rem] leading-relaxed text-sage-text-light">
@@ -336,7 +336,7 @@ export function Methodology() {
       </div>
 
       {/* Footer */}
-      <footer className="py-10 px-6 md:px-12 bg-sage-bg border-t border-sage-dark/6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <footer className="py-10 px-6 md:px-12 bg-sage-bg border-t border-sage-dark/10 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="flex items-center gap-2.5">
           <SailMark size={18} />
           <span className="font-display font-bold text-[0.85rem] text-sage-dark tracking-widest">

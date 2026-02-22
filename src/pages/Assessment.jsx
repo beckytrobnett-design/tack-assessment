@@ -78,7 +78,7 @@ export function Assessment() {
         <button
           type="button"
           onClick={handleBack}
-          className="text-small text-sage-accent hover:text-sage-dark mb-1 transition-colors focus:outline-none focus:underline"
+          className="text-small text-sage-cta hover:text-sage-dark mb-1 transition-colors focus:outline-none focus:underline"
         >
           ← Back
         </button>
