@@ -121,7 +121,7 @@ export function Welcome() {
           </p>
 
           <Link
-            to="#start"
+            to="/assessment"
             className="inline-flex items-center gap-2 font-medium bg-sage-cta text-sage-bg hover:bg-sage-cta-hover shadow-elevated rounded-full px-10 py-4 text-[0.92rem] tracking-[0.04em] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sage-accent focus:ring-offset-2 group"
           >
             Let's get started
@@ -135,7 +135,6 @@ export function Welcome() {
             className="w-px h-7 bg-gradient-to-b from-sage-accent to-transparent animate-pulse"
             style={{ animationDuration: '2.5s' }}
           />
-          Learn more
         </div>
       </section>
 
