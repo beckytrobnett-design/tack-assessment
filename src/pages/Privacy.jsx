@@ -1,33 +1,33 @@
 import { Link } from 'react-router-dom';
+import { SailMark } from '../components/ui/SailMark';
 
 export function Privacy() {
   return (
-    <div className="min-h-screen bg-warmCream">
+    <div className="min-h-screen bg-sage-bg">
       <div className="max-w-[680px] mx-auto px-4 py-8 md:py-12">
         {/* Logo */}
         <div className="flex justify-center mb-8">
-          <Link to="/">
-            <img
-              src="/logo-horizontal.png"
-              alt="TACK by Tondreau Point"
-              className="h-[100px] md:h-[120px] w-auto object-contain"
-            />
+          <Link to="/" className="flex flex-col items-center gap-2">
+            <SailMark size={56} />
+            <span className="font-display font-bold text-sage-dark text-lg tracking-wide">
+              TACK <span className="font-light italic text-sage-accent">by Tondreau Point</span>
+            </span>
           </Link>
         </div>
 
-        <h1 className="text-h1 font-bold text-deepNavy mb-2">Your Privacy</h1>
-        <p className="text-body text-slateGray mb-8">
+        <h1 className="font-display text-h1 font-bold text-sage-dark mb-2">Your Privacy</h1>
+        <p className="text-body text-sage-text-light mb-8">
           How we handle your information
         </p>
 
-        <div className="prose prose-deepNavy space-y-6 text-body text-deepNavy leading-relaxed">
+        <div className="prose space-y-6 text-body text-sage-text-body leading-relaxed">
           <p>
             We take your trust seriously. This policy describes what we collect,
             how we use it, and your rights. If anything is unclear, please ask.
           </p>
 
           <section>
-            <h2 className="text-h3 font-medium text-deepNavy mt-8 mb-3">
+            <h2 className="text-h3 font-medium text-sage-dark mt-8 mb-3">
               What we collect
             </h2>
             <p className="mb-3">
@@ -54,7 +54,7 @@ export function Privacy() {
           </section>
 
           <section>
-            <h2 className="text-h3 font-medium text-deepNavy mt-8 mb-3">
+            <h2 className="text-h3 font-medium text-sage-dark mt-8 mb-3">
               How we use it
             </h2>
             <p className="mb-3">
@@ -73,7 +73,7 @@ export function Privacy() {
           </section>
 
           <section>
-            <h2 className="text-h3 font-medium text-deepNavy mt-8 mb-3">
+            <h2 className="text-h3 font-medium text-sage-dark mt-8 mb-3">
               How we protect it
             </h2>
             <ul className="list-disc pl-6 space-y-2">
@@ -92,7 +92,7 @@ export function Privacy() {
           </section>
 
           <section>
-            <h2 className="text-h3 font-medium text-deepNavy mt-8 mb-3">
+            <h2 className="text-h3 font-medium text-sage-dark mt-8 mb-3">
               Your rights
             </h2>
             <p className="mb-3">
@@ -110,7 +110,7 @@ export function Privacy() {
           </section>
 
           <section>
-            <h2 className="text-h3 font-medium text-deepNavy mt-8 mb-3">
+            <h2 className="text-h3 font-medium text-sage-dark mt-8 mb-3">
               Cookies and analytics
             </h2>
             <p>
@@ -121,7 +121,7 @@ export function Privacy() {
           </section>
 
           <section>
-            <h2 className="text-h3 font-medium text-deepNavy mt-8 mb-3">
+            <h2 className="text-h3 font-medium text-sage-dark mt-8 mb-3">
               Changes to this policy
             </h2>
             <p>
@@ -136,7 +136,7 @@ export function Privacy() {
         <div className="mt-12 pt-8 border-t border-gray-200 text-center">
           <Link
             to="/"
-            className="text-body text-bronze hover:text-deepNavy transition-colors"
+            className="text-body text-sage-accent hover:text-sage-dark transition-colors"
           >
             ← Back to TACK
           </Link>

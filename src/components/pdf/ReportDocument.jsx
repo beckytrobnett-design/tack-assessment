@@ -8,10 +8,19 @@ import {
 } from '@react-pdf/renderer';
 import { orientations } from '../../data/orientations';
 
+// Library Sage palette — matches web and email
+const COLORS = {
+  bg: '#F6F3ED',
+  dark: '#2B3E2E',
+  accent: '#B5893E',
+  textBody: '#556553',
+  textLight: '#8A9784',
+};
+
 const styles = StyleSheet.create({
   page: {
     padding: 48,
-    fontFamily: 'Times-Roman',
+    fontFamily: 'Helvetica',
     fontSize: 11,
   },
   pageHeader: {
@@ -21,16 +30,16 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     paddingBottom: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#A88661',
+    borderBottomColor: COLORS.accent,
   },
   pageHeaderLogo: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#1A2B44',
+    color: COLORS.dark,
   },
   pageHeaderSub: {
     fontSize: 9,
-    color: '#A88661',
+    color: COLORS.accent,
     fontStyle: 'italic',
   },
   coverPage: {
@@ -38,33 +47,33 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 60,
-    backgroundColor: '#F5F3ED',
+    backgroundColor: COLORS.bg,
   },
   logoImage: {
-    width: 280,
-    height: 'auto',
+    width: 90,
+    height: 102,
     marginBottom: 24,
   },
   logoImageHeader: {
-    width: 120,
-    height: 'auto',
+    width: 72,
+    height: 82,
   },
   title: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#1A2B44',
+    color: COLORS.dark,
     marginBottom: 24,
     textAlign: 'center',
     lineHeight: 1.4,
   },
   preparedFor: {
     fontSize: 13,
-    color: '#1A2B44',
+    color: COLORS.dark,
     marginBottom: 6,
   },
   date: {
     fontSize: 11,
-    color: '#A88661',
+    color: COLORS.accent,
     marginBottom: 24,
   },
   footer: {
@@ -74,18 +83,18 @@ const styles = StyleSheet.create({
     right: 48,
     textAlign: 'center',
     fontSize: 10,
-    color: '#A88661',
+    color: COLORS.accent,
   },
   sectionTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#1A2B44',
+    color: COLORS.dark,
     marginBottom: 14,
     marginTop: 24,
   },
   bodyText: {
     fontSize: 11,
-    color: '#1A2B44',
+    color: COLORS.textBody,
     lineHeight: 1.7,
     marginBottom: 10,
   },
@@ -97,21 +106,21 @@ const styles = StyleSheet.create({
   bullet: {
     width: 20,
     fontSize: 11,
-    color: '#A88661',
+    color: COLORS.accent,
     marginRight: 8,
   },
   listText: {
     flex: 1,
     fontSize: 11,
-    color: '#1A2B44',
+    color: COLORS.textBody,
     lineHeight: 1.6,
   },
   noteBox: {
-    backgroundColor: '#F5F3ED',
+    backgroundColor: COLORS.bg,
     padding: 20,
     marginTop: 16,
     borderLeftWidth: 4,
-    borderLeftColor: '#A88661',
+    borderLeftColor: COLORS.accent,
   },
   orientationHeader: {
     flexDirection: 'row',
@@ -124,16 +133,16 @@ const styles = StyleSheet.create({
     marginRight: 14,
   },
   blendCallout: {
-    backgroundColor: '#F5F3ED',
+    backgroundColor: COLORS.bg,
     padding: 16,
     marginTop: 16,
     marginBottom: 20,
     borderLeftWidth: 4,
-    borderLeftColor: '#A88661',
+    borderLeftColor: COLORS.accent,
   },
   stepRationale: {
     fontSize: 10,
-    color: '#6B7280',
+    color: COLORS.textLight,
     fontStyle: 'italic',
     marginTop: 4,
     marginLeft: 24,
@@ -152,8 +161,8 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
           <Image src={logoDataUri} style={styles.logoImage} />
         ) : (
           <>
-            <Text style={{ fontSize: 36, fontWeight: 'bold', color: '#1A2B44', marginBottom: 6, letterSpacing: 2 }}>TACK</Text>
-            <Text style={{ fontSize: 13, color: '#A88661', fontStyle: 'italic', marginBottom: 48 }}>by Tondreau Point</Text>
+            <Text style={{ fontSize: 36, fontWeight: 'bold', color: COLORS.dark, marginBottom: 6, letterSpacing: 2 }}>TACK</Text>
+            <Text style={{ fontSize: 13, color: COLORS.accent, fontStyle: 'italic', marginBottom: 48 }}>by Tondreau Point</Text>
           </>
         )}
         <Text style={styles.title}>Your Financial Orientation Report</Text>
@@ -305,7 +314,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
         <View
           style={{
             borderWidth: 1,
-            borderColor: '#E5E7EB',
+            borderColor: '#E8E4DA',
             minHeight: 80,
             marginTop: 8,
           }}

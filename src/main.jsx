@@ -15,6 +15,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ErrorBoundary>
     <BrowserRouter>
       <AssessmentProvider>
+        {/* Top bar — Library Sage branding */}
+        <div
+          className="fixed top-0 left-0 right-0 h-1 z-[150] opacity-85"
+          style={{ background: 'linear-gradient(to right, #6B8F6E, #6B8F6E, #B5893E)' }}
+          aria-hidden
+        />
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/assessment" element={<Assessment />} />

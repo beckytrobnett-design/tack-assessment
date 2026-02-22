@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAssessment } from '../context/AssessmentContext';
 import { ProgressBar } from '../components/ui/ProgressBar';
 import { QuestionCard } from '../components/assessment/QuestionCard';
+import { SailMark } from '../components/ui/SailMark';
 import { questions, PARTS } from '../data/questions';
 
 const ADVANCE_DELAY_MS = 300;
@@ -54,15 +55,16 @@ export function Assessment() {
   if (!question) return null;
 
   return (
-    <div className="min-h-screen bg-warmCream px-4 py-2 md:py-3">
+    <div className="min-h-screen bg-sage-bg px-4 py-2 md:py-3">
       <div className="max-w-[680px] mx-auto">
         {/* Logo */}
         <div className="flex justify-center mb-1">
-          <img
-            src="/logo-horizontal.png"
-            alt="TACK by Tondreau Point"
-            className="h-[140px] md:h-[180px] w-auto max-w-[520px] object-contain"
-          />
+          <Link to="/" className="flex items-center gap-2">
+            <SailMark size={36} />
+            <span className="font-display font-bold text-sage-dark text-lg tracking-wide">
+              TACK <span className="font-light italic text-sage-accent">by Tondreau Point</span>
+            </span>
+          </Link>
         </div>
         {/* Progress bar — shows which question we're on, not completed count (avoids full bar from cached responses) */}
         <ProgressBar
@@ -76,7 +78,7 @@ export function Assessment() {
         <button
           type="button"
           onClick={handleBack}
-          className="text-small text-bronze hover:text-deepNavy mb-1 transition-colors focus:outline-none focus:underline"
+          className="text-small text-sage-accent hover:text-sage-dark mb-1 transition-colors focus:outline-none focus:underline"
         >
           ← Back
         </button>

@@ -8,27 +8,27 @@ export function Button({
   className = '',
   ...props
 }) {
-  const base = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 min-h-tap focus:outline-none focus:ring-2 focus:ring-deepNavy focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed';
+  const base = 'inline-flex items-center justify-center font-medium transition-all duration-300 min-h-tap focus:outline-none focus:ring-2 focus:ring-sage-accent focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed font-body';
   const variants = {
-    primary: 'bg-deepNavy text-warmCream hover:bg-opacity-90 shadow-card',
-    secondary: 'bg-bronze text-warmCream hover:bg-bronze/90 shadow-card',
-    outline: 'border-2 border-deepNavy text-deepNavy bg-transparent hover:bg-deepNavy hover:text-warmCream',
+    primary: 'bg-sage-cta text-sage-bg hover:bg-sage-cta-hover shadow-elevated rounded-full px-10 py-4 text-[0.92rem] font-medium tracking-[0.04em]',
+    secondary: 'bg-sage-accent text-sage-bg hover:bg-sage-accent-light shadow-elevated rounded-full',
+    outline: 'border border-sage-cta/25 text-sage-cta bg-transparent hover:bg-sage-cta hover:text-sage-bg rounded-full',
   };
   const sizes = {
-    sm: 'px-4 py-2 text-small',
+    sm: 'px-5 py-2.5 text-small',
     md: 'px-6 py-3 text-body',
-    lg: 'px-8 py-4 text-body',
+    lg: 'px-10 py-4 text-[0.92rem]',
   };
   const width = fullWidth ? 'w-full' : '';
   const fallbackStyles = {
     minHeight: '48px',
     ...(variant === 'primary' && {
-      backgroundColor: '#1A2B44',
-      color: '#F9F4EF',
+      backgroundColor: '#6B8F6E',
+      color: '#F6F3ED',
     }),
     ...(variant === 'secondary' && {
-      backgroundColor: '#A88661',
-      color: '#F9F4EF',
+      backgroundColor: '#B5893E',
+      color: '#F6F3ED',
     }),
   };
 

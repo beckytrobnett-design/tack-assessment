@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAssessment } from '../context/AssessmentContext';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
+import { SailMark } from '../components/ui/SailMark';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -95,20 +96,21 @@ export default function EmailCapture() {
   };
 
   return (
-    <div className="min-h-screen bg-warmCream flex flex-col items-center justify-center px-6 py-6 md:py-8">
+    <div className="min-h-screen bg-sage-bg flex flex-col items-center justify-center px-6 py-6 md:py-8">
       <div className="max-w-[680px] w-full">
-        <div className="flex justify-center mb-3">
-          <img
-            src="/logo-horizontal.png"
-            alt="TACK by Tondreau Point"
-            className="h-[140px] md:h-[180px] w-auto max-w-[520px] object-contain"
-          />
+        <div className="flex justify-center mb-6">
+          <Link to="/" className="flex flex-col items-center gap-3">
+            <SailMark size={72} />
+            <span className="font-display font-bold text-sage-dark text-xl tracking-wide">
+              TACK <span className="font-light italic text-sage-accent">by Tondreau Point</span>
+            </span>
+          </Link>
         </div>
         <Card padding="lg" className="space-y-6">
-          <h2 className="text-h2 font-medium text-deepNavy">
+          <h2 className="font-display text-h2 font-medium text-sage-dark">
             Your results are ready.
           </h2>
-          <p className="text-body text-deepNavy leading-relaxed">
+          <p className="text-body text-sage-text-body leading-relaxed">
             Penny put together a detailed orientation report just for you —
             including what your results mean, your financial strengths, and
             where to go from here. Where should we send it?
@@ -116,7 +118,7 @@ export default function EmailCapture() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-body font-medium text-deepNavy mb-2">
+              <label htmlFor="name" className="block text-body font-medium text-sage-dark mb-2">
                 Your name
               </label>
               <input
@@ -129,12 +131,12 @@ export default function EmailCapture() {
                 }}
                 placeholder="your name"
                 autoComplete="name"
-                className="w-full px-4 py-4 text-body rounded-lg border-2 border-gray-200 focus:border-bronze focus:ring-2 focus:ring-bronze focus:ring-offset-2 outline-none transition-colors min-h-tap"
+                className="w-full px-4 py-4 text-body rounded-lg border-2 border-sage-accent-muted focus:border-sage-accent focus:ring-2 focus:ring-sage-accent focus:ring-offset-2 outline-none transition-colors min-h-tap bg-sage-bg-card"
                 aria-invalid={!!error}
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-body font-medium text-deepNavy mb-2">
+              <label htmlFor="email" className="block text-body font-medium text-sage-dark mb-2">
                 Email address
               </label>
               <input
@@ -147,7 +149,7 @@ export default function EmailCapture() {
                 }}
                 placeholder="your email address"
                 autoComplete="email"
-                className="w-full px-4 py-4 text-body rounded-lg border-2 border-gray-200 focus:border-bronze focus:ring-2 focus:ring-bronze focus:ring-offset-2 outline-none transition-colors min-h-tap"
+                className="w-full px-4 py-4 text-body rounded-lg border-2 border-sage-accent-muted focus:border-sage-accent focus:ring-2 focus:ring-sage-accent focus:ring-offset-2 outline-none transition-colors min-h-tap bg-sage-bg-card"
                 aria-invalid={!!error}
                 aria-describedby={error ? 'form-error' : undefined}
               />
@@ -168,7 +170,7 @@ export default function EmailCapture() {
             </Button>
           </form>
 
-          <p className="text-small text-slateGray">
+          <p className="text-small text-sage-text-light">
             We'll send your orientation report as a PDF. No spam, no selling
             your info. Just your results.
           </p>
