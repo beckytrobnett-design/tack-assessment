@@ -52,7 +52,7 @@ export function Results() {
           <Link to="/" className="flex flex-col items-center gap-2">
             <SailMark size={56} />
             <span className="font-display font-bold text-sage-dark text-lg tracking-wide">
-              TACK <span className="tack-byline">by Tondreau Point</span>
+              TACK <span className="font-light italic text-sage-accent">by Tondreau Point</span>
             </span>
           </Link>
         </div>
@@ -311,7 +311,7 @@ export function Results() {
         <footer className="text-center pt-8 space-y-2">
           <p className="text-body font-medium font-serif">
             <span className="text-sage-dark">TACK</span>
-            <span className="tack-byline"> by Tondreau Point</span>
+            <span className="font-light italic text-sage-accent"> by Tondreau Point</span>
           </p>
           <p className="text-small text-sage-text-light">
             Your results are private.{' '}

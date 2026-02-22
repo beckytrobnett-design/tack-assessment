@@ -102,7 +102,7 @@ export default function EmailCapture() {
           <Link to="/" className="flex flex-col items-center gap-3">
             <SailMark size={72} />
             <span className="font-display font-bold text-sage-dark text-xl tracking-wide">
-              TACK <span className="tack-byline">by Tondreau Point</span>
+              TACK <span className="font-light italic text-sage-accent">by Tondreau Point</span>
             </span>
           </Link>
         </div>

@@ -105,7 +105,7 @@ export function Welcome() {
                 TACK
               </h1>
               <div className="w-24 h-px mx-auto my-4 bg-gradient-to-r from-sage-dark via-sage-cta to-sage-accent" aria-hidden />
-              <p className="tack-byline text-[clamp(0.65rem,1.5vw,0.8rem)]">
+              <p className="font-serif-sc font-normal text-sage-accent text-[clamp(0.65rem,1.5vw,0.8rem)] tracking-[0.22em]">
                 by Tondreau Point
               </p>
             </div>
@@ -281,7 +281,7 @@ export function Welcome() {
         <div className="flex items-center gap-2.5">
           <SailMark size={18} />
           <span className="font-display font-bold text-sage-dark text-[0.85rem] tracking-[0.15em]">
-            TACK <span className="tack-byline text-[0.85rem] tracking-[0.15em]">by Tondreau Point</span>
+            TACK <span className="font-light italic text-sage-accent tracking-normal">by Tondreau Point</span>
           </span>
         </div>
         <div className="flex items-center gap-6">

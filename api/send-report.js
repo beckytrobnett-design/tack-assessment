@@ -147,7 +147,7 @@ export default async function handler(req, res) {
           <img src="${logoUrl}" alt="TACK by Tondreau Point" width="90" height="102" style="display: block; margin: 0 auto;" />
         </a>
         <p style="font-family: Georgia, serif; font-size: 18px; font-weight: 600; color: #2B3E2E; letter-spacing: 0.08em; margin: 12px 0 0 0;">TACK</p>
-        <p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 300; text-transform: uppercase; letter-spacing: 0.15em; color: #B5893E; margin: 4px 0 0 0;">by Tondreau Point</p>
+        <p style="font-family: Georgia, serif; font-size: 12px; font-style: italic; color: #B5893E; margin: 4px 0 0 0;">by Tondreau Point</p>
       </div>
       <div style="background-color: #FDFCF9; padding: 32px; border-radius: 12px; border: 1px solid rgba(181, 137, 62, 0.1); box-shadow: 0 1px 3px rgba(43, 62, 46, 0.08);">
         <p style="font-size: 16px; color: #2B3E2E; line-height: 1.7; margin: 0 0 16px;">Hi ${firstName},</p>
@@ -157,7 +157,7 @@ export default async function handler(req, res) {
         <p style="font-size: 16px; color: #2B3E2E; line-height: 1.7; margin: 0; font-style: italic;">— Penny</p>
       </div>
       <p style="text-align: center; margin-top: 32px; font-size: 12px; color: #8A9784;">
-        <a href="${baseUrl}" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 300; text-transform: uppercase; letter-spacing: 0.15em; color: #B5893E; text-decoration: none;">TACK by Tondreau Point</a>
+        <a href="${baseUrl}" style="color: #B5893E; text-decoration: none;">TACK by Tondreau Point</a>
       </p>
     </div>
   `;

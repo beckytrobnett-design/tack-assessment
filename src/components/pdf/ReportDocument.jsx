@@ -39,10 +39,8 @@ const styles = StyleSheet.create({
   },
   pageHeaderSub: {
     fontSize: 9,
-    fontWeight: 300,
-    fontStyle: 'normal',
-    letterSpacing: 1.2,
     color: COLORS.accent,
+    fontStyle: 'italic',
   },
   coverPage: {
     flex: 1,
@@ -86,13 +84,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 10,
     color: COLORS.accent,
-  },
-  footerByline: {
-    fontWeight: 300,
-    fontStyle: 'normal',
-    letterSpacing: 1,
-    color: COLORS.accent,
-    fontSize: 10,
   },
   sectionTitle: {
     fontSize: 16,
@@ -171,7 +162,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
         ) : (
           <>
             <Text style={{ fontSize: 36, fontWeight: 'bold', color: COLORS.dark, marginBottom: 6, letterSpacing: 2 }}>TACK</Text>
-            <Text style={{ fontSize: 13, fontWeight: 300, fontStyle: 'normal', letterSpacing: 1.2, color: COLORS.accent, marginBottom: 48 }}>BY TONDREAU POINT</Text>
+            <Text style={{ fontSize: 13, color: COLORS.accent, fontStyle: 'italic', marginBottom: 48 }}>by Tondreau Point</Text>
           </>
         )}
         <Text style={styles.title}>Your Financial Orientation Report</Text>
@@ -183,7 +174,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
             day: 'numeric',
           })}
         </Text>
-        <Text style={styles.footer}><Text style={{ fontWeight: 'bold', color: COLORS.dark }}>TACK </Text><Text style={styles.footerByline}>BY TONDREAU POINT</Text></Text>
+        <Text style={styles.footer}>TACK by Tondreau Point</Text>
       </Page>
 
       {/* Page 2: Your Orientation */}
@@ -194,7 +185,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
           ) : (
             <>
               <Text style={styles.pageHeaderLogo}>TACK</Text>
-              <Text style={styles.pageHeaderSub}>BY TONDREAU POINT</Text>
+              <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
             </>
           )}
         </View>
@@ -226,7 +217,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
             ))}
           </>
         )}
-        <Text style={styles.footer}><Text style={{ fontWeight: 'bold', color: COLORS.dark }}>TACK </Text><Text style={styles.footerByline}>BY TONDREAU POINT</Text></Text>
+        <Text style={styles.footer}>TACK by Tondreau Point</Text>
       </Page>
 
       {/* Page 3: Strengths and Growth */}
@@ -237,7 +228,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
           ) : (
             <>
               <Text style={styles.pageHeaderLogo}>TACK</Text>
-              <Text style={styles.pageHeaderSub}>BY TONDREAU POINT</Text>
+              <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
             </>
           )}
         </View>
@@ -254,7 +245,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
         <Text style={styles.bodyText}>
           {primary.growthProse || primary.growthAreas?.join(' ') || ''}
         </Text>
-        <Text style={styles.footer}><Text style={{ fontWeight: 'bold', color: COLORS.dark }}>TACK </Text><Text style={styles.footerByline}>BY TONDREAU POINT</Text></Text>
+        <Text style={styles.footer}>TACK by Tondreau Point</Text>
       </Page>
 
       {/* Page 4: A Note From Penny */}
@@ -265,7 +256,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
           ) : (
             <>
               <Text style={styles.pageHeaderLogo}>TACK</Text>
-              <Text style={styles.pageHeaderSub}>BY TONDREAU POINT</Text>
+              <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
             </>
           )}
         </View>
@@ -288,7 +279,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
         <View style={[styles.noteBox, { borderLeftColor: primary.color }]}>
           <Text style={styles.bodyText}>{primary.pennyMessage}</Text>
         </View>
-        <Text style={styles.footer}><Text style={{ fontWeight: 'bold', color: COLORS.dark }}>TACK </Text><Text style={styles.footerByline}>BY TONDREAU POINT</Text></Text>
+        <Text style={styles.footer}>TACK by Tondreau Point</Text>
       </Page>
 
       {/* Page 5: Your Next Steps */}
@@ -299,7 +290,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
           ) : (
             <>
               <Text style={styles.pageHeaderLogo}>TACK</Text>
-              <Text style={styles.pageHeaderSub}>BY TONDREAU POINT</Text>
+              <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
             </>
           )}
         </View>
@@ -328,7 +319,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
             marginTop: 8,
           }}
         />
-        <Text style={styles.footer}><Text style={{ fontWeight: 'bold', color: COLORS.dark }}>TACK </Text><Text style={styles.footerByline}>BY TONDREAU POINT</Text></Text>
+        <Text style={styles.footer}>TACK by Tondreau Point</Text>
       </Page>
 
       {/* Page 6: About TACK */}
@@ -339,7 +330,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
           ) : (
             <>
               <Text style={styles.pageHeaderLogo}>TACK</Text>
-              <Text style={styles.pageHeaderSub}>BY TONDREAU POINT</Text>
+              <Text style={styles.pageHeaderSub}>by Tondreau Point</Text>
             </>
           )}
         </View>
@@ -355,8 +346,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
           Visit us to learn more about what's coming.
         </Text>
         <Text style={[styles.footer, { marginTop: 40 }]}>
-          <Text style={{ fontWeight: 'bold', color: COLORS.dark }}>TACK </Text>
-          <Text style={styles.footerByline}>BY TONDREAU POINT</Text>
+          TACK by Tondreau Point
         </Text>
       </Page>
     </Document>
