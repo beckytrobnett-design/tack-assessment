@@ -69,9 +69,9 @@ export function Assessment() {
         {/* Progress bar — shows which question we're on, not completed count (avoids full bar from cached responses) */}
         <ProgressBar
           current={currentIndex + 1}
-          total={24}
+          total={questions.length}
           partLabel={part?.label ?? ''}
-          questionLabel={`Question ${currentIndex + 1} of 24`}
+          questionLabel={`Question ${currentIndex + 1} of ${questions.length}`}
         />
 
         {/* Back link */}
