@@ -48,6 +48,8 @@ export default function EmailCapture() {
 
     // Recalculate from current responses — never use cached results
     const scoringResult = completeAssessment();
+    // Temporary: verify ttmStage in result (remove when confirmed)
+    console.log('TACK assessment result:', { ...scoringResult, ttmStage: scoringResult.ttmStage });
 
     let pdfBase64 = null;
     try {

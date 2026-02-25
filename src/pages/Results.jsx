@@ -39,6 +39,9 @@ export function Results() {
     return null;
   }
 
+  // Log full result including ttmStage (open DevTools Console to verify)
+  console.log('TACK results:', scoringResult);
+
   const primary = orientations[scoringResult.primary.orientation];
   const secondary = scoringResult.secondary
     ? orientations[scoringResult.secondary.orientation]

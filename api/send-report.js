@@ -106,6 +106,7 @@ export default async function handler(req, res) {
 
   const orientation = primary_orientation || results?.primary?.orientation || 'builder';
   const orientationScores = orientation_scores ?? results ?? null;
+  const ttmStage = results?.ttmStage ?? null;
   const recordTimestamp = timestamp || new Date().toISOString();
   const primaryName = ORIENTATION_NAMES[orientation] || orientation;
   const secondaryName = results?.secondary
@@ -122,6 +123,7 @@ export default async function handler(req, res) {
       primary_orientation: primaryName,
       orientation_scores: orientationScores,
       score_details: score_details ?? null,
+      ttm_stage: ttmStage,
     });
 
     if (error) {
