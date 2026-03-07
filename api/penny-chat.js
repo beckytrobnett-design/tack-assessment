@@ -67,7 +67,7 @@ Only extract something if it clearly occurred. Most exchanges will return all nu
         const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
         if (extracted.commitment) {
-          const item = JSON.stringify([{ text: extracted.commitment, date: today, active: true }]);
+          const item = [{ text: extracted.commitment, date: today, active: true }];
           const commitResult = await fetch(`${supabaseUrl}/rest/v1/rpc/append_to_commitments`, {
             method: 'POST',
             headers: {
@@ -81,8 +81,8 @@ Only extract something if it clearly occurred. Most exchanges will return all nu
         }
 
         if (extracted.breakthrough) {
-          const item = JSON.stringify([{ text: extracted.breakthrough, date: today }]);
-          await fetch(`${supabaseUrl}/rest/v1/rpc/append_to_breakthroughs`, {
+          const item = [{ text: extracted.breakthrough, date: today }];
+          const breakthroughResult = await fetch(`${supabaseUrl}/rest/v1/rpc/append_to_breakthroughs`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -91,6 +91,7 @@ Only extract something if it clearly occurred. Most exchanges will return all nu
             },
             body: JSON.stringify({ user_id: userId, new_item: item }),
           });
+          console.log('Breakthrough save status:', breakthroughResult.status);
         }
 
       } catch (extractionError) {
