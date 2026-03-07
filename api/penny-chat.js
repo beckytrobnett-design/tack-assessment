@@ -60,6 +60,7 @@ Only extract something if it clearly occurred. Most exchanges will return all nu
         const extractionData = await extractionResponse.json();
         const rawText = extractionData.content[0].text.replace(/```json\n?|\n?```/g, '').trim();
         const extracted = JSON.parse(rawText);
+        console.log('Memory extraction result:', JSON.stringify(extracted));
         const today = new Date().toISOString().split('T')[0];
 
         const supabaseUrl = process.env.SUPABASE_URL;
@@ -67,7 +68,7 @@ Only extract something if it clearly occurred. Most exchanges will return all nu
 
         if (extracted.commitment) {
           const item = JSON.stringify([{ text: extracted.commitment, date: today, active: true }]);
-          await fetch(`${supabaseUrl}/rest/v1/rpc/append_to_commitments`, {
+          const commitResult = await fetch(`${supabaseUrl}/rest/v1/rpc/append_to_commitments`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -76,6 +77,7 @@ Only extract something if it clearly occurred. Most exchanges will return all nu
             },
             body: JSON.stringify({ user_id: userId, new_item: item }),
           });
+          console.log('Commitment save status:', commitResult.status);
         }
 
         if (extracted.breakthrough) {
