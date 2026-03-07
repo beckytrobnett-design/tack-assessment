@@ -58,7 +58,8 @@ Only extract something if it clearly occurred. Most exchanges will return all nu
         });
 
         const extractionData = await extractionResponse.json();
-        const extracted = JSON.parse(extractionData.content[0].text);
+        const rawText = extractionData.content[0].text.replace(/```json\n?|\n?```/g, '').trim();
+        const extracted = JSON.parse(rawText);
         const today = new Date().toISOString().split('T')[0];
 
         const supabaseUrl = process.env.SUPABASE_URL;
