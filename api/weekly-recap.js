@@ -124,13 +124,13 @@ This week's conversation excerpts: ${excerpt}`,
 <body style="margin:0;padding:0;background:#EEEADE;font-family:Georgia,serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#EEEADE;padding:40px 20px;">
     <tr><td align="center">
-      <table width="100%" style="max-width:520px;background:#ffffff;border-radius:12px;overflow:hidden;">
+      <table width="100%" style="max-width:520px;background:#EEEADE;border-radius:12px;overflow:hidden;border:1px solid #D8D4C8;">
 
         <!-- Header -->
         <tr>
-          <td style="background:#1B3A52;padding:28px 36px;">
-            <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:22px;color:#ffffff;letter-spacing:0.5px;">TACK</p>
-            <p style="margin:4px 0 0 0;font-size:11px;color:#8BAFC0;letter-spacing:2px;font-family:Arial,sans-serif;text-transform:uppercase;">by Tondreau Point</p>
+          <td style="padding:32px 36px 24px 36px;border-bottom:1px solid #D8D4C8;">
+            <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:24px;color:#1B3A52;letter-spacing:0.5px;">TACK</p>
+            <p style="margin:3px 0 0 0;font-size:10px;color:#8A9A8A;letter-spacing:2.5px;font-family:Arial,sans-serif;text-transform:uppercase;">by Tondreau Point</p>
           </td>
         </tr>
 
@@ -141,18 +141,23 @@ This week's conversation excerpts: ${excerpt}`,
           </td>
         </tr>
 
-        <!-- Button -->
+        <!-- CTA -->
         <tr>
-          <td style="padding:16px 36px 40px 36px;">
-            <a href="https://tack.tondreaupoint.com" style="display:inline-block;background:#1B3A52;color:#ffffff;font-family:Arial,sans-serif;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;padding:14px 28px;border-radius:6px;">Pick up where we left off</a>
+          <td style="padding:8px 36px 12px 36px;">
+            <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:15px;color:#5C7A6A;">Whenever you're ready, Penny is here.</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:12px 36px 40px 36px;">
+            <a href="https://tack.tondreaupoint.com" style="display:inline-block;background:#1B3A52;color:#ffffff;font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:14px 28px;border-radius:4px;">Open Penny</a>
           </td>
         </tr>
 
         <!-- Signature -->
         <tr>
-          <td style="padding:0 36px 36px 36px;border-top:1px solid #EEEADE;">
+          <td style="padding:0 36px 32px 36px;border-top:1px solid #D8D4C8;">
             <p style="margin:24px 0 0 0;font-family:Georgia,serif;font-style:italic;font-size:14px;color:#5C7A6A;">— Penny</p>
-            <p style="margin:6px 0 0 0;font-size:11px;color:#AAAAAA;font-family:Arial,sans-serif;">TACK Financial Wellness &nbsp;|&nbsp; You're receiving this because you're a TACK member.</p>
+            <p style="margin:8px 0 0 0;font-size:11px;color:#AAAAAA;font-family:Arial,sans-serif;">TACK by Tondreau Point &nbsp;|&nbsp; You're receiving this as a TACK member.</p>
           </td>
         </tr>
 
