@@ -115,94 +115,31 @@ This week's conversation excerpts: ${excerpt}`,
         const recapHtml = recap
           .split(/\n+/)
           .filter(p => p.trim())
-          .map(p => `<p style="margin:0 0 20px 0;line-height:1.7;">${p.trim()}</p>`)
+          .map(p => `<p style="font-size:16px;color:#556553;line-height:1.7;margin:0 0 16px 0;">${p.trim()}</p>`)
           .join('');
 
-        const htmlBody = `<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark">
-<style>
-  :root { color-scheme: light dark; }
-  @media (prefers-color-scheme: dark) {
-    body, .email-bg { background-color: #1a1a1a !important; }
-    .card { background-color: #2a2a2a !important; }
-    .body-text, .signature { color: #e8e0d0 !important; }
-    .brand-name { color: #e8e0d0 !important; }
-    .cta-text { color: #aaaaaa !important; }
-    .cta-btn { background-color: #C5A55A !important; color: #1a1a1a !important; }
-    .footer-text { color: #C5A55A !important; }
-  }
-</style>
-</head>
-<body class="email-bg" style="margin:0;padding:0;background:#EEEADE;font-family:Georgia,serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#EEEADE;padding:48px 20px;">
-    <tr><td align="center">
-      <table width="100%" style="max-width:480px;">
-
-        <!-- Sail mark -->
-        <tr>
-          <td align="center" style="padding-bottom:12px;">
-            <svg width="52" height="60" viewBox="0 0 52 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M26 4 L48 54 L4 54" stroke="#4A6A5A" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
-              <path d="M26 4 L48 54" stroke="#C5A55A" stroke-width="1.5" fill="none"/>
-            </svg>
-          </td>
-        </tr>
-
-        <!-- Brand -->
-        <tr>
-          <td align="center" style="padding-bottom:4px;">
-            <p class="brand-name" style="margin:0;font-family:Georgia,serif;font-size:18px;font-weight:bold;letter-spacing:5px;color:#1B3A52;text-transform:uppercase;">TACK</p>
-          </td>
-        </tr>
-        <tr>
-          <td align="center" style="padding-bottom:32px;">
-            <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:13px;color:#C5A55A;letter-spacing:0.5px;">by Tondreau Point</p>
-          </td>
-        </tr>
-
-        <!-- Card -->
-        <tr>
-          <td class="card" style="background:#ffffff;border-radius:12px;padding:36px 32px 32px 32px;">
-            <table width="100%" cellpadding="0" cellspacing="0">
-              <tr>
-                <td class="body-text" style="color:#2A3A2A;font-family:Georgia,serif;font-size:16px;line-height:1.8;">
-                  ${recapHtml}
-                </td>
-              </tr>
-              <tr>
-                <td style="padding-top:4px;">
-                  <p class="signature" style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:15px;color:#2A3A2A;">— Penny</p>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
-        <!-- CTA -->
-        <tr>
-          <td align="center" style="padding:28px 0 12px 0;">
-            <p class="cta-text" style="margin:0 0 16px 0;font-family:Georgia,serif;font-style:italic;font-size:14px;color:#7A8A7A;">Whenever you're ready, Penny is here.</p>
-            <a href="https://tack.tondreaupoint.com" class="cta-btn" style="display:inline-block;background:#1B3A52;color:#ffffff;font-family:Arial,sans-serif;font-size:11px;font-weight:bold;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;padding:13px 28px;border-radius:4px;">Open Penny</a>
-          </td>
-        </tr>
-
-        <!-- Footer -->
-        <tr>
-          <td align="center" style="padding-top:20px;">
-            <p class="footer-text" style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:12px;color:#C5A55A;">TACK by Tondreau Point</p>
-          </td>
-        </tr>
-
-      </table>
-    </td></tr>
-  </table>
-</body>
-</html>`;
+        const htmlBody = `
+    <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 560px; margin: 0 auto; background-color: #F6F3ED; padding: 40px;">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <a href="https://tack.tondreaupoint.com" style="display: inline-block;">
+          <img src="https://tack.tondreaupoint.com/tack-mark.png" alt="TACK by Tondreau Point" width="90" height="102" style="display: block; margin: 0 auto;" />
+        </a>
+        <p style="font-family: Georgia, serif; font-size: 18px; font-weight: 600; color: #2B3E2E; letter-spacing: 0.08em; margin: 12px 0 0 0;">TACK</p>
+        <p style="font-family: Georgia, serif; font-size: 12px; font-style: italic; color: #B5893E; margin: 4px 0 0 0;">by Tondreau Point</p>
+      </div>
+      <div style="background-color: #FDFCF9; padding: 32px; border-radius: 12px; border: 1px solid rgba(181, 137, 62, 0.1); box-shadow: 0 1px 3px rgba(43, 62, 46, 0.08);">
+        ${recapHtml}
+        <p style="font-size: 16px; color: #2B3E2E; line-height: 1.7; margin: 0; font-style: italic;">— Penny</p>
+      </div>
+      <div style="text-align: center; margin-top: 28px;">
+        <p style="font-size: 14px; font-family: Georgia, serif; font-style: italic; color: #8A9784; margin: 0 0 16px 0;">Whenever you\'re ready, Penny is here.</p>
+        <a href="https://tack.tondreaupoint.com" style="display: inline-block; background-color: #2B3E2E; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 13px 28px; border-radius: 4px;">Open Penny</a>
+      </div>
+      <p style="text-align: center; margin-top: 28px; font-size: 12px;">
+        <a href="https://tack.tondreaupoint.com" style="color: #B5893E; text-decoration: none; font-family: Georgia, serif; font-style: italic;">TACK by Tondreau Point</a>
+      </p>
+    </div>
+  `;
 
         // Send via Resend
         const emailRes = await fetch('https://api.resend.com/emails', {
