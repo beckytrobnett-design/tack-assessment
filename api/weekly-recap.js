@@ -1,0 +1,138 @@
+export default async function handler(req, res) {
+  // Only allow POST
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Authenticate
+  const auth = req.headers['authorization'];
+  if (!auth || auth !== `Bearer ${process.env.CRON_SECRET}`) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const resendKey = process.env.RESEND_API_KEY;
+  const fromEmail = process.env.RESEND_FROM_EMAIL;
+
+  let emailsSent = 0;
+  let emailsSkipped = 0;
+
+  try {
+    // Fetch all users with email
+    const profilesRes = await fetch(
+      `${supabaseUrl}/rest/v1/profiles?email=not.is.null&select=id,email,name,orientation,commitments,breakthroughs`,
+      {
+        headers: {
+          'apikey': supabaseKey,
+          'Authorization': `Bearer ${supabaseKey}`,
+        },
+      }
+    );
+    const profiles = await profilesRes.json();
+    console.log(`Found ${profiles.length} users`);
+
+    for (const user of profiles) {
+      try {
+        // Fetch last 7 days of conversations
+        const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+        const convoRes = await fetch(
+          `${supabaseUrl}/rest/v1/conversations?user_id=eq.${user.id}&created_at=gte.${sevenDaysAgo}&order=created_at.asc`,
+          {
+            headers: {
+              'apikey': supabaseKey,
+              'Authorization': `Bearer ${supabaseKey}`,
+            },
+          }
+        );
+        const messages = await convoRes.json();
+
+        // Skip users with fewer than 3 messages
+        if (!messages || messages.length < 3) {
+          console.log(`Skipping ${user.email} — only ${messages?.length ?? 0} messages`);
+          emailsSkipped++;
+          continue;
+        }
+
+        // Extract user messages only, max 2000 chars
+        const userMessages = messages
+          .filter(m => m.role === 'user')
+          .map(m => m.content)
+          .join('\n');
+        const excerpt = userMessages.slice(0, 2000);
+
+        // Format commitments
+        const commitmentText = (user.commitments || [])
+          .map(c => {
+            try {
+              const item = typeof c === 'string' ? JSON.parse(c) : c;
+              const obj = Array.isArray(item) ? item[0] : item;
+              return obj?.text || '';
+            } catch { return ''; }
+          })
+          .filter(Boolean)
+          .join(', ') || 'None yet';
+
+        // Call Claude for recap
+        const claudeRes = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': process.env.ANTHROPIC_API_KEY,
+            'anthropic-version': '2023-06-01',
+          },
+          body: JSON.stringify({
+            model: 'claude-haiku-4-5-20251001',
+            max_tokens: 600,
+            system: `You are Penny, a warm financial wellness coach. 
+Write a brief weekly recap email for a user. 
+Be specific about what they worked on. 
+Use their name. Reference their orientation.
+Lead with a strength or insight from the week.
+End with one gentle prompt for the week ahead.
+No emojis. No hollow affirmations. 2-3 short paragraphs.`,
+            messages: [{
+              role: 'user',
+              content: `User name: ${user.name || 'there'}
+Orientation: ${user.orientation || 'unknown'}
+Active commitments: ${commitmentText}
+This week's conversation excerpts: ${excerpt}`,
+            }],
+          }),
+        });
+
+        const claudeData = await claudeRes.json();
+        const recap = claudeData.content[0].text;
+
+        // Send via Resend
+        const emailRes = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${resendKey}`,
+          },
+          body: JSON.stringify({
+            from: fromEmail,
+            to: user.email,
+            subject: 'Your week with Penny',
+            text: recap,
+          }),
+        });
+
+        const emailData = await emailRes.json();
+        console.log(`Email sent to ${user.email}:`, emailData.id);
+        emailsSent++;
+
+      } catch (userError) {
+        console.error(`Error processing user ${user.email}:`, userError);
+        emailsSkipped++;
+      }
+    }
+
+    res.status(200).json({ emailsSent, emailsSkipped });
+
+  } catch (error) {
+    console.error('Weekly recap error:', error);
+    res.status(500).json({ error: 'Weekly recap failed', details: error.message });
+  }
+}
