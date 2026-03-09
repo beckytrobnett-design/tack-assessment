@@ -111,6 +111,57 @@ This week's conversation excerpts: ${excerpt}`,
         const claudeData = await claudeRes.json();
         const recap = claudeData.content[0].text;
 
+        // Format recap paragraphs as HTML
+        const recapHtml = recap
+          .split(/\n+/)
+          .filter(p => p.trim())
+          .map(p => `<p style="margin:0 0 20px 0;line-height:1.7;">${p.trim()}</p>`)
+          .join('');
+
+        const htmlBody = `<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#EEEADE;font-family:Georgia,serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#EEEADE;padding:40px 20px;">
+    <tr><td align="center">
+      <table width="100%" style="max-width:520px;background:#ffffff;border-radius:12px;overflow:hidden;">
+
+        <!-- Header -->
+        <tr>
+          <td style="background:#1B3A52;padding:28px 36px;">
+            <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:22px;color:#ffffff;letter-spacing:0.5px;">TACK</p>
+            <p style="margin:4px 0 0 0;font-size:11px;color:#8BAFC0;letter-spacing:2px;font-family:Arial,sans-serif;text-transform:uppercase;">by Tondreau Point</p>
+          </td>
+        </tr>
+
+        <!-- Body -->
+        <tr>
+          <td style="padding:36px 36px 8px 36px;color:#1B3A52;font-size:16px;">
+            ${recapHtml}
+          </td>
+        </tr>
+
+        <!-- Button -->
+        <tr>
+          <td style="padding:16px 36px 40px 36px;">
+            <a href="https://tack.tondreaupoint.com" style="display:inline-block;background:#1B3A52;color:#ffffff;font-family:Arial,sans-serif;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;padding:14px 28px;border-radius:6px;">Pick up where we left off</a>
+          </td>
+        </tr>
+
+        <!-- Signature -->
+        <tr>
+          <td style="padding:0 36px 36px 36px;border-top:1px solid #EEEADE;">
+            <p style="margin:24px 0 0 0;font-family:Georgia,serif;font-style:italic;font-size:14px;color:#5C7A6A;">— Penny</p>
+            <p style="margin:6px 0 0 0;font-size:11px;color:#AAAAAA;font-family:Arial,sans-serif;">TACK Financial Wellness &nbsp;|&nbsp; You're receiving this because you're a TACK member.</p>
+          </td>
+        </tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+
         // Send via Resend
         const emailRes = await fetch('https://api.resend.com/emails', {
           method: 'POST',
@@ -122,6 +173,7 @@ This week's conversation excerpts: ${excerpt}`,
             from: fromEmail,
             to: user.email,
             subject: 'Your week with Penny',
+            html: htmlBody,
             text: recap,
           }),
         });
