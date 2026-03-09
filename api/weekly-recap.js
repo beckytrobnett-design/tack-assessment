@@ -120,44 +120,81 @@ This week's conversation excerpts: ${excerpt}`,
 
         const htmlBody = `<!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#EEEADE;font-family:Georgia,serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#EEEADE;padding:40px 20px;">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<style>
+  :root { color-scheme: light dark; }
+  @media (prefers-color-scheme: dark) {
+    body, .email-bg { background-color: #1a1a1a !important; }
+    .card { background-color: #2a2a2a !important; }
+    .body-text, .signature { color: #e8e0d0 !important; }
+    .brand-name { color: #e8e0d0 !important; }
+    .cta-text { color: #aaaaaa !important; }
+    .cta-btn { background-color: #C5A55A !important; color: #1a1a1a !important; }
+    .footer-text { color: #C5A55A !important; }
+  }
+</style>
+</head>
+<body class="email-bg" style="margin:0;padding:0;background:#EEEADE;font-family:Georgia,serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#EEEADE;padding:48px 20px;">
     <tr><td align="center">
-      <table width="100%" style="max-width:520px;background:#EEEADE;border-radius:12px;overflow:hidden;border:1px solid #D8D4C8;">
+      <table width="100%" style="max-width:480px;">
 
-        <!-- Header -->
+        <!-- Sail mark -->
         <tr>
-          <td style="padding:32px 36px 24px 36px;border-bottom:1px solid #D8D4C8;">
-            <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:24px;color:#1B3A52;letter-spacing:0.5px;">TACK</p>
-            <p style="margin:3px 0 0 0;font-size:10px;color:#8A9A8A;letter-spacing:2.5px;font-family:Arial,sans-serif;text-transform:uppercase;">by Tondreau Point</p>
+          <td align="center" style="padding-bottom:12px;">
+            <svg width="52" height="60" viewBox="0 0 52 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M26 4 L48 54 L4 54" stroke="#4A6A5A" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+              <path d="M26 4 L48 54" stroke="#C5A55A" stroke-width="1.5" fill="none"/>
+            </svg>
           </td>
         </tr>
 
-        <!-- Body -->
+        <!-- Brand -->
         <tr>
-          <td style="padding:36px 36px 8px 36px;color:#1B3A52;font-size:16px;">
-            ${recapHtml}
+          <td align="center" style="padding-bottom:4px;">
+            <p class="brand-name" style="margin:0;font-family:Georgia,serif;font-size:18px;font-weight:bold;letter-spacing:5px;color:#1B3A52;text-transform:uppercase;">TACK</p>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding-bottom:32px;">
+            <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:13px;color:#C5A55A;letter-spacing:0.5px;">by Tondreau Point</p>
+          </td>
+        </tr>
+
+        <!-- Card -->
+        <tr>
+          <td class="card" style="background:#ffffff;border-radius:12px;padding:36px 32px 32px 32px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td class="body-text" style="color:#2A3A2A;font-family:Georgia,serif;font-size:16px;line-height:1.8;">
+                  ${recapHtml}
+                </td>
+              </tr>
+              <tr>
+                <td style="padding-top:4px;">
+                  <p class="signature" style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:15px;color:#2A3A2A;">— Penny</p>
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
 
         <!-- CTA -->
         <tr>
-          <td style="padding:8px 36px 12px 36px;">
-            <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:15px;color:#5C7A6A;">Whenever you're ready, Penny is here.</p>
-          </td>
-        </tr>
-        <tr>
-          <td style="padding:12px 36px 40px 36px;">
-            <a href="https://tack.tondreaupoint.com" style="display:inline-block;background:#1B3A52;color:#ffffff;font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:14px 28px;border-radius:4px;">Open Penny</a>
+          <td align="center" style="padding:28px 0 12px 0;">
+            <p class="cta-text" style="margin:0 0 16px 0;font-family:Georgia,serif;font-style:italic;font-size:14px;color:#7A8A7A;">Whenever you're ready, Penny is here.</p>
+            <a href="https://tack.tondreaupoint.com" class="cta-btn" style="display:inline-block;background:#1B3A52;color:#ffffff;font-family:Arial,sans-serif;font-size:11px;font-weight:bold;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;padding:13px 28px;border-radius:4px;">Open Penny</a>
           </td>
         </tr>
 
-        <!-- Signature -->
+        <!-- Footer -->
         <tr>
-          <td style="padding:0 36px 32px 36px;border-top:1px solid #D8D4C8;">
-            <p style="margin:24px 0 0 0;font-family:Georgia,serif;font-style:italic;font-size:14px;color:#5C7A6A;">— Penny</p>
-            <p style="margin:8px 0 0 0;font-size:11px;color:#AAAAAA;font-family:Arial,sans-serif;">TACK by Tondreau Point &nbsp;|&nbsp; You're receiving this as a TACK member.</p>
+          <td align="center" style="padding-top:20px;">
+            <p class="footer-text" style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:12px;color:#C5A55A;">TACK by Tondreau Point</p>
           </td>
         </tr>
 
