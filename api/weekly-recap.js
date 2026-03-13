@@ -122,7 +122,7 @@ This week's conversation excerpts: ${excerpt}`,
     <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 560px; margin: 0 auto; background-color: #F6F3ED; padding: 40px;">
       <div style="text-align: center; margin-bottom: 32px;">
         <a href="https://tack.tondreaupoint.com" style="display: inline-block;">
-          <img src="https://tack.tondreaupoint.com/tack-mark.png" alt="TACK by Tondreau Point" width="90" height="102" style="display: block; margin: 0 auto;" />
+          <img src="https://tack.tondreaupoint.com/tack-mark.png" alt="TACK by Tondreau Point" width="80" style="display: block; margin: 0 auto; height: auto;" />
         </a>
         <p style="font-family: Georgia, serif; font-size: 18px; font-weight: 600; color: #2B3E2E; letter-spacing: 0.08em; margin: 12px 0 0 0;">TACK</p>
         <p style="font-family: Georgia, serif; font-size: 12px; font-style: italic; color: #B5893E; margin: 4px 0 0 0;">by Tondreau Point</p>
