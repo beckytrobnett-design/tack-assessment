@@ -1,4 +1,4 @@
-export default function Privacy() {
+export function Privacy() {
   const sections = [
     {
       title: '1. About This Policy',
