@@ -112,6 +112,26 @@ This week's conversation excerpts: ${excerpt}`,
         const claudeData = await claudeRes.json();
         const recap = claudeData.content[0].text;
 
+        // Generate personalized subject line
+        const subjectRes = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': process.env.ANTHROPIC_API_KEY,
+            'anthropic-version': '2023-06-01',
+          },
+          body: JSON.stringify({
+            model: 'claude-haiku-4-5-20251001',
+            max_tokens: 30,
+            messages: [{
+              role: 'user',
+              content: `Write a short email subject line for this weekly coaching message. 5-8 words max. No quotes. No punctuation at the end. Personal and specific to the content, not generic. Start with the user's first name: ${user.name?.split(' ')[0] || 'there'}.\n\nMessage: ${recap}\n\nSubject line only, nothing else.`,
+            }],
+          }),
+        });
+        const subjectData = await subjectRes.json();
+        const subject = subjectData.content?.[0]?.text?.trim().replace(/['"]/g, '') || `Your week with Penny`;
+
         // Format recap paragraphs as HTML
         const recapHtml = recap
           .split(/\n+/)
@@ -152,7 +172,7 @@ This week's conversation excerpts: ${excerpt}`,
           body: JSON.stringify({
             from: fromEmail,
             to: user.email,
-            subject: 'Your week with Penny',
+            subject: subject,
             html: htmlBody,
             text: recap,
           }),
