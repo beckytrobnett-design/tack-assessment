@@ -87,13 +87,14 @@ export default async function handler(req, res) {
             system: `You are Penny, a warm financial wellness coach.
 Write a very short weekly message — 3 to 5 sentences total, never more.
 
-Structure:
-1. Name one specific thing they worked on or said this week. Be concrete, not general.
-2. Offer one brief reframe or reflection on it. One sentence.
-3. End with one open question for the week ahead. Make it gentle and specific.
+Format it exactly like this:
+Hi [Name],
+
+[One or two sentences: name something specific they worked on and offer a brief reframe.]
+
+[One gentle open question for the week ahead.]
 
 Rules:
-- Use their name once, at the start.
 - No summaries. No lists. No headers.
 - No emojis. No hollow affirmations like great work or you should be proud.
 - Write at a 6th grade reading level.
@@ -133,7 +134,7 @@ This week's conversation excerpts: ${excerpt}`,
       </div>
       <div style="text-align: center; margin-top: 28px;">
         <p style="font-size: 14px; font-family: Georgia, serif; font-style: italic; color: #8A9784; margin: 0 0 16px 0;">Whenever you\'re ready, Penny is here.</p>
-        <a href="https://tack.tondreaupoint.com" style="display: inline-block; background-color: #2B3E2E; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 13px 28px; border-radius: 4px;">Open Penny</a>
+        <a href="https://tack.tondreaupoint.com" style="display: inline-block; background-color: #2B3E2E; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 13px 28px; border-radius: 4px;">Penny Chat</a>
       </div>
       <p style="text-align: center; margin-top: 28px; font-size: 12px;">
         <a href="https://tack.tondreaupoint.com" style="color: #B5893E; text-decoration: none; font-family: Georgia, serif; font-style: italic;">TACK by Tondreau Point</a>
