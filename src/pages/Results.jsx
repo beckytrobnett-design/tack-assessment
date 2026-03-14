@@ -304,13 +304,11 @@ export function Results() {
         </section>
 
         {/* Footer */}
-        <div className="bg-sage-dark py-6 text-center">
+        <footer className="bg-sage-dark py-8 text-center space-y-3">
           <img src="https://tack.tondreaupoint.com/logos/logo-wordmark-dark.png" alt="TACK by Tondreau Point" className="h-6 w-auto mx-auto" />
-        </div>
-        <footer className="text-center pt-8 space-y-2">
-          <p className="text-small text-sage-text-light">
+          <p className="text-[0.75rem] text-white/40">
             Your results are private.{' '}
-            <Link to="/privacy" className="text-sage-accent hover:text-sage-dark transition-colors underline">
+            <Link to="/privacy" className="text-white/40 hover:text-sage-accent transition-colors underline">
               Learn more about how we protect your information.
             </Link>
           </p>
