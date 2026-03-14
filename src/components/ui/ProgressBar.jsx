@@ -1,4 +1,4 @@
-export function ProgressBar({ current, total, partLabel, questionLabel }) {
+export function ProgressBar({ current, total, partLabel, questionLabel, color = '#3D8C8C' }) {
   const percentage = total > 0 ? Math.min(100, (current / total) * 100) : 0;
 
   return (
@@ -23,7 +23,7 @@ export function ProgressBar({ current, total, partLabel, questionLabel }) {
           className="h-full rounded-full transition-all duration-300 ease-out"
           style={{
             width: `${percentage}%`,
-            backgroundColor: '#6B8F6E',
+            backgroundColor: color,
             minWidth: percentage > 0 ? 4 : 0,
           }}
         />

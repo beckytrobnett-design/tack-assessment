@@ -67,9 +67,9 @@ export function Welcome() {
   return (
     <div className="min-h-screen bg-sage-bg">
       {/* Nav */}
-      <nav className={`fixed top-1 left-0 right-0 z-[100] flex items-center px-6 md:px-12 py-5 transition-all duration-500 ${navScrolled ? 'bg-sage-bg/92 backdrop-blur-xl py-4 shadow-[0_1px_0_rgba(43,62,46,0.06)] top-0' : 'bg-gradient-to-b from-sage-dark/7 to-transparent'}`}>
+      <nav className={`fixed top-1 left-0 right-0 z-[100] flex items-center px-6 md:px-12 py-5 transition-all duration-500 ${navScrolled ? 'bg-sage-dark/95 backdrop-blur-xl py-4 shadow-[0_1px_0_rgba(43,62,46,0.06)] top-0' : 'bg-sage-dark'}`}>
         <Link to="/" className="no-underline">
-          <img src="https://tack.tondreaupoint.com/logos/logo-horizontal-light.png" alt="TACK by Tondreau Point" className="h-8 w-auto" />
+          <img src="https://tack.tondreaupoint.com/logos/logo-horizontal-dark.png" alt="TACK by Tondreau Point" className="h-8 w-auto" />
         </Link>
       </nav>
 
@@ -86,7 +86,7 @@ export function Welcome() {
 
         <div className="relative z-10 flex flex-col items-center max-w-[520px]">
           <div className="mb-10 drop-shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
-            <img src="https://tack.tondreaupoint.com/logos/logo-stacked-light.png" alt="TACK by Tondreau Point" className="w-72 mx-auto" />
+            <img src="https://tack.tondreaupoint.com/logos/logo-stacked-light.png" alt="TACK by Tondreau Point" className="w-80 mx-auto" />
           </div>
 
           <h2 className="font-display font-medium text-sage-dark text-[clamp(1.5rem,3.5vw,2.1rem)] leading-tight mb-5">
@@ -255,13 +255,13 @@ export function Welcome() {
       </section>
 
       {/* Footer */}
-      <footer className="py-10 px-6 md:px-12 bg-sage-bg border-t border-sage-dark/10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-        <img src="https://tack.tondreaupoint.com/logos/logo-wordmark-light.png" alt="TACK by Tondreau Point" className="h-6 w-auto" />
+      <footer className="py-10 px-6 md:px-12 bg-sage-dark border-t border-sage-accent/20 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+        <img src="https://tack.tondreaupoint.com/logos/logo-wordmark-dark.png" alt="TACK by Tondreau Point" className="h-6 w-auto" />
         <div className="flex items-center gap-6">
-          <Link to="/privacy" className="text-[0.7rem] text-sage-text-light hover:text-sage-cta transition-colors tracking-[0.03em]">
+          <Link to="/privacy" className="text-[0.7rem] text-white/40 hover:text-sage-accent transition-colors tracking-[0.03em]">
             Privacy
           </Link>
-          <span className="text-[0.7rem] text-sage-text-light">&copy; 2026 Tondreau Point. All rights reserved.</span>
+          <span className="text-[0.7rem] text-white/40">&copy; 2026 Tondreau Point. All rights reserved.</span>
         </div>
       </footer>
     </div>

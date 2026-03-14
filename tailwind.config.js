@@ -65,9 +65,9 @@ export default {
         'full': '9999px',
       },
       boxShadow: {
-        'card': '0 1px 3px rgba(43, 62, 46, 0.08), 0 1px 2px rgba(43, 62, 46, 0.06)',
-        'elevated': '0 4px 24px rgba(43, 62, 46, 0.15)',
-        'modal': '0 20px 25px rgba(43, 62, 46, 0.1), 0 10px 10px rgba(43, 62, 46, 0.04)',
+        'card': '0 1px 3px rgba(28, 43, 63, 0.08), 0 1px 2px rgba(28, 43, 63, 0.06)',
+        'elevated': '0 4px 24px rgba(28, 43, 63, 0.15)',
+        'modal': '0 20px 25px rgba(28, 43, 63, 0.1), 0 10px 10px rgba(28, 43, 63, 0.04)',
       },
       transitionDuration: {
         'default': '200ms',

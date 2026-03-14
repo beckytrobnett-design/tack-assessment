@@ -54,21 +54,24 @@ export function Assessment() {
   if (!question) return null;
 
   return (
-    <div className="min-h-screen bg-sage-bg px-4 py-2 md:py-3">
-      <div className="max-w-[680px] mx-auto">
-        {/* Logo */}
-        <div className="flex justify-center mb-1">
+    <div className="min-h-screen bg-sage-bg">
+      <nav className="bg-sage-dark px-4 py-4">
+        <div className="max-w-[680px] mx-auto flex justify-center">
           <Link to="/">
-            <img src="https://tack.tondreaupoint.com/logos/logo-horizontal-light.png" alt="TACK by Tondreau Point" className="h-10 w-auto" />
+            <img src="https://tack.tondreaupoint.com/logos/logo-horizontal-dark.png" alt="TACK by Tondreau Point" className="h-10 w-auto" />
           </Link>
         </div>
-        {/* Progress bar — shows which question we're on, not completed count (avoids full bar from cached responses) */}
-        <ProgressBar
-          current={currentIndex + 1}
-          total={questions.length}
-          partLabel={part?.label ?? ''}
-          questionLabel={`Question ${currentIndex + 1} of ${questions.length}`}
-        />
+      </nav>
+      <div className="px-4 py-2 md:py-3">
+        <div className="max-w-[680px] mx-auto">
+          {/* Progress bar — shows which question we're on, not completed count (avoids full bar from cached responses) */}
+          <ProgressBar
+            color="#3D8C8C"
+            current={currentIndex + 1}
+            total={questions.length}
+            partLabel={part?.label ?? ''}
+            questionLabel={`Question ${currentIndex + 1} of ${questions.length}`}
+          />
 
         {/* Back link */}
         <button
@@ -104,6 +107,7 @@ export function Assessment() {
           animation: fadeIn 0.3s ease-out;
         }
       `}</style>
+      </div>
     </div>
   );
 }
