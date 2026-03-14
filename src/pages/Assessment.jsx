@@ -58,7 +58,7 @@ export function Assessment() {
       <nav className="bg-sage-dark px-6 py-5 flex justify-center">
         <div className="max-w-[680px] mx-auto flex justify-center">
           <Link to="/">
-            <img src="https://tack.tondreaupoint.com/logos/logo-horizontal-dark.png" alt="TACK by Tondreau Point" className="h-14 w-auto" />
+            <img src="https://tack.tondreaupoint.com/logos/logo-horizontal-dark.png" alt="TACK by Tondreau Point" className="h-16 w-auto" />
           </Link>
         </div>
       </nav>
