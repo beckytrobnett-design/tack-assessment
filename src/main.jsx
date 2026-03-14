@@ -9,6 +9,7 @@ import EmailCapture from './pages/EmailCapture';
 import { Results } from './pages/Results';
 import { Privacy } from './pages/Privacy';
 import { Methodology } from './pages/Methodology';
+import { Chat } from './pages/Chat';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -29,6 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/results" element={<Results />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/methodology" element={<Methodology />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AssessmentProvider>

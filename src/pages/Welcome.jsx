@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { SailMark } from '../components/ui/SailMark';
 
 // Lock icon
 function LockIcon() {
@@ -68,19 +67,9 @@ export function Welcome() {
   return (
     <div className="min-h-screen bg-sage-bg">
       {/* Nav */}
-      <nav
-        className={`fixed top-1 left-0 right-0 z-[100] flex items-center px-6 md:px-12 py-5 transition-all duration-500 ${
-          navScrolled ? 'bg-sage-bg/92 backdrop-blur-xl py-4 shadow-[0_1px_0_rgba(43,62,46,0.06)] top-0' : 'bg-gradient-to-b from-sage-dark/7 to-transparent'
-        }`}
-      >
-        <Link to="/" className="flex items-center gap-2.5 no-underline group">
-          <div className="transition-transform group-hover:-translate-y-0.5">
-            <SailMark size={24} />
-          </div>
-          <div className="w-px h-[18px] bg-sage-accent/30 flex-shrink-0" />
-          <span className="font-display italic font-normal text-sage-dark text-[0.85rem] tracking-[0.02em] whitespace-nowrap">
-            Change your financial direction
-          </span>
+      <nav className={`fixed top-1 left-0 right-0 z-[100] flex items-center px-6 md:px-12 py-5 transition-all duration-500 ${navScrolled ? 'bg-sage-bg/92 backdrop-blur-xl py-4 shadow-[0_1px_0_rgba(43,62,46,0.06)] top-0' : 'bg-gradient-to-b from-sage-dark/7 to-transparent'}`}>
+        <Link to="/" className="no-underline">
+          <img src="https://tack.tondreaupoint.com/logos/logo-horizontal-light.png" alt="TACK by Tondreau Point" className="h-8 w-auto" />
         </Link>
       </nav>
 
@@ -96,19 +85,8 @@ export function Welcome() {
         />
 
         <div className="relative z-10 flex flex-col items-center max-w-[520px]">
-          <div className="flex flex-col items-center gap-6 mb-10">
-            <div className="drop-shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
-              <SailMark size={90} />
-            </div>
-            <div>
-              <h1 className="font-display font-semibold text-sage-dark text-[clamp(3rem,8vw,5.5rem)] tracking-[0.08em] leading-tight">
-                TACK
-              </h1>
-              <div className="w-24 h-px mx-auto my-4 bg-gradient-to-r from-sage-dark via-sage-cta to-sage-accent" aria-hidden />
-              <p className="font-serif-sc font-normal text-sage-accent text-[clamp(0.65rem,1.5vw,0.8rem)] tracking-[0.22em]">
-                by Tondreau Point
-              </p>
-            </div>
+          <div className="mb-10 drop-shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
+            <img src="https://tack.tondreaupoint.com/logos/logo-stacked-light.png" alt="TACK by Tondreau Point" className="w-52 mx-auto" />
           </div>
 
           <h2 className="font-display font-medium text-sage-dark text-[clamp(1.5rem,3.5vw,2.1rem)] leading-tight mb-5">
@@ -148,7 +126,7 @@ export function Welcome() {
         />
         <div className="max-w-[860px] mx-auto grid md:grid-cols-[auto_1fr] gap-0 md:gap-16 items-start">
           <div data-reveal data-reveal-opacity="60" className="hidden md:block pt-2 opacity-0 translate-y-7 transition-all duration-700">
-            <SailMark size={48} />
+            <img src="https://tack.tondreaupoint.com/logos/logo-badge-mark-light.png" alt="" className="w-14" />
           </div>
           <div>
             <div
@@ -226,7 +204,7 @@ export function Welcome() {
       {/* Trust */}
       <section className="py-14 px-6 bg-sage-dark relative overflow-hidden">
         <div className="absolute right-[5%] top-1/2 -translate-y-1/2 opacity-[0.04] pointer-events-none">
-          <SailMark size={200} />
+          <img src="https://tack.tondreaupoint.com/logos/logo-sail-mark-dark.png" alt="" className="w-48" />
         </div>
         <div className="max-w-[700px] mx-auto flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10 flex-wrap relative z-10">
           <div className="flex items-center gap-2.5 text-[rgba(246,243,237,0.55)] text-[0.82rem] tracking-[0.02em]">
@@ -257,7 +235,7 @@ export function Welcome() {
           style={{ background: 'linear-gradient(to right, transparent, rgba(43,62,46,0.12), rgba(181,137,62,0.15), transparent)' }}
         />
         <div className="mb-8 opacity-50">
-          <SailMark size={40} />
+          <img src="https://tack.tondreaupoint.com/logos/logo-badge-mark-light.png" alt="" className="w-10 mx-auto" />
         </div>
         <h3 className="font-display font-medium text-sage-dark text-[clamp(1.8rem,4vw,2.8rem)] leading-snug mb-5">
           Ready to start?
@@ -278,12 +256,7 @@ export function Welcome() {
 
       {/* Footer */}
       <footer className="py-10 px-6 md:px-12 bg-sage-bg border-t border-sage-dark/10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-        <div className="flex items-center gap-2.5">
-          <SailMark size={18} />
-          <span className="font-display font-bold text-sage-dark text-[0.85rem] tracking-[0.15em]">
-            TACK <span className="font-light italic text-sage-accent tracking-normal">by Tondreau Point</span>
-          </span>
-        </div>
+        <img src="https://tack.tondreaupoint.com/logos/logo-wordmark-light.png" alt="TACK by Tondreau Point" className="h-6 w-auto" />
         <div className="flex items-center gap-6">
           <Link to="/privacy" className="text-[0.7rem] text-sage-text-light hover:text-sage-cta transition-colors tracking-[0.03em]">
             Privacy
