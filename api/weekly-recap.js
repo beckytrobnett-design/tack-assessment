@@ -116,7 +116,8 @@ This week's conversation excerpts: ${excerpt}`,
         let recap;
         let invitation = "Whenever you're ready, Penny is here.";
         try {
-          const parsed = JSON.parse(rawText.trim());
+          const cleaned = rawText.trim().replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```\s*$/i, '').trim();
+          const parsed = JSON.parse(cleaned);
           recap = parsed.recap ?? rawText;
           if (parsed.invitation && typeof parsed.invitation === 'string') {
             invitation = parsed.invitation.trim();
