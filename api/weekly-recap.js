@@ -98,7 +98,9 @@ Rules:
 - No summaries. No lists. No headers.
 - No emojis. No hollow affirmations like great work or you should be proud.
 - Write at a 6th grade reading level.
-- The whole message should be readable in 20 seconds.`,
+- The whole message should be readable in 20 seconds.
+
+Also return a short, warm, one-sentence invitation (max 8 words, no quotes) that Penny would say to invite the user back — something personal and varied each time. Return it as JSON with two fields: recap (the existing recap paragraphs) and invitation (the new one-liner).`,
             messages: [{
               role: 'user',
               content: `User name: ${user.name || 'there'}
@@ -110,7 +112,18 @@ This week's conversation excerpts: ${excerpt}`,
         });
 
         const claudeData = await claudeRes.json();
-        const recap = claudeData.content[0].text;
+        const rawText = claudeData.content[0].text;
+        let recap;
+        let invitation = "Whenever you're ready, Penny is here.";
+        try {
+          const parsed = JSON.parse(rawText.trim());
+          recap = parsed.recap ?? rawText;
+          if (parsed.invitation && typeof parsed.invitation === 'string') {
+            invitation = parsed.invitation.trim();
+          }
+        } catch {
+          recap = rawText;
+        }
 
         // Generate personalized subject line
         const subjectRes = await fetch('https://api.anthropic.com/v1/messages', {
@@ -161,8 +174,8 @@ This week's conversation excerpts: ${excerpt}`,
 
   <!-- CTA -->
   <div style="background-color: #F5EFE6; padding: 32px 40px; text-align: center; border-top: 1px solid rgba(196,131,74,0.2);">
-    <p style="font-family: Georgia, serif; font-size: 14px; font-style: italic; color: #9A8E7E; margin: 0 0 20px 0;">Whenever you're ready, Penny is here.</p>
-    <a href="https://tack.tondreaupoint.com" style="display: inline-block; background-color: #3D8C8C; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 13px 28px; border-radius: 4px;">Chat with Penny</a>
+    <p style="font-family: Georgia, serif; font-size: 14px; font-style: italic; color: #9A8E7E; margin: 0 0 20px 0;">${invitation}</p>
+    <a href="https://tack.tondreaupoint.com" style="display: inline-block; background-color: #3D8C8C; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 13px 28px; border-radius: 4px;">Penny Chat</a>
   </div>
 
   <!-- Footer -->
