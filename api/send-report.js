@@ -143,24 +143,44 @@ export default async function handler(req, res) {
     "Your orientation report is ready — it's got everything we talked about, plus a few things to sit with.";
 
   const userHtmlBody = `
-    <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 560px; margin: 0 auto; background-color: #F5EFE6; padding: 0;">
-      <div style="background-color: #1C2B3F; padding: 32px 40px; text-align: center;">
-        <a href="${baseUrl}" style="display: inline-block;">
-          <img src="${logoUrl}" alt="TACK by Tondreau Point" width="120" style="display: block; margin: 0 auto; height: auto;" />
-        </a>
-      </div>
-      <div style="background-color: #FDFAF6; padding: 32px; border-radius: 12px; margin: 24px 40px; border: 1px solid rgba(196, 131, 74, 0.1); box-shadow: 0 1px 3px rgba(28, 43, 63, 0.08);">
-        <p style="font-size: 16px; color: #1C2B3F; line-height: 1.7; margin: 0 0 16px;">Hi ${firstName},</p>
-        <p style="font-size: 16px; color: #2B3A52; line-height: 1.7; margin: 0 0 16px;">${pennyIntro}</p>
-        <p style="font-size: 16px; color: #2B3A52; line-height: 1.7; margin: 0 0 16px;">Your orientation report is attached — it's got everything we just talked about, plus a few things to sit with.</p>
-        <p style="font-size: 16px; color: #2B3A52; line-height: 1.7; margin: 0 0 24px;">No rush. Read it when you're ready. And know that wherever you are right now is exactly the right place to start.</p>
-        <p style="font-size: 16px; color: #1C2B3F; line-height: 1.7; margin: 0; font-style: italic;">— Penny</p>
-      </div>
-      <div style="background-color: #F5EFE6; padding: 32px 40px; text-align: center;">
-        <a href="${baseUrl}"><img src="https://tack.tondreaupoint.com/logos/logo-wordmark-light.png" width="100" style="height:auto;" alt="TACK by Tondreau Point" /></a>
-      </div>
+  <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 560px; margin: 0 auto; background-color: #F5EFE6; padding: 0;">
+    
+    <!-- Header -->
+    <div style="background-color: #1C2B3F; padding: 32px 40px; text-align: center;">
+      <a href="${baseUrl}" style="display: inline-block;">
+        <img src="${logoUrl}" alt="TACK by Tondreau Point" width="120" style="display: block; margin: 0 auto; height: auto;" />
+      </a>
     </div>
-  `;
+
+    <!-- Teal accent bar -->
+    <div style="background-color: #3D8C8C; padding: 10px 40px; text-align: center;">
+      <p style="font-size: 11px; letter-spacing: 0.3em; color: rgba(255,255,255,0.85); margin: 0; text-transform: uppercase; font-family: Georgia, serif;">Your Orientation Report</p>
+    </div>
+
+    <!-- Body -->
+    <div style="background-color: #FDFAF6; padding: 36px 40px;">
+      <p style="font-size: 16px; color: #1C2B3F; line-height: 1.7; margin: 0 0 16px;">Hi ${firstName},</p>
+      <p style="font-size: 16px; color: #2B3A52; line-height: 1.7; margin: 0 0 16px;">${pennyIntro}</p>
+      <p style="font-size: 16px; color: #2B3A52; line-height: 1.7; margin: 0 0 16px;">Your orientation report is attached — it's got everything we just talked about, plus a few things to sit with.</p>
+      <p style="font-size: 16px; color: #2B3A52; line-height: 1.7; margin: 0 0 24px;">No rush. Read it when you're ready. And know that wherever you are right now is exactly the right place to start.</p>
+      <p style="font-size: 16px; color: #1C2B3F; line-height: 1.7; margin: 0; font-style: italic;">— Penny</p>
+    </div>
+
+    <!-- Penny CTA -->
+    <div style="background-color: #1C2B3F; padding: 36px 40px; text-align: center;">
+      <p style="font-family: Georgia, serif; font-size: 20px; font-weight: 300; color: #FDFAF6; margin: 0 0 8px 0; line-height: 1.4;">Ready to go deeper?</p>
+      <p style="font-size: 14px; color: rgba(255,255,255,0.55); margin: 0 0 24px 0; line-height: 1.6; font-family: Georgia, serif; font-style: italic;">Penny is your personal financial coach — available anytime you want to talk through what this means for your life.</p>
+      <a href="${baseUrl}" style="display: inline-block; background-color: #3D8C8C; color: #ffffff; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 14px 32px; border-radius: 4px;">Talk to Penny</a>
+    </div>
+
+    <!-- Footer -->
+    <div style="background-color: #F5EFE6; padding: 24px 40px; text-align: center; border-top: 1px solid rgba(196,131,74,0.2);">
+      <a href="${baseUrl}"><img src="https://tack.tondreaupoint.com/logos/logo-wordmark-light.png" width="100" style="height:auto;display:block;margin:0 auto 10px auto;" alt="TACK by Tondreau Point" /></a>
+      <p style="font-size: 11px; color: #9A8E7E; margin: 0;">© 2026 Tondreau Point · <a href="${baseUrl}/privacy" style="color: #9A8E7E; text-decoration: none;">Privacy</a></p>
+    </div>
+
+  </div>
+`;
 
   const attachments = pdfBase64
     ? [
