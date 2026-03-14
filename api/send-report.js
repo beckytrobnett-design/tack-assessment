@@ -156,9 +156,9 @@ export default async function handler(req, res) {
         <p style="font-size: 16px; color: #2B3A52; line-height: 1.7; margin: 0 0 24px;">No rush. Read it when you're ready. And know that wherever you are right now is exactly the right place to start.</p>
         <p style="font-size: 16px; color: #1C2B3F; line-height: 1.7; margin: 0; font-style: italic;">— Penny</p>
       </div>
-      <p style="text-align: center; margin: 32px 40px; font-size: 12px;">
-        <a href="${baseUrl}"><img src="https://tack.tondreaupoint.com/logos/logo-wordmark-dark.png" width="100" style="height:auto;" alt="TACK by Tondreau Point" /></a>
-      </p>
+      <div style="background-color: #F5EFE6; padding: 32px 40px; text-align: center;">
+        <a href="${baseUrl}"><img src="https://tack.tondreaupoint.com/logos/logo-wordmark-light.png" width="100" style="height:auto;" alt="TACK by Tondreau Point" /></a>
+      </div>
     </div>
   `;
 
