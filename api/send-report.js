@@ -85,6 +85,11 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Please enter a valid email address' });
   }
 
+  const testEmail = process.env.TEST_EMAIL;
+  if (testEmail && trimmedEmail !== testEmail) {
+    return res.status(200).json({ message: 'TEST_MODE: email skipped' });
+  }
+
   const resendApiKey = process.env.RESEND_API_KEY;
   const fromEmail = process.env.RESEND_FROM_EMAIL || 'Penny at TACK <onboarding@resend.dev>';
   const adminEmail = process.env.RESEND_ADMIN_EMAIL;

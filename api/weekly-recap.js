@@ -33,6 +33,13 @@ export default async function handler(req, res) {
     console.log(`Found ${profiles.length} users`);
 
     for (const user of profiles) {
+      // TEST_MODE: only send to test email
+      const testEmail = process.env.TEST_EMAIL;
+      if (testEmail && user.email !== testEmail) {
+        console.log(`TEST_MODE: skipping ${user.email}`);
+        emailsSkipped++;
+        continue;
+      }
       try {
         // Fetch last 7 days of conversations
         const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
@@ -48,7 +55,7 @@ export default async function handler(req, res) {
         const messages = await convoRes.json();
 
         // Skip users with fewer than 3 messages
-        if (!messages || messages.length < 3) {
+        if (!messages || messages.length < 1) {
           console.log(`Skipping ${user.email} — only ${messages?.length ?? 0} messages`);
           emailsSkipped++;
           continue;
@@ -100,9 +107,7 @@ Rules:
 - Write at a 6th grade reading level.
 - The whole message should be readable in 20 seconds.
 
-Return ONLY a raw JSON object with no markdown, no code fences, no preamble. Exactly this shape:
-{"recap":"<the full recap text with \\n\\n between paragraphs>","invitation":"<one warm sentence, max 8 words, no quotes>"}
-Do not wrap in backticks. Do not add any text before or after the JSON.`,
+Also return a short, warm, one-sentence invitation (max 8 words, no quotes) that Penny would say to invite the user back — something personal and varied each time. Return it as JSON with two fields: recap (the existing recap paragraphs) and invitation (the new one-liner).`,
             messages: [{
               role: 'user',
               content: `User name: ${user.name || 'there'}
@@ -118,8 +123,7 @@ This week's conversation excerpts: ${excerpt}`,
         let recap;
         let invitation = "Whenever you're ready, Penny is here.";
         try {
-          const cleaned = rawText.trim().replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```\s*$/i, '').trim();
-          const parsed = JSON.parse(cleaned);
+          const parsed = JSON.parse(rawText.trim());
           recap = parsed.recap ?? rawText;
           if (parsed.invitation && typeof parsed.invitation === 'string') {
             invitation = parsed.invitation.trim();
