@@ -5,8 +5,6 @@ import { calculateOrientation } from '../services/scoring';
 import { orientations } from '../data/orientations';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
-import { SailMark } from '../components/ui/SailMark';
-
 export function Results() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -50,16 +48,10 @@ export function Results() {
 
   return (
     <div className="min-h-screen bg-sage-bg">
+      <div className="flex justify-center py-5 bg-sage-dark">
+        <img src="https://tack.tondreaupoint.com/logos/logo-sail-mark-dark.png" alt="" className="h-10 w-auto" />
+      </div>
       <div className="max-w-[680px] mx-auto px-4 py-5 md:py-8 space-y-8">
-        {/* Logo */}
-        <div className="flex justify-center mb-2">
-          <Link to="/" className="flex flex-col items-center gap-2">
-            <SailMark size={56} />
-            <span className="font-display font-bold text-sage-dark text-lg tracking-wide">
-              TACK <span className="font-light italic text-sage-accent">by Tondreau Point</span>
-            </span>
-          </Link>
-        </div>
         {/* Section 1: Your Orientation (hero) */}
         <section>
           <div
@@ -312,11 +304,10 @@ export function Results() {
         </section>
 
         {/* Footer */}
+        <div className="bg-sage-dark py-6 text-center">
+          <img src="https://tack.tondreaupoint.com/logos/logo-wordmark-dark.png" alt="TACK by Tondreau Point" className="h-6 w-auto mx-auto" />
+        </div>
         <footer className="text-center pt-8 space-y-2">
-          <p className="text-body font-medium font-serif">
-            <span className="text-sage-dark">TACK</span>
-            <span className="font-light italic text-sage-accent"> by Tondreau Point</span>
-          </p>
           <p className="text-small text-sage-text-light">
             Your results are private.{' '}
             <Link to="/privacy" className="text-sage-accent hover:text-sage-dark transition-colors underline">

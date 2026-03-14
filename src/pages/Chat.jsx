@@ -1,7 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { SailMark } from '../components/ui/SailMark';
-
 const PENNY_INITIAL = "Hi — I'm Penny. Before we go anywhere, I want you to know this is your space. There's no right way to show up here. What's on your mind today?";
 
 export function Chat() {
@@ -71,14 +69,8 @@ export function Chat() {
   return (
     <div className="min-h-screen flex flex-col bg-sage-bg">
       {/* Header */}
-      <header className="flex-shrink-0 flex items-center justify-between px-4 py-4 md:px-6 border-b border-sage-dark/8 bg-sage-bg-card">
-        <Link to="/" className="flex items-center gap-2.5 no-underline group">
-          <SailMark size={24} />
-          <span className="font-display italic font-normal text-sage-dark text-[0.85rem] tracking-[0.02em]">
-            TACK
-          </span>
-        </Link>
-        <span className="text-sage-text-light text-[0.8rem]">Chat with Penny</span>
+      <header className="flex-shrink-0 flex items-center justify-between px-4 py-4 md:px-6 bg-sage-dark">
+        <img src="https://tack.tondreaupoint.com/logos/logo-horizontal-dark.png" alt="TACK by Tondreau Point" className="h-10 w-auto" />
       </header>
 
       {/* Message thread */}

@@ -3,8 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAssessment } from '../context/AssessmentContext';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
-import { SailMark } from '../components/ui/SailMark';
-
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function EmailCapture() {
@@ -101,13 +99,8 @@ export default function EmailCapture() {
   return (
     <div className="min-h-screen bg-sage-bg flex flex-col items-center justify-center px-6 py-6 md:py-8">
       <div className="max-w-[680px] w-full">
-        <div className="flex justify-center mb-6">
-          <Link to="/" className="flex flex-col items-center gap-3">
-            <SailMark size={72} />
-            <span className="font-display font-bold text-sage-dark text-xl tracking-wide">
-              TACK <span className="font-light italic text-sage-accent">by Tondreau Point</span>
-            </span>
-          </Link>
+        <div className="flex justify-center py-5 bg-sage-dark">
+          <img src="https://tack.tondreaupoint.com/logos/logo-sail-mark-dark.png" alt="" className="h-10 w-auto" />
         </div>
         <Card padding="lg" className="space-y-6">
           <h2 className="font-display text-h2 font-medium text-sage-dark">
