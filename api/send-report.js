@@ -137,29 +137,27 @@ export default async function handler(req, res) {
 
   // 2. Send personalized email via Resend — Library Sage branding
   const baseUrl = process.env.TACK_APP_URL || 'https://tack.tondreaupoint.com';
-  const logoUrl = `${baseUrl}/tack-mark.png`;
+  const logoUrl = 'https://tack.tondreaupoint.com/logos/logo-stacked-dark.png';
   const pennyIntro =
     PENNY_EMAIL_INTROS[orientation] ||
     "Your orientation report is ready — it's got everything we talked about, plus a few things to sit with.";
 
   const userHtmlBody = `
-    <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 560px; margin: 0 auto; background-color: #F6F3ED; padding: 40px;">
-      <div style="text-align: center; margin-bottom: 32px;">
+    <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 560px; margin: 0 auto; background-color: #F5EFE6; padding: 0;">
+      <div style="background-color: #1C2B3F; padding: 32px 40px; text-align: center;">
         <a href="${baseUrl}" style="display: inline-block;">
-          <img src="${logoUrl}" alt="TACK by Tondreau Point" width="90" height="102" style="display: block; margin: 0 auto;" />
+          <img src="${logoUrl}" alt="TACK by Tondreau Point" width="120" style="display: block; margin: 0 auto; height: auto;" />
         </a>
-        <p style="font-family: Georgia, serif; font-size: 18px; font-weight: 600; color: #2B3E2E; letter-spacing: 0.08em; margin: 12px 0 0 0;">TACK</p>
-        <p style="font-family: Georgia, serif; font-size: 12px; font-style: italic; color: #B5893E; margin: 4px 0 0 0;">by Tondreau Point</p>
       </div>
-      <div style="background-color: #FDFCF9; padding: 32px; border-radius: 12px; border: 1px solid rgba(181, 137, 62, 0.1); box-shadow: 0 1px 3px rgba(43, 62, 46, 0.08);">
-        <p style="font-size: 16px; color: #2B3E2E; line-height: 1.7; margin: 0 0 16px;">Hi ${firstName},</p>
-        <p style="font-size: 16px; color: #556553; line-height: 1.7; margin: 0 0 16px;">${pennyIntro}</p>
-        <p style="font-size: 16px; color: #556553; line-height: 1.7; margin: 0 0 16px;">Your orientation report is attached — it's got everything we just talked about, plus a few things to sit with.</p>
-        <p style="font-size: 16px; color: #556553; line-height: 1.7; margin: 0 0 24px;">No rush. Read it when you're ready. And know that wherever you are right now is exactly the right place to start.</p>
-        <p style="font-size: 16px; color: #2B3E2E; line-height: 1.7; margin: 0; font-style: italic;">— Penny</p>
+      <div style="background-color: #FDFAF6; padding: 32px; border-radius: 12px; margin: 24px 40px; border: 1px solid rgba(196, 131, 74, 0.1); box-shadow: 0 1px 3px rgba(28, 43, 63, 0.08);">
+        <p style="font-size: 16px; color: #1C2B3F; line-height: 1.7; margin: 0 0 16px;">Hi ${firstName},</p>
+        <p style="font-size: 16px; color: #2B3A52; line-height: 1.7; margin: 0 0 16px;">${pennyIntro}</p>
+        <p style="font-size: 16px; color: #2B3A52; line-height: 1.7; margin: 0 0 16px;">Your orientation report is attached — it's got everything we just talked about, plus a few things to sit with.</p>
+        <p style="font-size: 16px; color: #2B3A52; line-height: 1.7; margin: 0 0 24px;">No rush. Read it when you're ready. And know that wherever you are right now is exactly the right place to start.</p>
+        <p style="font-size: 16px; color: #1C2B3F; line-height: 1.7; margin: 0; font-style: italic;">— Penny</p>
       </div>
-      <p style="text-align: center; margin-top: 32px; font-size: 12px; color: #8A9784;">
-        <a href="${baseUrl}" style="color: #B5893E; text-decoration: none;">TACK by Tondreau Point</a>
+      <p style="text-align: center; margin: 32px 40px; font-size: 12px;">
+        <a href="${baseUrl}"><img src="https://tack.tondreaupoint.com/logos/logo-wordmark-dark.png" width="100" style="height:auto;" alt="TACK by Tondreau Point" /></a>
       </p>
     </div>
   `;

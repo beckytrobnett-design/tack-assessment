@@ -136,31 +136,42 @@ This week's conversation excerpts: ${excerpt}`,
         const recapHtml = recap
           .split(/\n+/)
           .filter(p => p.trim())
-          .map(p => `<p style="font-size:16px;color:#556553;line-height:1.7;margin:0 0 16px 0;">${p.trim()}</p>`)
+          .map(p => `<p style="font-size:16px;color:#2B3A52;line-height:1.7;margin:0 0 16px 0;">${p.trim()}</p>`)
           .join('');
 
         const htmlBody = `
-    <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 560px; margin: 0 auto; background-color: #F6F3ED; padding: 40px;">
-      <div style="text-align: center; margin-bottom: 32px;">
-        <a href="https://tack.tondreaupoint.com" style="display: inline-block;">
-          <img src="https://tack.tondreaupoint.com/tack-mark.png" alt="TACK by Tondreau Point" width="80" style="display: block; margin: 0 auto; height: auto;" />
-        </a>
-        <p style="font-family: Georgia, serif; font-size: 18px; font-weight: 600; color: #2B3E2E; letter-spacing: 0.08em; margin: 12px 0 0 0;">TACK</p>
-        <p style="font-family: Georgia, serif; font-size: 12px; font-style: italic; color: #B5893E; margin: 4px 0 0 0;">by Tondreau Point</p>
-      </div>
-      <div style="background-color: #FDFCF9; padding: 32px; border-radius: 12px; border: 1px solid rgba(181, 137, 62, 0.1); box-shadow: 0 1px 3px rgba(43, 62, 46, 0.08);">
-        ${recapHtml}
-        <p style="font-size: 16px; color: #2B3E2E; line-height: 1.7; margin: 0; font-style: italic;">— Penny</p>
-      </div>
-      <div style="text-align: center; margin-top: 28px;">
-        <p style="font-size: 14px; font-family: Georgia, serif; font-style: italic; color: #8A9784; margin: 0 0 16px 0;">Whenever you\'re ready, Penny is here.</p>
-        <a href="https://tack.tondreaupoint.com" style="display: inline-block; background-color: #2B3E2E; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 13px 28px; border-radius: 4px;">Penny Chat</a>
-      </div>
-      <p style="text-align: center; margin-top: 28px; font-size: 12px;">
-        <a href="https://tack.tondreaupoint.com" style="color: #B5893E; text-decoration: none; font-family: Georgia, serif; font-style: italic;">TACK by Tondreau Point</a>
-      </p>
-    </div>
-  `;
+<div style="font-family: Georgia, serif; max-width: 560px; margin: 0 auto; background-color: #F5EFE6; padding: 0;">
+  
+  <!-- Header -->
+  <div style="background-color: #1C2B3F; padding: 32px 40px; text-align: center;">
+    <img src="https://tack.tondreaupoint.com/logos/logo-stacked-dark.png" alt="TACK by Tondreau Point" width="120" style="display: block; margin: 0 auto; height: auto;" />
+  </div>
+
+  <!-- Teal accent bar -->
+  <div style="background-color: #3D8C8C; padding: 12px 40px; text-align: center;">
+    <p style="font-family: Georgia, serif; font-size: 11px; letter-spacing: 0.3em; color: rgba(255,255,255,0.8); margin: 0; text-transform: uppercase;">Weekly Recap from Penny</p>
+  </div>
+
+  <!-- Body -->
+  <div style="background-color: #FDFAF6; padding: 40px;">
+    <p style="font-family: Georgia, serif; font-size: 22px; font-weight: 300; color: #1C2B3F; margin: 0 0 24px 0; line-height: 1.4;">You showed up this week.</p>
+    ${recapHtml}
+    <p style="font-size: 16px; color: #1C2B3F; line-height: 1.7; margin: 24px 0 0 0; font-style: italic;">— Penny</p>
+  </div>
+
+  <!-- CTA -->
+  <div style="background-color: #F5EFE6; padding: 32px 40px; text-align: center; border-top: 1px solid rgba(196,131,74,0.2);">
+    <p style="font-family: Georgia, serif; font-size: 14px; font-style: italic; color: #9A8E7E; margin: 0 0 20px 0;">Whenever you're ready, Penny is here.</p>
+    <a href="https://tack.tondreaupoint.com" style="display: inline-block; background-color: #3D8C8C; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 13px 28px; border-radius: 4px;">Open Penny</a>
+  </div>
+
+  <!-- Footer -->
+  <div style="background-color: #1C2B3F; padding: 24px 40px; text-align: center;">
+    <img src="https://tack.tondreaupoint.com/logos/logo-wordmark-dark.png" alt="TACK by Tondreau Point" width="100" style="display: block; margin: 0 auto 12px auto; height: auto;" />
+    <p style="font-size: 11px; color: rgba(255,255,255,0.3); margin: 0;">© 2026 Tondreau Point · <a href="https://tack.tondreaupoint.com/privacy" style="color: rgba(255,255,255,0.3); text-decoration: none;">Privacy</a></p>
+  </div>
+
+</div>`;
 
         // Send via Resend
         const emailRes = await fetch('https://api.resend.com/emails', {
