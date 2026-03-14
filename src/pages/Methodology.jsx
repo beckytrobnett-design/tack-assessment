@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { SailMark } from '../components/ui/SailMark';
 
 function ArrowRightIcon() {
   return (
@@ -37,17 +36,17 @@ export function Methodology() {
   return (
     <div className="min-h-screen bg-sage-bg">
       {/* Nav */}
-      <nav className="fixed top-1 left-0 right-0 z-[100] px-6 md:px-12 py-5 flex justify-between items-center bg-gradient-to-b from-sage-dark/7 to-transparent">
+      <nav className="sticky top-0 z-50 bg-sage-dark px-6 md:px-12 py-5 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2.5 no-underline group">
-          <SailMark size={24} className="transition-transform group-hover:-translate-y-0.5" />
+          <img src="https://tack.tondreaupoint.com/logos/logo-sail-mark-dark.png" alt="" className="h-7 w-auto" />
           <span className="hidden sm:inline w-px h-[18px] bg-sage-cta/40" />
-          <span className="font-display italic font-normal text-[0.85rem] text-sage-dark tracking-wide whitespace-nowrap">
+          <span className="font-display italic font-normal text-[0.85rem] text-white/70 tracking-wide whitespace-nowrap">
             Change your financial direction
           </span>
         </Link>
         <Link
           to="/"
-          className="flex items-center gap-1.5 text-[0.75rem] font-medium tracking-wider text-sage-text-light hover:text-sage-cta transition-colors no-underline group"
+          className="flex items-center gap-1.5 text-[0.75rem] font-medium tracking-wider text-white/70 hover:text-white transition-colors no-underline group"
         >
           <span className="transition-transform group-hover:-translate-x-1">
             <ArrowLeftIcon />
