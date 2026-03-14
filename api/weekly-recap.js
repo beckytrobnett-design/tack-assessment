@@ -162,7 +162,7 @@ This week's conversation excerpts: ${excerpt}`,
   <!-- CTA -->
   <div style="background-color: #F5EFE6; padding: 32px 40px; text-align: center; border-top: 1px solid rgba(196,131,74,0.2);">
     <p style="font-family: Georgia, serif; font-size: 14px; font-style: italic; color: #9A8E7E; margin: 0 0 20px 0;">Whenever you're ready, Penny is here.</p>
-    <a href="https://tack.tondreaupoint.com" style="display: inline-block; background-color: #3D8C8C; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 13px 28px; border-radius: 4px;">Open Penny</a>
+    <a href="https://tack.tondreaupoint.com" style="display: inline-block; background-color: #3D8C8C; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 13px 28px; border-radius: 4px;">Chat with Penny</a>
   </div>
 
   <!-- Footer -->
