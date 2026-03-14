@@ -120,14 +120,18 @@ export function Welcome() {
 
       {/* About */}
       <section className="py-20 md:py-32 px-6 bg-sage-bg-card relative">
+        <div className="absolute inset-0 flex items-center justify-start pl-8 pointer-events-none overflow-hidden">
+          <img
+            src="https://tack.tondreaupoint.com/logos/logo-sail-mark-light.png"
+            alt=""
+            className="w-[420px] opacity-[0.06]"
+          />
+        </div>
         <div
           className="absolute top-0 left-0 right-0 h-px"
           style={{ background: 'linear-gradient(to right, transparent, rgba(43,62,46,0.12), rgba(181,137,62,0.15), transparent)' }}
         />
         <div className="max-w-[860px] mx-auto grid md:grid-cols-[auto_1fr] gap-0 md:gap-16 items-start">
-          <div data-reveal data-reveal-opacity="60" className="hidden md:block pt-2 opacity-0 translate-y-7 transition-all duration-700">
-            <img src="https://tack.tondreaupoint.com/logos/logo-badge-mark-light.png" alt="" className="w-14" />
-          </div>
           <div>
             <div
               data-reveal
