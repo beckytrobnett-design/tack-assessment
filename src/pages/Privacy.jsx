@@ -106,6 +106,7 @@ export function Privacy() {
 
         {/* Page title */}
         <div style={styles.brandHeader}>
+          <img src="https://tack.tondreaupoint.com/logos/logo-stacked-light.png" alt="TACK by Tondreau Point" className="w-36 mx-auto mb-6" />
           <div style={styles.pageTitle}>Privacy Policy</div>
           <div style={styles.effectiveDate}>Effective March 2026</div>
         </div>
@@ -153,7 +154,7 @@ export function Privacy() {
 
 const styles = {
   page: {
-    backgroundColor: '#F6F3ED',
+    backgroundColor: '#F5EFE6',
     minHeight: '100vh',
     fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
   },
@@ -165,29 +166,14 @@ const styles = {
   brandHeader: {
     textAlign: 'center',
     paddingBottom: 40,
-    borderBottom: '1px solid rgba(181,137,62,0.2)',
+    borderBottom: '1px solid rgba(196,131,74,0.2)',
     marginBottom: 8,
-  },
-  brandTack: {
-    fontFamily: 'Georgia, serif',
-    fontSize: 36,
-    fontWeight: '700',
-    color: '#2B3E2E',
-    letterSpacing: '0.15em',
-    marginBottom: 6,
-  },
-  brandSub: {
-    fontFamily: 'Georgia, serif',
-    fontSize: 14,
-    fontStyle: 'italic',
-    color: '#B5893E',
-    marginBottom: 20,
   },
   pageTitle: {
     fontFamily: 'Georgia, serif',
     fontSize: 22,
     fontWeight: '600',
-    color: '#2B3E2E',
+    color: '#1C2B3F',
     marginBottom: 8,
   },
   effectiveDate: {
@@ -204,7 +190,7 @@ const styles = {
     fontFamily: 'Georgia, serif',
     fontSize: 17,
     fontWeight: '600',
-    color: '#2B3E2E',
+    color: '#1C2B3F',
     margin: '0 0 12px 0',
   },
   subsection: {
@@ -213,7 +199,7 @@ const styles = {
   subsectionTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#2B3E2E',
+    color: '#1C2B3F',
     margin: '0 0 8px 0',
   },
   body: {
@@ -240,12 +226,12 @@ const styles = {
     fontFamily: 'Georgia, serif',
     fontSize: 14,
     fontStyle: 'italic',
-    color: '#B5893E',
+    color: '#C4834A',
     marginBottom: 10,
   },
   footerLink: {
     fontSize: 13,
-    color: '#2B3E2E',
+    color: '#1C2B3F',
     textDecoration: 'underline',
   },
 };
