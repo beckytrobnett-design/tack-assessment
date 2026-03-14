@@ -22,14 +22,6 @@ export function Button({
   const width = fullWidth ? 'w-full' : '';
   const fallbackStyles = {
     minHeight: '48px',
-    ...(variant === 'primary' && {
-      backgroundColor: '#6B8F6E',
-      color: '#F6F3ED',
-    }),
-    ...(variant === 'secondary' && {
-      backgroundColor: '#B5893E',
-      color: '#F6F3ED',
-    }),
   };
 
   return (
