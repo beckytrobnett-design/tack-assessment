@@ -86,7 +86,7 @@ export function Welcome() {
 
         <div className="relative z-10 flex flex-col items-center max-w-[520px]">
           <div className="mb-10 drop-shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
-            <img src="https://tack.tondreaupoint.com/logos/logo-stacked-light.png" alt="TACK by Tondreau Point" className="w-52 mx-auto" />
+            <img src="https://tack.tondreaupoint.com/logos/logo-stacked-light.png" alt="TACK by Tondreau Point" className="w-72 mx-auto" />
           </div>
 
           <h2 className="font-display font-medium text-sage-dark text-[clamp(1.5rem,3.5vw,2.1rem)] leading-tight mb-5">

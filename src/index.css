@@ -3,14 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --sage-bg: #F6F3ED;
-  --sage-bg-card: #FDFCF9;
-  --sage-dark: #2B3E2E;
-  --sage-accent: #B5893E;
-  --sage-cta: #6B8F6E;
-  --sage-cta-hover: #54785A;
-  --sail-main: #6B8F6E;
-  --sail-foot: #B5893E;
+  --sage-dark: #1C2B3F;
+  --sage-bg: #F5EFE6;
+  --sage-bg-card: #FDFAF6;
+  --sage-cta: #3D8C8C;
+  --sage-cta-hover: #2A6B6B;
+  --sage-accent: #C4834A;
+  --sage-accent-light: #D9A46A;
+  --sage-accent-muted: rgba(196,131,74,0.15);
+  --sage-text-body: #2B3A52;
+  --sage-text-light: #9A8E7E;
 }
 
 * {
