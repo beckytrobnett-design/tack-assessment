@@ -120,7 +120,7 @@ export function Welcome() {
 
       {/* About */}
       <section className="py-20 md:py-32 px-6 bg-sage-bg-card relative">
-        <div className="absolute inset-0 flex items-center justify-start pl-8 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-end pr-8 pointer-events-none overflow-hidden">
           <img
             src="https://tack.tondreaupoint.com/logos/logo-sail-mark-light.png"
             alt=""
