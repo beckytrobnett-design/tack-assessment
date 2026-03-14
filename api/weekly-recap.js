@@ -100,7 +100,9 @@ Rules:
 - Write at a 6th grade reading level.
 - The whole message should be readable in 20 seconds.
 
-Also return a short, warm, one-sentence invitation (max 8 words, no quotes) that Penny would say to invite the user back — something personal and varied each time. Return it as JSON with two fields: recap (the existing recap paragraphs) and invitation (the new one-liner).`,
+Return ONLY a raw JSON object with no markdown, no code fences, no preamble. Exactly this shape:
+{"recap":"<the full recap text with \\n\\n between paragraphs>","invitation":"<one warm sentence, max 8 words, no quotes>"}
+Do not wrap in backticks. Do not add any text before or after the JSON.`,
             messages: [{
               role: 'user',
               content: `User name: ${user.name || 'there'}
