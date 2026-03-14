@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export function Privacy() {
   const sections = [
     {
@@ -96,12 +98,14 @@ export function Privacy() {
 
   return (
     <div style={styles.page}>
+      <header className="bg-sage-dark px-6 py-5 flex items-center justify-between sticky top-0 z-50">
+        <img src="https://tack.tondreaupoint.com/logos/logo-sail-mark-dark.png" alt="" className="h-10 w-auto" />
+        <Link to="/" className="text-white/50 hover:text-white text-sm transition-colors">← Back to TACK</Link>
+      </header>
       <div style={styles.container}>
 
-        {/* Brand header */}
+        {/* Page title */}
         <div style={styles.brandHeader}>
-          <div style={styles.brandTack}>TACK</div>
-          <div style={styles.brandSub}>by Tondreau Point</div>
           <div style={styles.pageTitle}>Privacy Policy</div>
           <div style={styles.effectiveDate}>Effective March 2026</div>
         </div>
@@ -139,12 +143,9 @@ export function Privacy() {
         ))}
 
         {/* Footer */}
-        <div style={styles.footer}>
-          <div style={styles.footerBrand}>TACK by Tondreau Point</div>
-          <a href="mailto:privacy@tondreaupoint.com" style={styles.footerLink}>
-            privacy@tondreaupoint.com
-          </a>
-        </div>
+        <footer className="bg-sage-dark py-8 text-center">
+          <img src="https://tack.tondreaupoint.com/logos/logo-wordmark-dark.png" alt="TACK by Tondreau Point" className="h-6 w-auto mx-auto" />
+        </footer>
       </div>
     </div>
   );
