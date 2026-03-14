@@ -48,7 +48,7 @@ export default async function handler(req, res) {
         const messages = await convoRes.json();
 
         // Skip users with fewer than 3 messages
-        if (!messages || messages.length < 1) {
+        if (!messages || messages.length < 3) {
           console.log(`Skipping ${user.email} — only ${messages?.length ?? 0} messages`);
           emailsSkipped++;
           continue;
