@@ -1,15 +1,14 @@
 /**
- * TACK sail mark — Library Sage branding.
- * Uses official tack-mark.svg from public folder.
+ * TACK sail mark — renders the isolated sail for nav and decorative use.
+ * Used across all pages as a lightweight brand element.
  */
 export function SailMark({ size = 90, className = '' }) {
-  const height = size * (102 / 90);
   return (
     <img
-      src="/tack-mark.png"
+      src="https://tack.tondreaupoint.com/logos/logo-sail-mark-light.png"
       alt=""
       width={size}
-      height={height}
+      height={size}
       className={className}
       aria-hidden
     />
