@@ -66,19 +66,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: COLORS.navyDeep,
+    color: '#FDFAF6',
     marginBottom: 24,
     textAlign: 'center',
     lineHeight: 1.4,
   },
   preparedFor: {
     fontSize: 13,
-    color: COLORS.navyDeep,
+    color: '#FDFAF6',
     marginBottom: 6,
   },
   date: {
     fontSize: 11,
-    color: COLORS.gold,
+    color: COLORS.goldLight,
     marginBottom: 24,
   },
   footer: {
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     lineHeight: 1.6,
   },
   noteBox: {
-    backgroundColor: COLORS.navyDeep,
+    backgroundColor: '#FDFAF6',
     padding: 20,
     marginTop: 16,
     borderLeftWidth: 4,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     marginRight: 14,
   },
   blendCallout: {
-    backgroundColor: COLORS.navyDeep,
+    backgroundColor: '#FDFAF6',
     padding: 16,
     marginTop: 16,
     marginBottom: 20,
@@ -166,8 +166,8 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
           <Image src={logoDataUri} style={styles.logoImage} />
         ) : (
           <>
-            <Text style={{ fontSize: 36, fontWeight: 'bold', color: COLORS.navyDeep, marginBottom: 6, letterSpacing: 2 }}>TACK</Text>
-            <Text style={{ fontSize: 13, color: COLORS.gold, fontStyle: 'italic', marginBottom: 48 }}>by Tondreau Point</Text>
+            <Text style={{ fontSize: 36, fontWeight: 'bold', color: '#FDFAF6', marginBottom: 6, letterSpacing: 2 }}>TACK</Text>
+            <Text style={{ fontSize: 13, color: COLORS.goldLight, fontStyle: 'italic', marginBottom: 48 }}>by Tondreau Point</Text>
           </>
         )}
         <Text style={styles.title}>Your Financial Orientation Report</Text>
@@ -271,8 +271,8 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
               You Might Also See Yourself In...
             </Text>
             <View style={[styles.blendCallout, { borderLeftColor: primary.color }]}>
-              <Text style={styles.bodyText}>{primary.blendCallout.text}</Text>
-              <Text style={[styles.bodyText, { marginTop: 8, fontSize: 10 }]}>
+              <Text style={[styles.bodyText, { color: COLORS.navy }]}>{primary.blendCallout.text}</Text>
+              <Text style={[styles.bodyText, { marginTop: 8, fontSize: 10, color: COLORS.navy }]}>
                 → Related orientations: {primary.blendCallout.orientations.join(' and ')}
               </Text>
             </View>
@@ -282,7 +282,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
           A Note From Penny
         </Text>
         <View style={[styles.noteBox, { borderLeftColor: primary.color }]}>
-          <Text style={styles.bodyText}>{primary.pennyMessage}</Text>
+          <Text style={[styles.bodyText, { color: COLORS.navy }]}>{primary.pennyMessage}</Text>
         </View>
         <Text style={styles.footer}>TACK by Tondreau Point</Text>
       </Page>

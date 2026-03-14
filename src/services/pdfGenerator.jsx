@@ -9,8 +9,8 @@ import { ReportDocument } from '../components/pdf/ReportDocument';
 async function fetchLogoAsDataUri() {
   const logoUrl =
     typeof window !== 'undefined'
-      ? `${window.location.origin}/logos/logo-stacked-light.png`
-      : 'https://tack.tondreaupoint.com/logos/logo-stacked-light.png';
+      ? `${window.location.origin}/logos/logo-stacked-dark.png`
+      : 'https://tack.tondreaupoint.com/logos/logo-stacked-dark.png';
   try {
     const res = await fetch(logoUrl);
     const blob = await res.blob();
