@@ -157,7 +157,8 @@ const styles = StyleSheet.create({
 });
 
 export function ReportDocument({ results, userName = 'You', logoDataUri, headerLogoDataUri }) {
-  const primary = orientations[results.primary.orientation];
+  const primaryOrientation = results?.primary?.orientation || results?.primaryOrientation || 'striver';
+  const primary = orientations[primaryOrientation] || Object.values(orientations)[0];
 
   return (
     <Document>

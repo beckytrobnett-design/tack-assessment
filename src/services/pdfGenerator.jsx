@@ -37,5 +37,5 @@ export async function generateOrientationReportBase64(results, userName = 'You')
     />
   ).toBlob();
   const buffer = await blob.arrayBuffer();
-  return btoa(String.fromCharCode(...new Uint8Array(buffer)));
+  const bytes = new Uint8Array(buffer); let binary = ""; for (let i = 0; i < bytes.byteLength; i++) { binary += String.fromCharCode(bytes[i]); } return btoa(binary);
 }
