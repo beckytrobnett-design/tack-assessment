@@ -52,16 +52,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 60,
-    backgroundColor: COLORS.bg,
+    backgroundColor: COLORS.navyDeep,
   },
   logoImage: {
-    width: 90,
-    height: 102,
+    width: 120,
+    height: 120,
     marginBottom: 24,
   },
   logoImageHeader: {
-    width: 72,
-    height: 82,
+    width: 120,
+    height: 90,
   },
   title: {
     fontSize: 22,
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     lineHeight: 1.6,
   },
   noteBox: {
-    backgroundColor: COLORS.bg,
+    backgroundColor: COLORS.navyDeep,
     padding: 20,
     marginTop: 16,
     borderLeftWidth: 4,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     marginRight: 14,
   },
   blendCallout: {
-    backgroundColor: COLORS.bg,
+    backgroundColor: COLORS.navyDeep,
     padding: 16,
     marginTop: 16,
     marginBottom: 20,
