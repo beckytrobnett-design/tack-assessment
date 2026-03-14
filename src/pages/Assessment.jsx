@@ -55,10 +55,10 @@ export function Assessment() {
 
   return (
     <div className="min-h-screen bg-sage-bg">
-      <nav className="bg-sage-dark px-4 py-4">
+      <nav className="bg-sage-dark px-6 py-3 flex justify-center">
         <div className="max-w-[680px] mx-auto flex justify-center">
           <Link to="/">
-            <img src="https://tack.tondreaupoint.com/logos/logo-horizontal-dark.png" alt="TACK by Tondreau Point" className="h-10 w-auto" />
+            <img src="https://tack.tondreaupoint.com/logos/logo-horizontal-dark.png" alt="TACK by Tondreau Point" className="h-12 w-auto" />
           </Link>
         </div>
       </nav>
