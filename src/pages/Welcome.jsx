@@ -69,7 +69,7 @@ export function Welcome() {
       {/* Nav */}
       <nav className={`fixed top-1 left-0 right-0 z-[100] flex items-center px-6 md:px-12 py-6 transition-all duration-500 ${navScrolled ? 'bg-sage-dark/95 backdrop-blur-xl py-4 shadow-[0_1px_0_rgba(43,62,46,0.06)] top-0' : 'bg-sage-dark'}`}>
         <Link to="/" className="no-underline">
-          <img src="https://tack.tondreaupoint.com/logos/logo-horizontal-dark.png" alt="TACK by Tondreau Point" className="h-20 w-auto max-w-[280px]" />
+          <img src="https://tack.tondreaupoint.com/logos/logo-horizontal-dark.png" alt="TACK by Tondreau Point" className="h-12 w-auto" />
         </Link>
       </nav>
 
@@ -86,7 +86,7 @@ export function Welcome() {
 
         <div className="relative z-10 flex flex-col items-center max-w-[520px]">
           <div className="mb-4 drop-shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
-            <img src="https://tack.tondreaupoint.com/logos/logo-stacked-light.png" alt="TACK by Tondreau Point" className="w-[600px] mx-auto max-w-[85vw]" />
+            <img src="https://tack.tondreaupoint.com/logos/logo-stacked-light.png" alt="TACK by Tondreau Point" className="w-[340px] mx-auto max-w-[70vw]" />
           </div>
 
           <h2 className="font-display font-medium text-sage-dark text-[clamp(1.5rem,3.5vw,2.1rem)] leading-tight mb-5">
