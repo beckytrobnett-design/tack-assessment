@@ -60,8 +60,9 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   logoImageHeader: {
-    width: 120,
-    height: 90,
+    width: 80,
+    height: 24,
+    objectFit: 'contain',
   },
   title: {
     fontSize: 22,
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export function ReportDocument({ results, userName = 'You', logoDataUri }) {
+export function ReportDocument({ results, userName = 'You', logoDataUri, headerLogoDataUri }) {
   const primary = orientations[results.primary.orientation];
 
   return (
@@ -186,7 +187,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
       <Page size="A4" style={styles.page}>
         <View style={styles.pageHeader}>
           {logoDataUri ? (
-            <Image src={logoDataUri} style={styles.logoImageHeader} />
+            <Image src={headerLogoDataUri || logoDataUri} style={styles.logoImageHeader} />
           ) : (
             <>
               <Text style={styles.pageHeaderLogo}>TACK</Text>
@@ -229,7 +230,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
       <Page size="A4" style={styles.page}>
         <View style={[styles.pageHeader, { marginBottom: 20 }]}>
           {logoDataUri ? (
-            <Image src={logoDataUri} style={styles.logoImageHeader} />
+            <Image src={headerLogoDataUri || logoDataUri} style={styles.logoImageHeader} />
           ) : (
             <>
               <Text style={styles.pageHeaderLogo}>TACK</Text>
@@ -257,7 +258,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
       <Page size="A4" style={styles.page}>
         <View style={[styles.pageHeader, { marginBottom: 20 }]}>
           {logoDataUri ? (
-            <Image src={logoDataUri} style={styles.logoImageHeader} />
+            <Image src={headerLogoDataUri || logoDataUri} style={styles.logoImageHeader} />
           ) : (
             <>
               <Text style={styles.pageHeaderLogo}>TACK</Text>
@@ -291,7 +292,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
       <Page size="A4" style={styles.page}>
         <View style={[styles.pageHeader, { marginBottom: 20 }]}>
           {logoDataUri ? (
-            <Image src={logoDataUri} style={styles.logoImageHeader} />
+            <Image src={headerLogoDataUri || logoDataUri} style={styles.logoImageHeader} />
           ) : (
             <>
               <Text style={styles.pageHeaderLogo}>TACK</Text>
@@ -331,7 +332,7 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
       <Page size="A4" style={styles.page}>
         <View style={[styles.pageHeader, { marginBottom: 20 }]}>
           {logoDataUri ? (
-            <Image src={logoDataUri} style={styles.logoImageHeader} />
+            <Image src={headerLogoDataUri || logoDataUri} style={styles.logoImageHeader} />
           ) : (
             <>
               <Text style={styles.pageHeaderLogo}>TACK</Text>
