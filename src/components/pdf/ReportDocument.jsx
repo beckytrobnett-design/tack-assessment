@@ -10,11 +10,16 @@ import { orientations } from '../../data/orientations';
 
 // Library Sage palette — matches web and email
 const COLORS = {
-  bg: '#F6F3ED',
-  dark: '#2B3E2E',
-  accent: '#B5893E',
-  textBody: '#556553',
-  textLight: '#8A9784',
+  bg: '#F5EFE6',
+  bgCard: '#FDFAF6',
+  navyDeep: '#1C2B3F',
+  navy: '#2B3A52',
+  teal: '#3D8C8C',
+  gold: '#C4834A',
+  goldLight: '#D9A46A',
+  textBody: '#2B3A52',
+  textLight: '#9A8E7E',
+  linen: '#EDE5D8',
 };
 
 const styles = StyleSheet.create({
@@ -30,16 +35,16 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     paddingBottom: 12,
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.accent,
+    borderBottomColor: COLORS.gold,
   },
   pageHeaderLogo: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: COLORS.dark,
+    color: COLORS.navyDeep,
   },
   pageHeaderSub: {
     fontSize: 9,
-    color: COLORS.accent,
+    color: COLORS.gold,
     fontStyle: 'italic',
   },
   coverPage: {
@@ -61,19 +66,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: COLORS.dark,
+    color: COLORS.navyDeep,
     marginBottom: 24,
     textAlign: 'center',
     lineHeight: 1.4,
   },
   preparedFor: {
     fontSize: 13,
-    color: COLORS.dark,
+    color: COLORS.navyDeep,
     marginBottom: 6,
   },
   date: {
     fontSize: 11,
-    color: COLORS.accent,
+    color: COLORS.gold,
     marginBottom: 24,
   },
   footer: {
@@ -83,12 +88,12 @@ const styles = StyleSheet.create({
     right: 48,
     textAlign: 'center',
     fontSize: 10,
-    color: COLORS.accent,
+    color: COLORS.gold,
   },
   sectionTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: COLORS.dark,
+    color: COLORS.navyDeep,
     marginBottom: 14,
     marginTop: 24,
   },
@@ -106,7 +111,7 @@ const styles = StyleSheet.create({
   bullet: {
     width: 20,
     fontSize: 11,
-    color: COLORS.accent,
+    color: COLORS.gold,
     marginRight: 8,
   },
   listText: {
@@ -120,7 +125,7 @@ const styles = StyleSheet.create({
     padding: 20,
     marginTop: 16,
     borderLeftWidth: 4,
-    borderLeftColor: COLORS.accent,
+    borderLeftColor: COLORS.gold,
   },
   orientationHeader: {
     flexDirection: 'row',
@@ -138,7 +143,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     marginBottom: 20,
     borderLeftWidth: 4,
-    borderLeftColor: COLORS.accent,
+    borderLeftColor: COLORS.gold,
   },
   stepRationale: {
     fontSize: 10,
@@ -161,8 +166,8 @@ export function ReportDocument({ results, userName = 'You', logoDataUri }) {
           <Image src={logoDataUri} style={styles.logoImage} />
         ) : (
           <>
-            <Text style={{ fontSize: 36, fontWeight: 'bold', color: COLORS.dark, marginBottom: 6, letterSpacing: 2 }}>TACK</Text>
-            <Text style={{ fontSize: 13, color: COLORS.accent, fontStyle: 'italic', marginBottom: 48 }}>by Tondreau Point</Text>
+            <Text style={{ fontSize: 36, fontWeight: 'bold', color: COLORS.navyDeep, marginBottom: 6, letterSpacing: 2 }}>TACK</Text>
+            <Text style={{ fontSize: 13, color: COLORS.gold, fontStyle: 'italic', marginBottom: 48 }}>by Tondreau Point</Text>
           </>
         )}
         <Text style={styles.title}>Your Financial Orientation Report</Text>
