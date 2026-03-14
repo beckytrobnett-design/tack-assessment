@@ -204,7 +204,7 @@ const styles = {
   },
   body: {
     fontSize: 15,
-    color: '#556553',
+    color: '#2B3A52',
     lineHeight: '1.7',
     margin: '0 0 12px 0',
   },
@@ -214,7 +214,7 @@ const styles = {
   },
   bulletItem: {
     fontSize: 15,
-    color: '#556553',
+    color: '#2B3A52',
     lineHeight: '1.7',
     marginBottom: 6,
   },
