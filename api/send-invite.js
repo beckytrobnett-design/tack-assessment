@@ -25,12 +25,6 @@ export default async function handler(req, res) {
   // TEST_MODE: only send to test email
   const recipientEmail = testEmail || inviteeEmail;
 
-  const orientationLabels = {
-    survivor: 'The Survivor', provider: 'The Provider', striver: 'The Striver',
-    vigilante: 'The Vigilante', avoider: 'The Avoider', builder: 'The Builder',
-  };
-  const orientationLabel = orientationLabels[inviterOrientation] || inviterOrientation || 'a friend';
-
   const assessmentUrl = 'https://tack.tondreaupoint.com';
 
   const htmlBody = `
@@ -51,18 +45,17 @@ export default async function handler(req, res) {
     <!-- Body -->
     <div style="background-color: #FDFAF6; padding: 40px;">
       <p style="font-size: 16px; color: #1C2B3F; line-height: 1.7; margin: 0 0 16px;">Hi ${inviteeName},</p>
-      <p style="font-size: 16px; color: #2B3A52; line-height: 1.7; margin: 0 0 16px;">${inviterName || 'Someone you know'} just completed their TACK financial orientation and wanted to share it with you.</p>
-      <p style="font-size: 16px; color: #2B3A52; line-height: 1.7; margin: 0 0 24px;">They discovered they are <strong style="color: #1C2B3F;">${orientationLabel}</strong> — and they think you might want to know yours too.</p>
-      <p style="font-size: 16px; font-style: italic; color: #2B3A52; line-height: 1.7; margin: 0 0 32px;">TACK is a 7-minute reflective questionnaire that uncovers how you think about, feel about, and interact with money. No wrong answers — just honest ones.</p>
-      <div style="talign: center; margin: 32px 0;">
+      <p style="font-size: 16px; color: #2B3A52; line-height: 1.7; margin: 0 0 16px;">${inviterName || 'Someone you know'} thought you might want to know your financial orientation — and invited you to find out.</p>
+      <p style="font-size: 16px; font-style: italic; color: #2B3A52; line-height: 1.7; margin: 0 0 16px;">TACK is a short, honest questionnaire about your relationship with money. Not your budget. Not your credit score. The story underneath all of it.</p>
+      <p style="font-size: 16px; color: #2B3A52; line-height: 1.7; margin: 0 0 32px;">It takes 7 minutes. There are no wrong answers.</p>
+      <div style="text-align: center; margin: 32px 0;">
         <a href="${assessmentUrl}" style="display: inline-block; background-color: #3D8C8C; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 14px 32px; border-radius: 4px;">Take the Assessment</a>
       </div>
-      <p style="font-size: 14px; font-style: italic; color: #9A8E7E; text-align: center; margin: 0;">It only takes 7 minutes.</p>
     </div>
 
     <!-- Footer -->
     <div style="background-color: #F5EFE6; padding: 24px 40px; text-align: center; border-top: 1px solid rgba(196,131,74,0.2);">
-      <a href="${assessmentUrl}"><img src="https://tack.tondreaupoint.com/logos/logo-wordmark-light.png" width="100" style="height:auto;display:block;margin:0 auto 10px auto;" alt="TACK by Tondreau Point" /></a>
+      <a href="${assessmentUrl}"><img src="https://tack.tondreaupoint.com/logos/logo-wordmark-dark.png" width="100" style="height:auto;display:block;margin:0 auto 10px auto;" alt="TACK by Tondreau Point" /></a>
       <p style="font-size: 11px; color: #9A8E7E; margin: 0;">© 2026 Tondreau Point · <a href="${assessmentUrl}/privacy" style="color: #9A8E7E; text-decoration: none;">Privacy</a></p>
     </div>
 
