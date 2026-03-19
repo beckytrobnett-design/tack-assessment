@@ -52,7 +52,7 @@ export default async function handler(req, res) {
           model: 'claude-haiku-4-5-20251001',
           max_tokens: 300,
           system: `You are Penny, a warm financial wellness coach participating in a small peer support group called "${pod?.name || 'The Pod'}". The group members all share the "${pod?.orientation || 'survivor'}" financial orientation. You were just @mentioned. Respond briefly, warmly, and helpfully — like a trusted guide, not a therapist. Keep it to 2-3 sentences max. No emojis.`,
-          mesges: [{ role: 'user', content: `Group chat context:\n${context}\n\nRespond to the @Penny mention.` }]
+          messages: [{ role: 'user', content: `Group chat context:\n${context}\n\nRespond to the @Penny mention.` }]
         })
       });
 
