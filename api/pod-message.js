@@ -1,7 +1,8 @@
 /**
  * Vercel serverless function: POST /api/pod-message
- * Saves a pod message, triggers Penny response if @Penny mentioned,
- * and sends push notifications to other pod members.
+ * Saves a pod message, triggers Penny response as group coach.
+ * If @Penny mentioned, responds directly to that person; otherwise
+ * responds to the group as a whole.
  */
 import { getSupabaseAdmin } from './supabase-server.js';
 
@@ -28,45 +29,51 @@ export default async function handler(req, res) {
     // Update pod last_message_at
     await supabase.from('pods').update({ last_message_at: new Date().toISOString() }).eq('id', podId);
 
-    // If @Penny mentioned, generate a response
-    if (content.toLowerCase().includes('@penny')) {
-      // Fetch recent messages for context
-      const { data: recentMessages } = await supabase
-        .from('pod_messages')
-        .select('sender_name, content, is_penny')
-        .eq('pod_id', podId)
-        .order('created_at', { ascending: false })
-        .limit(10);
+    // Penny responds to every message as group coach
+    const mentionedPenny = content.toLowerCase().includes('@penny');
 
-      const context = (recentMessages || []).reverse()
-        .map(m => `${m.is_penny ? 'Penny' : m.sender_name}: ${m.content}`)
-        .join('\n');
+    // Fetch recent messages for context
+    const { data: recentMessages } = await supabase
+      .from('pod_messages')
+      .select('sender_name, content, is_penny')
+      .eq('pod_id', podId)
+      .order('created_at', { ascending: false })
+      .limit(10);
 
-      // Fetch pod orientation
-      const { data: pod } = await supabase.from('pods').select('orientation, name').eq('id', podId).single();
+    const context = (recentMessages || []).reverse()
+      .map(m => `${m.is_penny ? 'Penny' : m.sender_name}: ${m.content}`)
+      .join('\n');
 
-      const pennyRes = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-        body: JSON.stringify({
-          model: 'claude-haiku-4-5-20251001',
-          max_tokens: 300,
-          system: `You are Penny, a warm financial wellness coach participating in a small peer support group called "${pod?.name || 'The Pod'}". The group members all share the "${pod?.orientation || 'survivor'}" financial orientation. You were just @mentioned. Respond briefly, warmly, and helpfully — like a trusted guide, not a therapist. Keep it to 2-3 sentences max. No emojis.`,
-          messages: [{ role: 'user', content: `Group chat context:\n${context}\n\nRespond to the @Penny mention.` }]
-        })
+    // Fetch pod orientation and name
+    const { data: pod } = await supabase.from('pods').select('orientation, name').eq('id', podId).single();
+
+    const systemPrompt = `You are Penny, a trauma-informed financial wellness coach facilitating a small peer support group called "${pod?.name || 'The Survivors'}". Your role is to be a warm, present group coach — affirming what members share, asking gentle follow-up questions, and helping the group feel safe and connected. Keep responses short (2-4 sentences). Never lecture. If someone mentions @Penny, respond directly to them. Otherwise respond to the group as a whole.`;
+
+    const userPrompt = mentionedPenny
+      ? `Group chat context:\n${context}\n\n${senderName} just @mentioned you. Respond directly to them with a personal reply.`
+      : `Group chat context:\n${context}\n\nRespond to the group as a whole — affirm what was shared, ask a gentle follow-up, or help the group feel connected.`;
+
+    const pennyRes = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 300,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userPrompt }]
+      })
+    });
+
+    const pennyData = await pennyRes.json();
+    const pennyText = pennyData.content?.[0]?.text;
+
+    if (pennyText) {
+      await supabase.from('pod_messages').insert({
+        pod_id: podId,
+        sender_name: 'Penny',
+        content: pennyText,
+        is_penny: true
       });
-
-      const pennyData = await pennyRes.json();
-      const pennyText = pennyData.content?.[0]?.text;
-
-      if (pennyText) {
-        await supabase.from('pod_messages').insert({
-          pod_id: podId,
-          sender_name: 'Penny',
-          content: pennyText,
-          is_penny: true
-        });
-      }
     }
 
     return res.status(200).json({ success: true, message });
