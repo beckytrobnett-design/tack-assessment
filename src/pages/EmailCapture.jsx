@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAssessment } from '../context/AssessmentContext';
+import { supabase } from '../services/supabaseClient';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -85,6 +86,28 @@ export default function EmailCapture() {
         setError(msg);
         setIsSubmitting(false);
         return;
+      }
+
+      try {
+        const password = trimmedEmail + 'TACK24!';
+        const { error: signUpError } = await supabase.auth.signUp({
+          email: trimmedEmail,
+          password,
+        });
+        if (signUpError) {
+          const msg = (signUpError.message || '').toLowerCase();
+          if (msg.includes('already registered')) {
+            const { error: signInError } = await supabase.auth.signInWithPassword({
+              email: trimmedEmail,
+              password,
+            });
+            if (signInError) console.error(signInError);
+          } else {
+            console.error(signUpError);
+          }
+        }
+      } catch (authErr) {
+        console.error(authErr);
       }
 
       // Only reveal results after successful API response

@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { AuthProvider } from './context/AuthContext';
 import { AssessmentProvider } from './context/AssessmentContext';
+import { ProtectedRoute } from './components/ProtectedRoute';
 import { Welcome } from './pages/Welcome';
 import { Assessment } from './pages/Assessment';
 import EmailCapture from './pages/EmailCapture';
@@ -10,12 +12,14 @@ import { Results } from './pages/Results';
 import { Privacy } from './pages/Privacy';
 import { Methodology } from './pages/Methodology';
 import { Chat } from './pages/Chat';
+import { Login } from './pages/Login';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ErrorBoundary>
     <BrowserRouter>
+      <AuthProvider>
       <AssessmentProvider>
         {/* Top bar — Library Sage branding */}
         <div
@@ -30,10 +34,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/results" element={<Results />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/methodology" element={<Methodology />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/chat" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AssessmentProvider>
+      </AuthProvider>
     </BrowserRouter>
     </ErrorBoundary>
   </React.StrictMode>

@@ -71,6 +71,7 @@ export function Welcome() {
         <Link to="/" className="no-underline">
           <img src="https://tack.tondreaupoint.com/logos/logo-sail-mark-dark.png" alt="TACK by Tondreau Point" className="h-10 w-auto" />
         </Link>
+        <Link to="/login" className="ml-auto text-[0.8rem] font-medium text-white border border-white/30 hover:border-white/70 hover:bg-white/10 transition-all duration-200 px-4 py-1.5 rounded-full tracking-[0.03em]">Sign in</Link>
       </nav>
 
       {/* Hero */}
