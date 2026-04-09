@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAssessment } from '../context/AssessmentContext';
 import { calculateOrientation } from '../services/scoring';
@@ -8,8 +8,7 @@ import { Button } from '../components/ui/Button';
 export function Results() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { results, responses, email, completeAssessment, recordRoute } = useAssessment();
-  const [waitlistStatus, setWaitlistStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
+  const { results, responses, completeAssessment, recordRoute } = useAssessment();
 
   useEffect(() => {
     recordRoute('/results');
@@ -254,52 +253,15 @@ export function Results() {
               What's Next with TACK
             </h2>
             <p className="text-body text-sage-dark leading-relaxed">
-              This is just the beginning. TACK is building something for people
-              like you — a community, a guide, and a path forward. Want to be
-              part of it?
+              This is just the beginning. Penny is your personal guide — ready to help you understand what your orientation means for your real life.
             </p>
-            {waitlistStatus === 'success' ? (
-              <p className="text-body text-sage-dark leading-relaxed italic py-2">
-                You're in! I'll be in touch when TACK launches. In the meantime,
-                sit with what you've discovered today — you've already taken the
-                most important step.
-              </p>
-            ) : (
-              <Button
-                variant="primary"
-                size="lg"
-                disabled={!email || waitlistStatus === 'loading'}
-                onClick={async () => {
-                  if (!email) return;
-                  setWaitlistStatus('loading');
-                  try {
-                    const res = await fetch('/api/join-waitlist', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ email }),
-                    });
-                    const data = await res.json().catch(() => ({}));
-                    if (res.ok) {
-                      setWaitlistStatus('success');
-                    } else {
-                      setWaitlistStatus('error');
-                    }
-                  } catch {
-                    setWaitlistStatus('error');
-                  }
-                }}
-              >
-                {waitlistStatus === 'loading' ? 'Joining...' : 'Join the waitlist'}
-              </Button>
-            )}
-            {waitlistStatus === 'error' && (
-              <p className="text-small text-error">
-                Something went wrong. Please try again later.
-              </p>
-            )}
-            <p className="text-small text-sage-text-light">
-              Your PDF report is on its way to your inbox.
-            </p>
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={() => navigate('/chat')}
+            >
+              Start my journey
+            </Button>
           </Card>
         </section>
 
