@@ -133,7 +133,7 @@ export default async function handler(req, res) {
 
     if (error) {
       console.error('Supabase insert error:', error);
-      return res.status(500).json({ error: 'Could not save your response. Please try again.' });
+      return res.status(500).json({ error: error.message || error.details || JSON.stringify(error) });
     }
   } catch (err) {
     console.error('Supabase error:', err);
