@@ -276,7 +276,7 @@ export function Results() {
                   src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
                   alt="Get it on Google Play"
                   className="h-10"
-                  style={{ height: '40px', width: 'auto' }}
+                  style={{ height: '34px', width: 'auto' }}
                 />
               </a>
             </div>
