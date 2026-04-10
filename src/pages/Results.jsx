@@ -4,7 +4,6 @@ import { useAssessment } from '../context/AssessmentContext';
 import { calculateOrientation } from '../services/scoring';
 import { orientations } from '../data/orientations';
 import { Card } from '../components/ui/Card';
-import { Button } from '../components/ui/Button';
 export function Results() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -250,18 +249,38 @@ export function Results() {
         <section>
           <Card padding="lg" className="text-center space-y-4">
             <h2 className="text-h3 font-medium text-sage-dark">
-              What's Next with TACK
+              Your journey starts in the app.
             </h2>
             <p className="text-body text-sage-dark leading-relaxed">
-              This is just the beginning. Penny is your personal guide — ready to help you understand what your orientation means for your real life.
+              Meet Penny — your personal financial guide. Available now on iOS and Android.
             </p>
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={() => navigate('/chat')}
-            >
-              Start my journey
-            </Button>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 pt-2">
+              <a
+                href="#coming-soon"
+                onClick={(e) => e.preventDefault()}
+                className="inline-block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                <img
+                  src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg"
+                  alt="Download on the App Store"
+                  className="h-12"
+                />
+              </a>
+              <a
+                href="#coming-soon"
+                onClick={(e) => e.preventDefault()}
+                className="inline-block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                <img
+                  src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                  alt="Get it on Google Play"
+                  className="h-12"
+                />
+              </a>
+            </div>
+            <p className="text-small text-sage-text-light pt-1">
+              Coming soon — join the waitlist to be notified at launch.
+            </p>
           </Card>
         </section>
 
