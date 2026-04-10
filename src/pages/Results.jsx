@@ -263,7 +263,8 @@ export function Results() {
                 <img
                   src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg"
                   alt="Download on the App Store"
-                  className="h-12"
+                  className="h-10"
+                  style={{ height: '40px', width: 'auto' }}
                 />
               </a>
               <a
@@ -274,12 +275,13 @@ export function Results() {
                 <img
                   src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
                   alt="Get it on Google Play"
-                  className="h-12"
+                  className="h-10"
+                  style={{ height: '40px', width: 'auto' }}
                 />
               </a>
             </div>
             <p className="text-small text-sage-text-light pt-1">
-              Coming soon — join the waitlist to be notified at launch.
+              Coming soon — check back here for the launch announcement.
             </p>
           </Card>
         </section>
