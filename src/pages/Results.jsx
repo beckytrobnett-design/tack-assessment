@@ -254,29 +254,28 @@ export function Results() {
             <p className="text-body text-sage-dark leading-relaxed">
               Meet Penny — your personal financial guide. Available now on iOS and Android.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 pt-2">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 pt-2">
               <a
                 href="#coming-soon"
                 onClick={(e) => e.preventDefault()}
-                className="inline-block opacity-80 hover:opacity-100 transition-opacity"
+                className="inline-flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity"
               >
                 <img
                   src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg"
                   alt="Download on the App Store"
-                  className="h-10"
+                  className="block w-auto max-h-10 object-contain"
                   style={{ height: '40px', width: 'auto' }}
                 />
               </a>
               <a
                 href="#coming-soon"
                 onClick={(e) => e.preventDefault()}
-                className="inline-block opacity-80 hover:opacity-100 transition-opacity"
+                className="inline-flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity"
               >
                 <img
-                  src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
                   alt="Get it on Google Play"
-                  className="h-10"
-                  style={{ height: '34px', width: 'auto' }}
+                  style={{ height: '40px', width: 'auto' }}
                 />
               </a>
             </div>
